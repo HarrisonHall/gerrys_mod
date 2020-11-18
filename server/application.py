@@ -11,11 +11,11 @@ from flask_socketio import (
     SocketIO, join_room, leave_room, emit, rooms
 )
 
+from src import login
+
 
 app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")
 app.secret_key = b"gerry_secret_key"
-socketio = SocketIO(app, logger=True)
-
 
 
 @app.route("/")
@@ -25,11 +25,29 @@ def index():
         context={}
     )
 
-@socketio.on("connected")
+@app.route("/connect_user", methods=["POST"])
 def connect_user():
-    #join_room("client")
-    return
+    print(request.json)
+    d = {}
+    d["login_status"] = False
+    if login.password_correct(
+        request.json.get("username", ""),
+        request.json.get("password", "")
+    ):
+        d["login_status"] = True
+        d["username"] = request.json["username"]
+        pid = add_user(request.json["username"])
+        
+    return jsonify(d)
 
+
+
+@app.route("/test")
+def test():
+    return jsonify({
+        "test": "success"
+    })
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    #socketio.run(app, debug=True)
+    app.run()

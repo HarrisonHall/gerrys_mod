@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Game/login/LoginScreen.gd" type="Script" id=1]
+
+[node name="LoginScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 0.0823529, 0.160784, 0.678431, 1 )
+margin_left = 31.0
+margin_top = 18.0
+margin_right = 354.0
+margin_bottom = 314.0
+hint_tooltip = "DYK: 1 in 12 people live near an active or potentially active volcano"
+
+[node name="TextBox" type="RichTextLabel" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 37.0
+margin_top = 24.0
+margin_right = -44.0
+margin_bottom = -34.0
+text = "Gerry's Mod
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoginPanel" type="Panel" parent="."]
+modulate = Color( 0.0823529, 0.160784, 0.678431, 1 )
+margin_left = 387.0
+margin_top = 20.0
+margin_right = 720.0
+margin_bottom = 469.0
+hint_tooltip = "DYK: 1 in 12 people live near an active or potentially active volcano"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="username" type="LineEdit" parent="LoginPanel"]
+margin_left = 40.0
+margin_top = 21.0
+margin_right = 153.0
+margin_bottom = 69.0
+placeholder_text = "username"
+
+[node name="password" type="LineEdit" parent="LoginPanel"]
+margin_left = 43.0
+margin_top = 88.0
+margin_right = 156.0
+margin_bottom = 136.0
+placeholder_text = "password"
+
+[node name="login_button" type="Button" parent="LoginPanel"]
+margin_left = 39.0
+margin_top = 160.0
+margin_right = 160.0
+margin_bottom = 207.0
+text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="LoginPanel/login_button" to="." method="_on_login_button_pressed"]
