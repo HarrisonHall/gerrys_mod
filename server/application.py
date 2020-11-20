@@ -11,9 +11,9 @@ from flask import (
 from flask_socketio import (
     SocketIO, join_room, leave_room, emit, rooms
 )
-
-from src import login
 from copy import deepcopy
+
+from src import games as login
 
 
 app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")

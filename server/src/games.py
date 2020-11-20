@@ -12,6 +12,9 @@ users = {
     },
     "george": {
         "password": "george"
+    },
+    "kaleb": {
+        "password": "jake"
     }
 }
 
