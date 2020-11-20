@@ -57,8 +57,13 @@ def update_player():
         login.current_users[player]["player"]["momentum"] = mom
         for user in login.current_users:
             if user != username:
-                login.current_users[user]["update"]["players"][username] = login.current_users[player]["player"]
+                login.current_users[user]["update"]["players"][user] = login.current_users[player]["player"]
     update = login.current_users[user]["update"]
+    if login.current_users[username]["just_joined"]:
+        login.current_users[username]["just_joined"] = False
+        for user in login.current_users:
+            if user != username:
+                update["players"][user] = login.current_users[user]["player"]
     login.current_users[user]["update"] = {}
     return jsonify(update)
 

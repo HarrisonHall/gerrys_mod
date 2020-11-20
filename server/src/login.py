@@ -32,7 +32,8 @@ def add_user(username):
         },
         "update": {
             "players": {}
-        }
+        },
+        "just_joined": True
     }
     return new_id
     
