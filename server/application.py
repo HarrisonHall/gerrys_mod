@@ -36,11 +36,31 @@ def connect_user():
     ):
         d["login_status"] = True
         d["username"] = request.json["username"]
-        pid = add_user(request.json["username"])
+        pid = login.add_user(request.json["username"])
+        d["updates"] = {
+            "new_arena": "DebugArea"
+        }
         
     return jsonify(d)
 
-
+@app.route("/update_player", methods=["POST"])
+def update_player():
+    print(request.json)
+    username = request.json.get("username", "")
+    # Update player positions
+    players = request.json.get("players", [])
+    for player in players:
+        data = request.json["players"][player]
+        pos = data.get("position", login.current_users[player]["player"]["position"])
+        mom = data.get("momentum", login.current_users[player]["player"]["momentum"])
+        login.current_users[player]["player"]["position"] = pos
+        login.current_users[player]["player"]["momentum"] = mom
+        for user in login.current_users:
+            if user != username:
+                login.current_users[user]["update"]["players"][username] = login.current_users[player]["player"]
+    update = login.current_users[user]["update"]
+    login.current_users[user]["update"] = {}
+    return jsonify(update)
 
 @app.route("/test")
 def test():

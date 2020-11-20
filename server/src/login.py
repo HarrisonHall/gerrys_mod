@@ -8,6 +8,9 @@ users = {
     },
     "harry": {
         "password": "winston"
+    },
+    "george": {
+        "password": "george"
     }
 }
 
@@ -17,11 +20,19 @@ def password_correct(username, password):
     return False
 
 def add_user(username):
+    global next_id
     new_id = next_id
     next_id += 1
 
-    current_users[new_id] = {
-        "username": username
+    current_users[username] = {
+        "id": new_id,
+        "player": {
+            "position": [0, 0, 0],
+            "momentum": [0, 0, 0]
+        },
+        "update": {
+            "players": {}
+        }
     }
     return new_id
     

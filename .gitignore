@@ -1,0 +1,7 @@
+__pycache__
+__pycache__/*
+*/__pycache__/*
+server/src/__pycache__
+*.pyc
+*~
+*#
