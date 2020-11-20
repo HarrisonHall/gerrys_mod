@@ -12,6 +12,7 @@ from flask_socketio import (
 )
 
 from src import login
+from copy import deepcopy
 
 
 app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")
@@ -45,27 +46,40 @@ def connect_user():
 
 @app.route("/update_player", methods=["POST"])
 def update_player():
-    print(request.json)
     username = request.json.get("username", "")
+    print(f"{username}: ", end="")
+    
     # Update player positions
     players = request.json.get("players", [])
+    if players != []:
+        print("players:| ", end="")
+    # update the rest of the players
     for player in players:
+        print(f"{player},", end="")
         data = request.json["players"][player]
         pos = data.get("position", login.current_users[player]["player"]["position"])
         mom = data.get("momentum", login.current_users[player]["player"]["momentum"])
         login.current_users[player]["player"]["position"] = pos
         login.current_users[player]["player"]["momentum"] = mom
-        for user in login.current_users:
-            if user != username:
-                login.current_users[user]["update"]["players"][user] = login.current_users[player]["player"]
-    update = login.current_users[user]["update"]
+        for user in (set(login.current_users) - set(username)):
+            login.current_users[user]["updates"]["players"][player] = login.current_users[player]["player"]
+            
+    # TODO update other stuff
+    
+    update = deepcopy(login.current_users[username]["updates"])
     if login.current_users[username]["just_joined"]:
         login.current_users[username]["just_joined"] = False
-        for user in login.current_users:
-            if user != username:
-                update["players"][user] = login.current_users[user]["player"]
-    login.current_users[user]["update"] = {}
-    return jsonify(update)
+        for user in (set(login.current_users) - set(username)):
+            update["players"][user] = login.current_users[user]["player"]
+
+    # Zero the update
+    login.current_users[user]["updates"]["players"] = {}
+    
+    print()
+    d = {
+        "updates": update
+    }
+    return jsonify(d)
 
 @app.route("/test")
 def test():

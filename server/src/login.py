@@ -1,3 +1,4 @@
+import datetime
 
 next_id = 0
 current_users = {}
@@ -30,10 +31,12 @@ def add_user(username):
             "position": [0, 0, 0],
             "momentum": [0, 0, 0]
         },
-        "update": {
+        "updates": {
             "players": {}
         },
-        "just_joined": True
+        "just_joined": True,
+        "last_time": datetime.datetime.now(),
     }
     return new_id
-    
+
+# BUG: first person never gets 2nd person
