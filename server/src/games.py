@@ -46,6 +46,7 @@ def add_user(username):
         },
         "just_joined": True,
         "last_time": datetime.datetime.now(),
+        "last_given_timestamp": 0,
     }
     return new_id
 

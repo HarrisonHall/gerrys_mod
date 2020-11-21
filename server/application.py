@@ -49,6 +49,11 @@ def connect_user():
 @app.route("/update_player", methods=["POST"])
 def update_player():
     username = request.json.get("username", "")
+    new_timestamp = request.json.get("timestamp", -1)
+    if new_timestamp < login.current_users[username]["last_given_timestamp"]:
+        return jsonify({})
+    login.current_users[username]["last_given_timestamp"] = new_timestamp
+    
     print(f"{username}: ", end="")
     
     # Update player positions
@@ -77,7 +82,7 @@ def update_player():
             update["players"][user] = login.current_users[user]["player"]
 
     # Zero the update
-    login.current_users[user]["updates"]["players"] = {}
+    login.current_users[username]["updates"]["players"] = {}
     
     print()
     d = {
