@@ -15,6 +15,9 @@ users = {
     },
     "kaleb": {
         "password": "jake"
+    },
+    "jacky": {
+        "password": "felix"
     }
 }
 
