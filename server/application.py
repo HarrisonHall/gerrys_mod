@@ -14,6 +14,7 @@ from flask_socketio import (
 from copy import deepcopy
 
 from src import games as login
+from time import time as timestamp
 
 
 app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")
@@ -60,8 +61,10 @@ def update_player():
         data = request.json["players"][player]
         pos = data.get("position", login.current_users[player]["player"]["position"])
         mom = data.get("momentum", login.current_users[player]["player"]["momentum"])
+        rot = data.get("rotation", login.current_users[player]["player"]["rotation"])
         login.current_users[player]["player"]["position"] = pos
         login.current_users[player]["player"]["momentum"] = mom
+        login.current_users[player]["player"]["rotation"] = rot
         for user in (set(login.current_users) - set(username)):
             login.current_users[user]["updates"]["players"][player] = login.current_users[player]["player"]
             
@@ -78,7 +81,8 @@ def update_player():
     
     print()
     d = {
-        "updates": update
+        "updates": update,
+        "timestamp": timestamp()
     }
     return jsonify(d)
 

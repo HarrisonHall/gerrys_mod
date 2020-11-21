@@ -18,6 +18,9 @@ users = {
     },
     "jacky": {
         "password": "felix"
+    },
+    "biraj": {
+        "password": "biruja"
     }
 }
 
@@ -35,7 +38,8 @@ def add_user(username):
         "id": new_id,
         "player": {
             "position": [0, 0, 0],
-            "momentum": [0, 0, 0]
+            "momentum": [0, 0, 0],
+            "rotation": [0, 0, 0],
         },
         "updates": {
             "players": {}
