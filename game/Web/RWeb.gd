@@ -1,7 +1,7 @@
 extends Node
 
 
-var url = "http://127.0.0.1:5000/"
+var url = "https://gerrys-mod-demo.herokuapp.com/"
 var client_id = -1
 var client_name = 0
 onready var requests = $requests
@@ -25,9 +25,6 @@ func emit(endpoint):
 
 func received_data(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
-	print(json.result)
-	#json.result["test"] = "hello"
-	#print(json.result)
 
 func log_in(username):
 	return false

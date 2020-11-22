@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Areas/Blocks/DebugBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/Mirror/Mirror.tscn" type="PackedScene" id=2]
+
+[node name="DebugArea" type="Spatial"]
+
+[node name="BottomFloor" parent="." instance=ExtResource( 1 )]
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -2, 0 )
+
+[node name="Mirrors" type="Spatial" parent="BottomFloor"]
+transform = Transform( 0.05, 0, 0, 0, -4.37114e-08, 1, 0, -0.05, -2.18557e-09, -0.6, 4, 0.9 )
+
+[node name="Mirror" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 1, -8.74228e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 8.74228e-08, 1, 4.37114e-08, 0, 1.90735e-06, 0 )
+
+[node name="Mirror2" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -2 )
+
+[node name="Mirror3" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 0, -2 )
+
+[node name="Mirror4" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 0, 0 )
+
+[node name="Mirror5" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, -5, 0, -1 )
+
+[node name="Mirror7" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 0.896704, 1.90537e-14, -0.893857, -1.78771, -8.74228e-08, -0.448352, -7.81435e-08, 2, -1.95981e-08, -7.54596, 1.79901, -1 )
+
+[node name="Mirror8" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( -0.925107, 1.69105e-14, -0.886591, -1.77318, -8.74228e-08, 0.462553, -7.75083e-08, 2, 2.02189e-08, -7.14717, 4.36194, -1 )
+
+[node name="Mirror6" parent="BottomFloor/Mirrors" instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 3, 0, 0 )
+
+[node name="Floor1" parent="BottomFloor" instance=ExtResource( 1 )]
+transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, 0, 2, 0 )
+
+[node name="Box" parent="BottomFloor/Floor1" instance=ExtResource( 1 )]
+transform = Transform( 0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.4, 2, 0 )
+
+[node name="Floor3" parent="BottomFloor" instance=ExtResource( 1 )]
+transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, 0, 5, 0.6 )
+
+[node name="Floor4" parent="BottomFloor" instance=ExtResource( 1 )]
+transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, 0, 5, -0.6 )
+
+[node name="Spawn" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 12, 0 )
+
+[node name="lights" type="Spatial" parent="."]
+
+[node name="SpotLight" type="SpotLight" parent="lights"]
+transform = Transform( 0.866025, 2.18557e-08, -0.5, 0.5, -3.78552e-08, 0.866025, 0, -1, -4.37114e-08, -4, 18, 0 )
+shadow_enabled = true
+spot_range = 43.0
+spot_angle = 37.2373
+
+[node name="DirectionalLight" type="DirectionalLight" parent="lights"]
+transform = Transform( 1, 0, 0, 0, 0.568002, 0.823027, 0, -0.823027, 0.568002, 0, 15.2993, 13.248 )
+visible = false

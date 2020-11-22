@@ -12,9 +12,13 @@ script = ExtResource( 2 )
 
 [node name="Players" type="Spatial" parent="Map"]
 
+[node name="Arena" type="Spatial" parent="Map"]
+
 [node name="UI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }

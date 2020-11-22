@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Game/Characters/Players/models/Steven.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://Game/Characters/Players/models/Body.gd" type="Script" id=2]
+[ext_resource path="res://Game/Characters/Players/models/shooting.anim" type="Animation" id=3]
+[ext_resource path="res://Game/Characters/Players/models/standing.anim" type="Animation" id=4]
+[ext_resource path="res://Game/Objects/Weapons/handgun/realhandgun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Game/Characters/Players/models/walking.anim" type="Animation" id=6]
+[ext_resource path="res://Game/Characters/Players/models/walking and shooting.anim" type="Animation" id=7]
+[ext_resource path="res://Game/Characters/Players/models/standing 2.anim" type="Animation" id=8]
+
+[sub_resource type="Skin" id=1]
+resource_name = "Skin"
+bind_count = 10
+bind/0/name = "body"
+bind/0/bone = -1
+bind/0/pose = Transform( 1.18591, -2.47333e-17, 2.32304e-17, 2.32304e-17, 1.18358, 0.0742465, -2.47333e-17, -0.0742466, 1.18358, 1.82251e-17, -0.0114651, 0.201759 )
+bind/1/name = "head"
+bind/1/bone = -1
+bind/1/pose = Transform( 1.18591, -1.91432e-08, 2.82094e-07, 0, 1.18319, 0.0802925, -2.82743e-07, -0.0802926, 1.18319, 4.94553e-08, -1.10954, 0.207431 )
+bind/2/name = "upperarml"
+bind/2/bone = -1
+bind/2/pose = Transform( -1.01162, -0.618874, 2.37997e-06, 0.618874, -1.01162, -3.42497e-07, 2.18245e-06, 8.43143e-07, 1.18591, 0.819407, 0.640309, 0.100553 )
+bind/3/name = "lowerarml"
+bind/3/bone = -1
+bind/3/pose = Transform( -1.16998, -0.193706, 2.00185e-06, 0.193706, -1.16998, -5.62575e-08, 1.95768e-06, 1.64781e-07, 1.18591, 0.723182, 0.39719, 0.100553 )
+bind/4/name = "upperlegl"
+bind/4/bone = -1
+bind/4/pose = Transform( -1.18359, -0.0742649, 2.24749e-06, 0.074265, -1.18358, -5.6597e-07, -2.73913e-06, -5.43699e-07, 1.18591, 0.228097, 0.00160079, 0.100555 )
+bind/5/name = "lowerlegl"
+bind/5/bone = -1
+bind/5/pose = Transform( -1.18587, -0.00966309, 2.29188e-06, 0.0096631, -1.18587, -6.80142e-08, -2.72529e-06, -1.68922e-07, 1.18591, 0.271407, -0.787462, 0.100555 )
+bind/6/name = "upperarmr"
+bind/6/bone = -1
+bind/6/pose = Transform( -1.01162, 0.618874, -2.37997e-06, -0.618874, -1.01162, -3.42497e-07, -2.18245e-06, 8.43143e-07, 1.18591, -0.819407, 0.640309, 0.100553 )
+bind/7/name = "lowerarmr"
+bind/7/bone = -1
+bind/7/pose = Transform( -1.16998, 0.193706, -2.00185e-06, -0.193706, -1.16998, -5.62575e-08, -1.95768e-06, 1.64781e-07, 1.18591, -0.723182, 0.39719, 0.100553 )
+bind/8/name = "upperlegr"
+bind/8/bone = -1
+bind/8/pose = Transform( -1.18359, 0.0742649, -2.24749e-06, -0.074265, -1.18358, -5.6597e-07, 2.73913e-06, -5.43699e-07, 1.18591, -0.228097, 0.00160079, 0.100555 )
+bind/9/name = "lowerlegr"
+bind/9/bone = -1
+bind/9/pose = Transform( -1.18587, 0.00966309, -2.29188e-06, -0.0096631, -1.18587, -6.80142e-08, 2.72529e-06, -1.68922e-07, 1.18591, -0.271407, -0.787462, 0.100555 )
+
+[node name="Body" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="bones" type="Spatial" parent="."]
+transform = Transform( 0.843234, 0, 0, 0, 0.843234, 0, 0, 0, 0.843234, 0, 0.104931, -0.0847906 )
+
+[node name="Skeleton" type="Skeleton" parent="bones"]
+bones/0/name = "body"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, -3.52953e-08, 4.88183e-09, 3.53708e-08, 0.999865, -0.0164389, -4.30096e-09, 0.0164389, 0.999865, -4.33958e-15, 1.62192, -0.0288657 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "head"
+bones/1/parent = 0
+bones/1/rest = Transform( 1, 4.00213e-08, -2.43813e-07, -4.16644e-08, 0.999977, -0.00674289, 2.43538e-07, 0.00674289, 0.999977, 9.82277e-25, 1.09912, 3.72529e-09 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "upperarml"
+bones/2/parent = 0
+bones/2/rest = Transform( -0.937825, 0.345152, -0.0367956, -0.343167, -0.937881, -0.0511266, -0.0521564, -0.0353207, 0.998014, 0.364833, 0.954146, 0.0404344 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "lowerarml"
+bones/3/parent = 2
+bones/3/rest = Transform( 0.968176, 0.248374, -0.0307608, -0.24872, 0.968543, -0.00791987, 0.0278261, 0.0153187, 0.999495, 7.23246e-08, 0.543751, 1.40857e-13 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "upperlegl"
+bones/4/parent = 0
+bones/4/rest = Transform( -0.998035, 0.0626217, 1.26962e-06, -0.0624009, -0.994523, 0.0838457, 0.00525182, 0.0836812, 0.996477, 0.227548, -0.00190997, 0.100408 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+bones/5/name = "lowerlegl"
+bones/5/parent = 4
+bones/5/rest = Transform( 0.998514, 0.0544403, 0.00246926, -0.0544954, 0.997737, 0.0393785, -0.000319889, -0.0394546, 0.999221, 6.97255e-09, 0.802681, 4.7252e-14 )
+bones/5/enabled = true
+bones/5/bound_children = [  ]
+bones/6/name = "upperarmr"
+bones/6/parent = 0
+bones/6/rest = Transform( -0.942953, -0.332541, 0.0159712, 0.332865, -0.9408, 0.0639987, -0.00625652, 0.0656641, 0.997822, -0.364833, 0.954146, 0.0404345 )
+bones/6/enabled = true
+bones/6/bound_children = [  ]
+bones/7/name = "lowerarmr"
+bones/7/parent = 6
+bones/7/rest = Transform( 0.969414, -0.244747, 0.0183037, 0.24503, 0.969395, -0.0152608, -0.0140085, 0.019279, 0.999716, 7.24473e-08, 0.54375, -1.49009e-08 )
+bones/7/enabled = true
+bones/7/bound_children = [ NodePath("BoneAttachment") ]
+bones/8/name = "upperlegr"
+bones/8/parent = 0
+bones/8/rest = Transform( -0.998035, -0.0626238, -7.90086e-06, 0.0618335, -0.985464, 0.15823, -0.00991678, 0.15792, 0.9874, -0.227548, -0.00190997, 0.100408 )
+bones/8/enabled = true
+bones/8/bound_children = [  ]
+bones/9/name = "lowerlegr"
+bones/9/parent = 8
+bones/9/rest = Transform( 0.998508, -0.053699, -0.00990877, 0.0545903, 0.98594, 0.157929, 0.00128882, -0.158235, 0.987401, -6.97255e-09, 0.802681, 2.98024e-08 )
+bones/9/enabled = true
+bones/9/bound_children = [  ]
+
+[node name="Steven" type="MeshInstance" parent="bones/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00483562, -0.0354241, -5.96046e-08 )
+mesh = ExtResource( 1 )
+skin = SubResource( 1 )
+material/0 = null
+
+[node name="BoneAttachment" type="BoneAttachment" parent="bones/Skeleton"]
+transform = Transform( -0.995818, -0.0912707, 0.00378198, 0.0913159, -0.993495, 0.0680391, -0.00245267, 0.0681, 0.997675, -0.545652, 2.06319, 0.054539 )
+bone_name = "lowerarmr"
+
+[node name="WeaponHolder" type="Spatial" parent="bones/Skeleton/BoneAttachment"]
+transform = Transform( -0.997979, -0.0631548, 0.0067575, -0.00748911, 0.222651, 0.974867, -0.0630715, 0.972848, -0.222675, -0.0248623, 0.691606, -0.0740926 )
+
+[node name="realhandgun" parent="bones/Skeleton/BoneAttachment/WeaponHolder" instance=ExtResource( 5 )]
+
+[node name="AP" type="AnimationPlayer" parent="."]
+anims/shooting = ExtResource( 3 )
+anims/standing = ExtResource( 4 )
+"anims/standing 2" = ExtResource( 8 )
+anims/walking = ExtResource( 6 )
+"anims/walking and shooting" = ExtResource( 7 )
