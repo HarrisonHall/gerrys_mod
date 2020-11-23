@@ -16,6 +16,7 @@ func _process(delta):
 func request(endpoint, data):
 	# Convert data to json string:
 	var query = JSON.print(data)
+	
 	# Add 'Content-Type' header:
 	var headers = ["Content-Type: application/json"]
 	$requests.request(url + endpoint, headers, true, HTTPClient.METHOD_POST, query)
@@ -25,6 +26,3 @@ func emit(endpoint):
 
 func received_data(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
-
-func log_in(username):
-	return false

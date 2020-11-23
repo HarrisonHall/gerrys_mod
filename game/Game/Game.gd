@@ -55,7 +55,8 @@ func load_arena(arena_name):
 	$Map/Players.add_child(new_player)
 	new_player.get_node("CameraHinge/Camera").current = true
 	new_player.name = username
-	Web.requests.connect("request_completed", self, "update_players")
+	#Web.requests.connect("request_completed", self, "update_players")
+	Web.connect("new_data", self, "update_players_s")
 	new_player.respawn()
 
 var last_timestamp = -1
@@ -73,6 +74,34 @@ func update_players(result, response_code, headers, body):
 	# update players
 	for player in data.get("updates", {}).get("players", {}):
 		print("updating: ", player)
+		var p_data = data["updates"]["players"][player]
+		if player == username:  # Skip self
+			continue
+		var p_obj = $Map/Players.get_node(player)
+		if p_obj == null:
+			print("Making player: ", player)
+			p_obj = person.instance()
+			p_obj.name = player
+			$Map/Players.add_child(p_obj)
+		var mom = p_data.get("momentum", [0, 0, 0])
+		var pos = p_data.get("position", [0, 0, 0])
+		var rot = p_data.get("rotation", [0, 0, 0])
+		var t = OS.get_unix_time()
+		p_obj.set_mom(Vector3(mom[0], mom[1], mom[2]), new_timestamp)
+		p_obj.set_pos(Vector3(pos[0], pos[1], pos[2]), new_timestamp)
+		p_obj.set_rot(Vector3(rot[0], rot[1], rot[2]), new_timestamp)
+
+func update_players_s(obj):
+	var data = obj
+	
+	# ensure new packet
+	var new_timestamp = data.get("timestamp", -2)
+	if new_timestamp < last_timestamp:
+		return
+	last_timestamp = new_timestamp
+	
+	# update players
+	for player in data.get("updates", {}).get("players", {}):
 		var p_data = data["updates"]["players"][player]
 		if player == username:  # Skip self
 			continue

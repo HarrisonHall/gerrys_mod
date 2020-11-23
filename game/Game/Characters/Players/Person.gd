@@ -23,7 +23,8 @@ var Game = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Game = get_tree().get_current_scene()
-	Game.Web.requests.connect("request_completed", self, "update_player")
+	#Game.Web.requests.connect("request_completed", self, "update_player")
+	#Game.Web.connect("new_data", self, "update_player")
 
 var runtime = 0
 
@@ -120,7 +121,6 @@ func queue_next_movement(delta):
 	$RemoteMovement.remove_all()
 	var ttl = clamp(pos_buffer_time[0] - last_time, SERVER_DELTA/2, 3*SERVER_DELTA)
 	runtime = ttl
-	print(ttl)
 	if last_time < 0:
 		ttl = SERVER_DELTA/2
 	$RemoteMovement.interpolate_property(
@@ -174,9 +174,9 @@ func set_rot(m, time):
 
 func update_player(result, response_code, headers, body):
 	got_response = true
-	#print("should update player TODO")
 
-var SERVER_DELTA = 0.025
+var SERVER_DELTA = 0.017
+#var SERVER_DELTA = 0.008
 var SKIP_FRACTION = 0
 var time_since_last = -1
 var got_response = true
