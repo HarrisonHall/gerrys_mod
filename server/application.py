@@ -32,12 +32,15 @@ def echo_socket(ws):
         d = {}
         message = ws.receive()
         if message is not None:
-            print(message)
-            incoming = loads(message)
-            if "connect_user" == incoming["endpoint"]:
-                d = users.connect_user(incoming)
-            else:
-                d = games.update_game(incoming)
+            try:
+                incoming = loads(message)
+                if "connect_user" == incoming["endpoint"]:
+                    d = users.connect_user(incoming)
+                else:
+                    d = games.update_game(incoming)
+            except Exception as e:
+                print("ERROR")
+                print(e)
         else:
             print("Message was None")
         ws.send(dumps(d))

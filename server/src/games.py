@@ -20,6 +20,7 @@ def update_game(obj):
     # Make sure user can submit update
     
     if not users.timestamp_valid(username, new_timestamp):
+        print("INVALID TIMESTAMP", users.current_users[username]["last_given_timestamp"], new_timestamp)
         return {}
     
     # update the rest of the players
@@ -59,5 +60,6 @@ def update_player(username, player, data):
     users.current_users[player]["player"]["momentum"] = mom
     users.current_users[player]["player"]["rotation"] = rot
     for user in (set(users.current_users) - {username}):
+    #for user in users.current_users:
         users.current_users[user]["updates"]["players"][player] = users.current_users[player]["player"]
     return True

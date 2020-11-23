@@ -85,6 +85,7 @@ def add_users(username, d):
     if "players" not in d:
         d["players"] = {}
     for user in (set(current_users) - {username}):
+    #for user in current_users:
         d["players"][user] = current_users[user]["player"]
 
 def timestamp_valid(username, new_timestamp):
