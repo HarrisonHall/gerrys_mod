@@ -49,6 +49,25 @@ def update_game(obj):
     }
     return d
 
+def update_info(obj):
+    # Get variables
+    username = obj.get("username", "")
+    users.user_pinged(username)
+    new_timestamp = obj.get("timestamp", -1)
+
+    updates = obj.get("update", {})
+
+    # Make sure user can submit update
+    if not users.timestamp_valid(username, new_timestamp):
+        print("INVALID TIMESTAMP", users.current_users[username]["last_given_timestamp"], new_timestamp)
+        return {}
+
+    for person in updates.get("people", {}):
+        if "model" in updates["people"][person]:
+            users.current_users[username]["player"]["model"] = updates["people"][person]["model"]
+
+    return {}
+
 def update_player(username, player, data):
     """
     Update player info

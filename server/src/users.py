@@ -27,6 +27,7 @@ def add_user(username):
             "position": [0, 0, 0],
             "momentum": [0, 0, 0],
             "rotation": [0, 0, 0],
+            "model": "seagal",  # seagal, gdchan, bokatan
         },
         "updates": {
             "players": {}
