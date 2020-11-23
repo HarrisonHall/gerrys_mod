@@ -1,0 +1,26 @@
+{
+    "admin": {
+        "password": "dog"
+    },
+    "harry": {
+        "password": "winston"
+    },
+    "george": {
+        "password": "sonichu"
+    },
+    "kaleb": {
+        "password": "jake"
+    },
+    "jacky": {
+        "password": "felix"
+    },
+    "biraj": {
+        "password": "biruja"
+    },
+    "test": {
+        "password": ""
+    },
+    "debug": {
+        "password": ""
+    }
+}

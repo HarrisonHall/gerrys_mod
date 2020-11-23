@@ -1,53 +1,63 @@
-import datetime
+"""
+games.py
+========
+Handle updating game info.
+"""
 
-next_id = 0
-current_users = {}
+from . import users
 
-users = {
-    "admin": {
-        "password": "dog"
-    },
-    "harry": {
-        "password": "winston"
-    },
-    "george": {
-        "password": "george"
-    },
-    "kaleb": {
-        "password": "jake"
-    },
-    "jacky": {
-        "password": "felix"
-    },
-    "biraj": {
-        "password": "biruja"
+
+from copy import deepcopy
+from time import time as timestamp
+
+def update_game(obj):
+    # Get variables
+    username = obj.get("username", "")
+    users.user_pinged(username)
+    players = obj.get("players", [])
+    new_timestamp = obj.get("timestamp", -1)
+
+    # Make sure user can submit update
+    
+    if not users.timestamp_valid(username, new_timestamp):
+        return {}
+    
+    # update the rest of the players
+    for player in players:
+        update_player(username, player, obj["players"][player])
+            
+    # TODO update other stuff
+
+    # TODO see if any other players need removing
+    to_remove = users.remove_users()
+
+    # Send update to player
+    update = deepcopy(users.current_users[username]["updates"])
+
+    # If player just joined, send them all updates
+    if users.just_joined(username):
+        users.add_users(username, update)
+
+    # Zero the update
+    users.zero_update(username)
+    
+    d = {
+        "updates": update,
+        "timestamp": timestamp(),
+        "to_remove": to_remove
     }
-}
+    return d
 
-def password_correct(username, password):
-    if username in users:
-        return users[username]["password"] == password
-    return False
-
-def add_user(username):
-    global next_id
-    new_id = next_id
-    next_id += 1
-
-    current_users[username] = {
-        "id": new_id,
-        "player": {
-            "position": [0, 0, 0],
-            "momentum": [0, 0, 0],
-            "rotation": [0, 0, 0],
-        },
-        "updates": {
-            "players": {}
-        },
-        "just_joined": True,
-        "last_time": datetime.datetime.now(),
-        "last_given_timestamp": 0,
-    }
-    return new_id
-
-# BUG: first person never gets 2nd person
+def update_player(username, player, data):
+    """
+    Update player info
+    """
+    pos = data.get("position", users.current_users[player]["player"]["position"])
+    mom = data.get("momentum", users.current_users[player]["player"]["momentum"])
+    rot = data.get("rotation", users.current_users[player]["player"]["rotation"])
+    users.current_users[player]["player"]["position"] = pos
+    users.current_users[player]["player"]["momentum"] = mom
+    users.current_users[player]["player"]["rotation"] = rot
+    for user in (set(users.current_users) - {username}):
+        users.current_users[user]["updates"]["players"][player] = users.current_users[player]["player"]
+    return True
