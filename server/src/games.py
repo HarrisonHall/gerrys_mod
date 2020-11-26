@@ -75,10 +75,17 @@ def update_player(username, player, data):
     pos = data.get("position", users.current_users[player]["player"]["position"])
     mom = data.get("momentum", users.current_users[player]["player"]["momentum"])
     rot = data.get("rotation", users.current_users[player]["player"]["rotation"])
+    vrot = data.get("vrot", users.current_users[player]["player"]["vrot"])
+    is_crouching = data.get("is_crouching", users.current_users[player]["player"]["is_crouching"])
+    slide_time = data.get("slide_time", users.current_users[player]["player"]["slide_time"])
+    
     users.current_users[player]["player"]["position"] = pos
     users.current_users[player]["player"]["momentum"] = mom
     users.current_users[player]["player"]["rotation"] = rot
+    users.current_users[player]["player"]["vrot"] = vrot
+    users.current_users[player]["player"]["is_crouching"] = is_crouching
+    users.current_users[player]["player"]["slide_time"] = slide_time
+    
     for user in (set(users.current_users) - {username}):
-    #for user in users.current_users:
         users.current_users[user]["updates"]["players"][player] = users.current_users[player]["player"]
     return True

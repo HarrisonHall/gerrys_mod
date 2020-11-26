@@ -28,6 +28,9 @@ def add_user(username):
             "momentum": [0, 0, 0],
             "rotation": [0, 0, 0],
             "model": "seagal",  # seagal, gdchan, bokatan
+            "vrot": 0,
+            "is_crouching": False,
+            "slide_time": 0,
         },
         "updates": {
             "players": {}

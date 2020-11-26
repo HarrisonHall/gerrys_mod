@@ -22,5 +22,8 @@
     },
     "debug": {
         "password": ""
-    }
+    },
+	"ben": {
+		"password": "lina"
+	}
 }
