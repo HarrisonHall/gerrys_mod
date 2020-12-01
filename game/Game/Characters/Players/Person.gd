@@ -93,7 +93,7 @@ func process_movement(delta):
 			is_crouching = true
 		else:
 			is_crouching = false
-	if Input.is_action_pressed("gm_jump"):
+	if Input.is_action_pressed("gm_jump") and can_stand():
 		#if $FNormCast.is_colliding():
 		if surf_depth > 0 or surf_depth2 > 0:
 			momentum.y += momentum.normalized().length() * SURF_JUMP_FACTOR
@@ -170,7 +170,7 @@ func process_animations(delta):
 		$Model/Body.slide()
 		return
 	
-	if is_crouching:
+	if is_crouching or not can_stand():
 		hitbox_min()
 		if momentum.length() <= MIN_WALK:
 			$Model/Body.crouch()
@@ -299,7 +299,6 @@ func respawn():
 var o_bone_pose = null
 var ij = 0
 func reset_head():
-	print("Reset head")
 	var skel = $Model/Body.get_children()[0].get_node("Armature/Skeleton")
 	var bone_index = skel.find_bone("head")
 	o_bone_pose = skel.get_bone_pose(bone_index)
@@ -309,7 +308,7 @@ func update_bones():
 	# Move head and arms
 	var camera_rot = $CameraHinge.rotation_degrees
 	if o_bone_pose != null:
-		print("changing ", ij)
+		#print("changing ", ij)
 		ij += 1
 		var skel = $Model/Body.get_children()[0].get_node("Armature/Skeleton")
 		var bone_index = skel.find_bone("head")
@@ -320,7 +319,6 @@ func update_bones():
 func set_model(new_model):
 	var changed = $Model/Body.set_model(new_model)
 	if changed:
-		print("changed")
 		reset_head()
 
 var height = 1
@@ -330,3 +328,17 @@ func set_height(n):
 func make_camera_current():
 	var m = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")
 	m.current = true
+
+
+var head_depth = 0
+func _on_StandRoom_body_entered(body):
+	print("Something entered " + body.name)
+	head_depth += 1
+
+
+func _on_StandRoom_body_exited(body):
+	print("Something exited " + body.name)
+	head_depth -= 1
+
+func can_stand():
+	return head_depth <= 0
