@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="PlayerCamera" type="Camera"]
+keep_aspect = 0
+fov = 100.0
+far = 400.0

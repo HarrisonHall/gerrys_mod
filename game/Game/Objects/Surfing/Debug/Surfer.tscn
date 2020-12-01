@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/Objects/Surfing/Debug/Surfer.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.0392157, 0.482353, 0.2, 1 )
+
+[sub_resource type="PrismMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 2, 1.45, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( 0, 0.725, 1, 0, 0.725, -1, 0, 0.725, 1, 0, 0.725, -1, -1, -0.725, 1, 1, -0.725, -1, 1, -0.725, 1, -1, -0.725, -1, 0, 0.725, 1, 0, 0.725, -1, 0, 0.725, -1, 0, 0.725, 1, 1, -0.725, 1, -1, -0.725, -1, 1, -0.725, -1, -1, -0.725, 1, -1, -0.725, 1, 1, -0.725, 1, -1, -0.725, -1, 1, -0.725, -1 )
+
+[node name="Surfer" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial/StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="SurfArea" type="Area" parent="Spatial"]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Spatial/SurfArea"]
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Spatial/SurfArea" to="." method="_on_SurfArea_area_entered"]
+[connection signal="area_exited" from="Spatial/SurfArea" to="." method="_on_SurfArea_area_exited"]

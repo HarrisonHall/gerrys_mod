@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game/Areas/Arena/dg_worstmap/walls.material" type="Material" id=1]
 [ext_resource path="res://Game/Areas/Arena/dg_worstmap/floor.material" type="Material" id=2]
 [ext_resource path="res://Game/Areas/Arena/dg_worstmap/ramp.material" type="Material" id=3]
 [ext_resource path="res://Game/Areas/Arena/dg_worstmap/otherwalls.material" type="Material" id=4]
 [ext_resource path="res://Game/Areas/Arena/dg_worstmap/arch.material" type="Material" id=5]
+[ext_resource path="res://Game/Objects/Mirror/Mirror.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -113,3 +114,9 @@ shape = SubResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="Map/StaticBody"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, 8.74228e-08, 0, 1, 0, 0, 0 )
 shape = SubResource( 2 )
+
+[node name="Mirror" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 12 )
+
+[node name="Mirror2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3, -12 )

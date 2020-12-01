@@ -2,7 +2,7 @@ extends Control
 
 
 onready var Game = get_tree().get_current_scene()
-onready var login_box = $Margin/Menu/RightHalf/login_box
+onready var login_box = $Margin/Menu/RightHalf/PanelContainer/login_box
 onready var info_box = $Margin/Menu/LeftHalf/InfoBox
 
 
@@ -52,7 +52,8 @@ func login_response_s(obj):
 func _on_login_button_pressed():
 	if Game.singleplayer:
 		login_box.visible = false
-		Game.load_arena("dg_worstmap")
+		#Game.load_arena("dg_worstmap")
+		Game.load_arena("DebugArea")
 		return
 	Game.Web.request(
 		"connect_user", 
@@ -70,7 +71,8 @@ var server_choices = {
 func _on_serverbutton_item_selected(index):
 	if index in server_choices:
 		#Game.Web.url = server_choices[index]
-		Game.Web.change_server(server_choices[index])
+		if server_choices[index] != "singleplayer":
+			Game.Web.change_server(server_choices[index])
 		print("Changed server url to ", Game.Web.url)
 		if index == 2: # singleplayer
 			Game.singleplayer = true
@@ -87,10 +89,14 @@ func ping_rate(data):
 	if len(last_times) > 100:
 		last_times.pop_front()
 	if len(last_times) > 1:
-		print(len(last_times), " ", (last_times[-1] - last_times[0]))
 		r_rate = (float(len(last_times)) / float((last_times[-1] - last_times[0]))) * 1000
 		$Margin/Menu/RightHalf/Spacing1/PingLabel.text = str(r_rate) + " packets per second"
 
 
 
 
+
+func _on_MSSlider_value_changed(value):
+	var player = Game.get_node("Map/Players/"+Game.username)
+	if player != null:
+		player.CAM_SENSITIVITY = value
