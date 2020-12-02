@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Game/Characters/Players/models/seagal/v2/body.material" type="Material" id=1]
 [ext_resource path="res://Game/Objects/Weapons/handgun/realhandguntest2.gltf" type="PackedScene" id=2]
+[ext_resource path="res://Game/Characters/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Steven"
@@ -1481,7 +1482,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 4.04109e-08, -5.39522e-09, -4.04196e-08, 0.999999, -0.00163388, 5.32919e-09, 0.00163388, 0.999999, 0, 1, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [ NodePath("AttachCam") ]
+bones/1/bound_children = [  ]
 bones/2/name = "upperarml"
 bones/2/parent = 1
 bones/2/rest = Transform( -0.906387, -0.093383, -0.411999, -0.302602, -0.537011, 0.787434, -0.294781, 0.838391, 0.458482, 2.31542, -1.29434, 2.31789e-06 )
@@ -1501,7 +1502,7 @@ bones/5/name = "lowerarmr"
 bones/5/parent = 4
 bones/5/rest = Transform( 0.928809, 0.36075, 0.084696, 0.0349524, 0.142254, -0.989213, -0.368907, 0.92175, 0.119518, -3.29461e-07, 3.87671, -4.29111e-13 )
 bones/5/enabled = true
-bones/5/bound_children = [ NodePath("BoneAttachment2") ]
+bones/5/bound_children = [  ]
 bones/6/name = "body"
 bones/6/parent = 0
 bones/6/rest = Transform( 1, -4.18738e-08, 1.57595e-07, -8.83168e-08, -0.951523, 0.307578, 1.37076e-07, -0.307578, -0.951523, -4.80602e-09, -0.0190887, 0.0318288 )
@@ -1542,15 +1543,15 @@ material/0 = null
 transform = Transform( 1, 4.04109e-08, -5.39522e-09, -4.04196e-08, 0.999999, -0.00163388, 5.32919e-09, 0.00163388, 0.999999, 0, 18.8523, 0 )
 bone_name = "head"
 
-[node name="PlayerCamera" type="Camera" parent="Armature/Skeleton/AttachCam"]
-transform = Transform( -8.0392, -6.51031e-07, -7.01747e-07, -6.48734e-07, 8.03916, -0.0262702, 7.0387e-07, -0.0262702, -8.03916, -4.82177e-08, 1.4565, 1.97227 )
+[node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 3 )]
+transform = Transform( -8.03923, -6.51033e-07, -7.01749e-07, -6.48736e-07, 8.03919, -0.0262702, 7.03873e-07, -0.0262702, -8.03919, -5.6103e-08, 1.6663, 2.08214 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.994979, 0.0787971, -0.0617225, 0.0150862, 0.727661, 0.685772, 0.0989501, 0.681397, -0.725195, -2.17009, 15.3314, 3.16811 )
+transform = Transform( -0.994979, 0.0787973, -0.0617225, 0.0150865, 0.727661, 0.685772, 0.0989504, 0.681397, -0.725196, -2.1701, 15.3314, 3.16812 )
 bone_name = "lowerarmr"
 
 [node name="realhandguntest2" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
-transform = Transform( -0.397991, 0.00603444, 0.0395801, 0.0315191, 0.291064, 0.272559, -0.0246891, 0.274309, -0.290078, -0.614154, 3.91692, -0.585061 )
+transform = Transform( -0.397991, 0.00603444, 0.0395801, 0.0315191, 0.291064, 0.272559, -0.0246891, 0.274309, -0.290078, -0.614154, 3.91692, -0.585062 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/blank2 = SubResource( 3 )
