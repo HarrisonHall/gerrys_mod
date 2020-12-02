@@ -6,6 +6,7 @@ handle adding and removing users
 
 import datetime
 from json import load
+from time import time as timestamp
 
 
 next_id = 0
@@ -90,7 +91,6 @@ def add_users(username, d):
     if "players" not in d:
         d["players"] = {}
     for user in (set(current_users) - {username}):
-    #for user in current_users:
         d["players"][user] = current_users[user]["player"]
 
 def timestamp_valid(username, new_timestamp):
@@ -102,13 +102,33 @@ def timestamp_valid(username, new_timestamp):
 def get_objects(username):
     return current_objects
 
-def update_object(username, obj, values):
-    return
+def update_object(username, obj, values, new_timestamp):
+    old_obj = get_objects(username)[obj]
+    print(old_obj["position"], values.get("position", []))
+    old_obj["position"] = values.get("position", old_obj["position"])
+    old_obj["momentum"] = values.get("momentum", old_obj["momentum"])
+    old_obj["rotation"] = values.get("rotation", old_obj["rotation"])
+    old_obj["timestamp"] = timestamp()
+    old_obj["timestamps"][username] = new_timestamp
+    old_obj["last_update_from"] = username
+    old_obj["data"] = values.get("data", old_obj["data"])
+    print(old_obj["position"])
 
 def add_object(username, obj, values):
     current_objects[obj] = {
         "position": values.get("position", [0, 0, 0]),
         "momentum": values.get("momentum", [0, 0, 0]),
         "rotation": values.get("rotation", [0, 0, 0]),
-        "timestamp": values.get("timestamp", -1)
+        "timestamp": timestamp(),
+        "timestamps": {
+            username: values.get("timestamp", -1),
+        },
+        "last_update_from": username,
+        "type": values["type"],
+        "data": {}
     }
+
+def object_update_valid(username, obj, new_timestamp):
+    return (
+        get_objects(username)[obj]["timestamps"].get(username, -1) < new_timestamp
+    )

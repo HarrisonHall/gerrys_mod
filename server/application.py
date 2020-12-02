@@ -37,6 +37,7 @@ def echo_socket(ws):
                 if "connect_user" == incoming["endpoint"]:
                     d = users.connect_user(incoming)
                 elif "update_info" == incoming["endpoint"]:
+                    print("Updating info")
                     d = games.update_info(incoming)
                 else:
                     d = games.update_game(incoming)
