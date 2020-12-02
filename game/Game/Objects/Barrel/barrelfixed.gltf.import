@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/barrel.dae-d94b71cbd9c59b2d61f5f59609038b88.scn"
+path="res://.import/barrelfixed.gltf-a6cc3c5cb5b5193fc0542bd89ca7925c.scn"
 
 [deps]
 
-source_file="res://Game/Objects/Barrel/barrel.dae"
-dest_files=[ "res://.import/barrel.dae-d94b71cbd9c59b2d61f5f59609038b88.scn" ]
+source_file="res://Game/Objects/Barrel/barrelfixed.gltf"
+dest_files=[ "res://.import/barrelfixed.gltf-a6cc3c5cb5b5193fc0542bd89ca7925c.scn" ]
 
 [params]
 

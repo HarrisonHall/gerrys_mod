@@ -13,7 +13,7 @@ var arenas = {
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
 onready var Web = $Web
-
+var menu_up = true
 
 # Game vars
 var username = "?"
@@ -33,12 +33,14 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		if $UI.visible:
+		if menu_up:
 			$UI.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			menu_up = false
 		else:
 			$UI.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			menu_up = true
 
 func load_arena(arena_name):
 	var old_arena = $Map/Arena.get_node("ARENA")
@@ -85,3 +87,6 @@ func update_players_s(obj):
 		
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])
+
+func get_player():
+	return $Map/Players.get_node(username)

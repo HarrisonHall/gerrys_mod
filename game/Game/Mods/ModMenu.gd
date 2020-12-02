@@ -21,6 +21,8 @@ func add_info(info):
 func _on_Button_pressed():
 	var text = $MarginContainer/VBoxContainer/Input.text.to_lower()
 	var words = text.split(" ", false)
+	if len(words) == 0:
+		return
 	
 	if words[0] == "ping":
 		var new_val = float(words[1])
@@ -49,3 +51,9 @@ func _on_Button_pressed():
 			}, 
 			"timestamp": OS.get_ticks_msec()
 		})
+	if words[0] == "respawn":
+		var p = Game.get_player()
+		if p:
+			p.respawn()
+		clear_text()
+		add_info("Respawned player")

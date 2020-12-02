@@ -60,6 +60,8 @@ func _process(delta):
 	process_animations(delta)
 
 func _input(event):
+	if Game.menu_up:
+		return
 	if name != Game.username:
 		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -73,6 +75,8 @@ func _input(event):
 		update_bones()
 
 func process_movement(delta):
+	if Game.menu_up:
+		return
 	if slide_time == 0:
 		var mom_mod = movement_momentum
 		if is_crouching:
@@ -93,7 +97,7 @@ func process_movement(delta):
 			is_crouching = true
 		else:
 			is_crouching = false
-	if Input.is_action_pressed("gm_jump") and can_stand():
+	if Input.is_action_pressed("gm_jump"):
 		#if $FNormCast.is_colliding():
 		if surf_depth > 0 or surf_depth2 > 0:
 			momentum.y += momentum.normalized().length() * SURF_JUMP_FACTOR
