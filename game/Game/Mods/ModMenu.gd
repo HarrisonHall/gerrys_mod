@@ -57,3 +57,12 @@ func _on_Button_pressed():
 			p.respawn()
 		clear_text()
 		add_info("Respawned player")
+	if words[0] == "make":
+		var b = Game.object_types.get(words[1], Game.object_types["Barrell"]).instance()
+		Game.get_node("Map/Objects").add_child(b)
+		var btrans = b.get_global_transform()
+		btrans.origin = Game.get_node("Map/Players/"+Game.username).get_global_transform().origin
+		btrans.origin.y += 3
+		b.set_global_transform(btrans)
+		b.set_name(words[1])
+		b.send_update()

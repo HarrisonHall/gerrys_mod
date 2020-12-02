@@ -100,8 +100,8 @@ func update_players_s(obj):
 			print("Making object "+obj)
 			# Make object
 			obj_obj = object_types[obj_data["type"]].instance()
-			obj_obj.name = obj
 			$Map/Objects.add_child(obj_obj)
+			obj_obj.set_name(obj)
 		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
 
 func get_player():

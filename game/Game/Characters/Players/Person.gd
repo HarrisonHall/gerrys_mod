@@ -161,7 +161,7 @@ func process_animations(delta):
 		hitbox_min()
 		$Model/Body.surf()
 		return
-	if abs(momentum.y) > 0.1 and not is_on_floor():
+	if abs(momentum.y) > 0.1 and not is_on_floor() and can_stand():
 		hitbox_max()
 		$Model/Body.jump()
 		return
