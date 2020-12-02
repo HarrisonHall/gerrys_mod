@@ -329,11 +329,13 @@ func set_height(n):
 
 func make_camera_current():
 	var m = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")
-	m.current = true
+	if m:
+		m.current = true
 
 func make_camera_not_current():
 	var m = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")
-	m.current = false
+	if m:
+		m.current = false
 
 
 var head_depth = 0

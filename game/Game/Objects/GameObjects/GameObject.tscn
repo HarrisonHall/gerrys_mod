@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Game/Objects/GameObjects/GameObject.gd" type="Script" id=1]
 
-[node name="KinematicBody" type="KinematicBody"]
+[node name="GameObject" type="KinematicBody"]
 script = ExtResource( 1 )
 
-[node name="GameObject" type="Spatial" parent="."]
+[node name="Hitbox" type="Area" parent="."]

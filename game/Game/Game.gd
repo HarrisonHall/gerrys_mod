@@ -10,6 +10,9 @@ var arenas = {
 	"DebugArea": preload("res://Game/Areas/Debug/DebugArea.tscn"),
 	"dg_worstmap": preload("res://Game/Areas/Arena/dg_worstmap/dg_worstmap.tscn")
 }
+var object_types = {
+	"Barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn")
+}
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
 onready var Web = $Web
@@ -87,6 +90,19 @@ func update_players_s(obj):
 		
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])
+	
+	for obj in data.get("objects", {}):
+		var obj_data = data["objects"][obj]
+		if obj_data.get("last_update_from", "") == username:
+			continue
+		var obj_obj = $Map/Objects.get_node(obj)
+		if obj_obj == null:
+			print("Making object "+obj)
+			# Make object
+			obj_obj = object_types[obj_data["type"]].instance()
+			obj_obj.name = obj
+			$Map/Objects.add_child(obj_obj)
+		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
 
 func get_player():
 	return $Map/Players.get_node(username)

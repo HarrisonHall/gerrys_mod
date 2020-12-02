@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game/Areas/Blocks/DebugBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Objects/Mirror/Mirror.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Game/Objects/BoostPad/BoostPad.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/Objects/Ammo/Ammos.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Objects/Surfing/Debug/Surfer2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game/Objects/GameObjects/Barrell/Barrell.tscn" type="PackedScene" id=8]
 
 [node name="DebugArea" type="Spatial"]
 
@@ -72,6 +73,18 @@ transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, -1.05, 4, 0 )
 
 [node name="DeathBox" parent="BottomFloor" instance=ExtResource( 3 )]
 transform = Transform( 50, 0, 0, 0, 2, 0, 0, 0, 50, 0, -36, 0 )
+
+[node name="Barrell" parent="BottomFloor" instance=ExtResource( 8 )]
+transform = Transform( 0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.55, 4, 0 )
+
+[node name="Barrell2" parent="BottomFloor" instance=ExtResource( 8 )]
+transform = Transform( 0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 3.05, 4, -0.45 )
+
+[node name="Barrell3" parent="BottomFloor" instance=ExtResource( 8 )]
+transform = Transform( 0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 4.45, 4, -0.6 )
+
+[node name="Barrell4" parent="BottomFloor" instance=ExtResource( 8 )]
+transform = Transform( 0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 5.5, 4, -0.6 )
 
 [node name="BottomFloor2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 80, 0, 0, 0, 1, 0, 0, 0, 20, 108, -2, 0 )
