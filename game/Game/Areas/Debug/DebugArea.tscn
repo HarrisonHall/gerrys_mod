@@ -71,7 +71,34 @@ transform = Transform( 0.0866025, 0, 0.05, 0, 1, 0, -0.05, 0, 0.0866025, -0.6989
 transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, -1.05, 4, 0 )
 
 [node name="DeathBox" parent="BottomFloor" instance=ExtResource( 3 )]
-transform = Transform( 25, 0, 0, 0, 2, 0, 0, 0, 25, 0, -36, 0 )
+transform = Transform( 50, 0, 0, 0, 2, 0, 0, 0, 50, 0, -36, 0 )
+
+[node name="BottomFloor2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 80, 0, 0, 0, 1, 0, 0, 0, 20, 108, -2, 0 )
+
+[node name="BoostFloor" parent="BottomFloor2" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 4, 0 )
+
+[node name="BoostFloor2" parent="BottomFloor2" instance=ExtResource( 1 )]
+transform = Transform( 0.0965925, 0.00647048, 0, -2.07055, 1.93185, 0, 0, 0, 1, 0.725, 0, 0 )
+
+[node name="BottomFloor3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 80, 0, 0, 0, 1, 0, 0, 0, 20, 268, -2, 0 )
+
+[node name="BoostFloor" parent="BottomFloor3" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.4625, 4, 0.5 )
+
+[node name="BoostFloor2" parent="BottomFloor3" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0.737499, 4, 0.5 )
+
+[node name="BottomFloor4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 80, 0, 0, 0, 1, 0, 0, 0, 20, 426, -2, 0 )
+
+[node name="BoostFloor2" parent="BottomFloor4" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0.0624981, 4, 0.5 )
+
+[node name="BoostFloor3" parent="BottomFloor4" instance=ExtResource( 1 )]
+transform = Transform( -2.18557e-08, 0, 0.125, 0, 1, 0, -2, 0, -2.18557e-08, 2.5, 4, -9.53674e-08 )
 
 [node name="surfing" type="Spatial" parent="."]
 
