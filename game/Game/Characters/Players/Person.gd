@@ -41,15 +41,11 @@ func _ready():
 
 var runtime = 0
 
-var is_vis = true
 func _process(delta):
-	if Game.username == name and is_vis:
+	if Game.username == name:
 		make_camera_current()
-		#$Model/Body.make_invisible()
-		is_vis = false
-	elif Game.username != name and not is_vis:
-		#$Model/Body.make_visible()
-		is_vis = true
+	else:
+		make_camera_not_current()
 	
 	# Movement
 	if name == Game.username:
@@ -324,6 +320,8 @@ func set_model(new_model):
 	var changed = $Model/Body.set_model(new_model)
 	if changed:
 		reset_head()
+		if name == Game.username:
+			make_camera_current()
 
 var height = 1
 func set_height(n):
@@ -332,6 +330,10 @@ func set_height(n):
 func make_camera_current():
 	var m = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")
 	m.current = true
+
+func make_camera_not_current():
+	var m = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")
+	m.current = false
 
 
 var head_depth = 0
