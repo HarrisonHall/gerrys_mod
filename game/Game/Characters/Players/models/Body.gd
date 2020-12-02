@@ -7,10 +7,17 @@ var held_object = true
 var last_animation = ""
 
 var models = {
-	"seagul": preload("res://Game/Characters/Players/models/seagal/v2/seagullv2test1.tscn"),
-	"seagal": preload("res://Game/Characters/Players/models/seagal/v2/seagullv2test1.tscn"),
+	"seagul": preload("res://Game/Characters/Players/models/seagal/v2/seagullv2.tscn"),
+	"seagal": preload("res://Game/Characters/Players/models/seagal/v2/seagullv2.tscn"),
 	"bokatan": preload("res://Game/Characters/Players/models/bokatan/v2/bittywithhelmetv2test1.tscn"),
 	"gdchan": preload("res://Game/Characters/Players/models/gdchan/v2/gofuckv2test1.tscn"),
+	"orango": preload("res://Game/Characters/Players/models/monkeys/Orango.tscn"),
+	"gibby": preload("res://Game/Characters/Players/models/Gibby/gibby.tscn"),
+	"bobby": preload("res://Game/Characters/Players/models/Bobby/bobby.tscn"),
+	"bboy": preload("res://Game/Characters/Players/models/BannaBoy/bboy.tscn"),
+	"bobo": preload("res://Game/Characters/Players/models/Bobo/bobo.tscn"),
+	"bobof": preload("res://Game/Characters/Players/models/BoboF/bobof.tscn"),
+	"garry": preload("res://Game/Characters/Players/models/Garry/garry.tscn"),
 }
 
 signal changed_animation

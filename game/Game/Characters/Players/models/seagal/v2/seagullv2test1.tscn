@@ -1547,7 +1547,7 @@ bone_name = "head"
 transform = Transform( -8.0392, -6.5147e-07, -1.11992e-06, -6.47807e-07, 8.03916, -0.0262702, 1.12204e-06, -0.0262702, -8.03916, -6.09153e-08, 1.77307, 1.98996 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.85744, -0.507518, 0.0849986, 0.506963, -0.86146, -0.0296101, 0.0882507, 0.0177006, 0.995941, -5.97549, 16.4116, -0.566602 )
+transform = Transform( -0.994979, 0.0787987, -0.0617226, 0.0150873, 0.727662, 0.685771, 0.0989512, 0.681396, -0.725195, -2.17009, 15.3314, 3.16812 )
 bone_name = "lowerarmr"
 
 [node name="realhandgun" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
