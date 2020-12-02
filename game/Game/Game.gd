@@ -16,7 +16,7 @@ onready var Web = $Web
 var menu_up = true
 
 # Game vars
-var username = "?"
+var username = "DEFAULT_USER"
 var singleplayer = false
 
 

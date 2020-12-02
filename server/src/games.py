@@ -71,6 +71,7 @@ def update_info(obj):
     for obj in objects:
         if obj in get_objects(username):
             # Check timestamp before updating
+            pass
         else:
             users.add_object(username, obj, objects[obj])
 

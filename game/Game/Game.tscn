@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Game/Game.gd" type="Script" id=1]
-[ext_resource path="res://Web/SWeb.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Game.gd" type="Script" id=2]
+[ext_resource path="res://Web/SWeb.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Spatial"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Map" type="Spatial" parent="."]
 
