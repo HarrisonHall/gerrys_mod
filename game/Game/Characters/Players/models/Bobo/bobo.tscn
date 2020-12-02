@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Game/Characters/Players/models/Bobo/skin.material" type="Material" id=1]
+[ext_resource path="res://Game/Characters/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -1102,7 +1103,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, -5.07887e-09, 1.11616e-08, 7.43225e-09, 0.974996, -0.222223, -9.75389e-09, 0.222223, 0.974996, 2.66454e-15, 2.31326, 7.45058e-09 )
 bones/1/enabled = true
-bones/1/bound_children = [ NodePath("AttachCam") ]
+bones/1/bound_children = [  ]
 bones/2/name = "upperarml"
 bones/2/parent = 1
 bones/2/rest = Transform( -0.988102, 0.149334, -0.0369024, -0.152315, -0.983366, 0.0989502, -0.021512, 0.103393, 0.994408, 0.82309, -0.206149, -0.085398 )
@@ -1150,11 +1151,11 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 0, 2.38419e-07, 9.69576e-09, 0.999173, -0.0406669, -2.38221e-07, 0.040667, 0.999173, -4.44089e-15, 2.45485, 0.39557 )
+transform = Transform( 1, -2.13163e-13, 2.38419e-07, 9.69593e-09, 0.999173, -0.0406667, -2.38222e-07, 0.0406667, 0.999173, -4.0182e-14, 2.45485, 0.395569 )
 bone_name = "head"
 
-[node name="Player Camera" type="Camera" parent="Armature/Skeleton/AttachCam"]
-transform = Transform( -3.44135, 5.44431e-08, -3.03318e-07, 7.89127e-08, 3.42997, -0.279667, 2.9789e-07, -0.279667, -3.42997, -9.65277e-08, 0.461733, 0.404866 )
+[node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 2 )]
+transform = Transform( -3.44136, 1.60628e-08, -3.01092e-07, 2.6437e-08, 3.43931, -0.118682, 3.00359e-07, -0.118682, -3.43931, -1.03302e-07, 0.650733, 0.433279 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Floattube = SubResource( 3 )

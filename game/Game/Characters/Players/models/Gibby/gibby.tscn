@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Game/Characters/Players/models/Gibby/skin.material" type="Material" id=1]
+[ext_resource path="res://Game/Characters/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -1224,11 +1225,11 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 0, 2.38419e-07, 9.69576e-09, 0.999173, -0.0406669, -2.38221e-07, 0.040667, 0.999173, -4.44089e-15, 2.45485, 0.39557 )
+transform = Transform( 1, -2.13163e-13, 2.38419e-07, 9.69593e-09, 0.999173, -0.0406667, -2.38222e-07, 0.0406667, 0.999173, -4.0182e-14, 2.45485, 0.395569 )
 bone_name = "head"
 
-[node name="PlayerCamera" type="Camera" parent="Armature/Skeleton/AttachCam"]
-transform = Transform( -2.97106, -3.09496e-07, -1.932e-07, -3.06145e-07, 2.97062, -0.0508293, 1.98466e-07, -0.0508294, -2.97062, -8.02206e-08, 0.473884, 0.33647 )
+[node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 2 )]
+transform = Transform( -2.97105, 4.70039e-08, -2.61866e-07, 6.81292e-08, 2.96123, -0.241446, 2.5718e-07, -0.241446, -2.96123, -8.1063e-08, 0.577275, 0.340003 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Floattube = SubResource( 3 )
