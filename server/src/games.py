@@ -44,6 +44,7 @@ def update_game(obj):
     
     d = {
         "updates": update,
+        "objects": users.get_objects(username),
         "timestamp": timestamp(),
         "to_remove": to_remove
     }
@@ -65,6 +66,13 @@ def update_info(obj):
     for person in updates.get("people", {}):
         if "model" in updates["people"][person]:
             users.current_users[username]["player"]["model"] = updates["people"][person]["model"]
+
+    objects = updates.get("objects": {})
+    for obj in objects:
+        if obj in get_objects(username):
+            # Check timestamp before updating
+        else:
+            users.add_object(username, obj, objects[obj])
 
     return {}
 

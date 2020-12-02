@@ -6,13 +6,13 @@
 [node name="Game" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="Web" parent="." instance=ExtResource( 3 )]
-
 [node name="Map" type="Spatial" parent="."]
 
-[node name="Players" type="Spatial" parent="Map"]
-
 [node name="Arena" type="Spatial" parent="Map"]
+
+[node name="Objects" type="Spatial" parent="Map"]
+
+[node name="Players" type="Spatial" parent="Map"]
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
@@ -22,3 +22,5 @@ size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Web" parent="." instance=ExtResource( 3 )]

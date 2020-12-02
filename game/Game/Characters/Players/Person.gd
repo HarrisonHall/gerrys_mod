@@ -45,10 +45,10 @@ var is_vis = true
 func _process(delta):
 	if Game.username == name and is_vis:
 		make_camera_current()
-		$Model/Body.make_invisible()
+		#$Model/Body.make_invisible()
 		is_vis = false
 	elif Game.username != name and not is_vis:
-		$Model/Body.make_visible()
+		#$Model/Body.make_visible()
 		is_vis = true
 	
 	# Movement

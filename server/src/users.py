@@ -10,6 +10,7 @@ from json import load
 
 next_id = 0
 current_users = {}
+current_objects = {}
 DISCONNECT_TIME = 5
 
 users = {}
@@ -27,7 +28,7 @@ def add_user(username):
             "position": [0, 0, 0],
             "momentum": [0, 0, 0],
             "rotation": [0, 0, 0],
-            "model": "seagal",  # seagal, gdchan, bokatan
+            "model": "seagal",
             "vrot": 0,
             "is_crouching": False,
             "slide_time": 0,
@@ -97,3 +98,17 @@ def timestamp_valid(username, new_timestamp):
         current_users[username]["last_given_timestamp"] = new_timestamp
         return True
     return False
+
+def get_objects(username):
+    return current_objects
+
+def update_object(username, obj, values):
+    return
+
+def add_object(username, obj, values):
+    current_objects[obj] = {
+        "position": values.get("position", [0, 0, 0]),
+        "momentum": values.get("momentum", [0, 0, 0]),
+        "rotation": values.get("rotation", [0, 0, 0]),
+        "timestamp": values.get("timestamp", -1)
+    }
