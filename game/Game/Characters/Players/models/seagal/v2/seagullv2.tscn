@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Game/Characters/Players/models/seagal/v2/body.material" type="Material" id=1]
-[ext_resource path="res://Game/Objects/Weapons/handgun/realhandguntest2.gltf" type="PackedScene" id=2]
 [ext_resource path="res://Game/Characters/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
@@ -1540,18 +1539,18 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, 4.04109e-08, -5.39522e-09, -4.04196e-08, 0.999999, -0.00163388, 5.32919e-09, 0.00163388, 0.999999, 0, 18.8523, 0 )
+transform = Transform( 1, 4.04109e-08, -5.39522e-09, -4.04196e-08, 0.999999, -0.00163388, 5.32919e-09, 0.00163388, 0.999999, 0, 10.1858, 0 )
 bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 3 )]
 transform = Transform( -8.03923, -6.51033e-07, -7.01749e-07, -6.48736e-07, 8.03919, -0.0262702, 7.03873e-07, -0.0262702, -8.03919, -5.6103e-08, 1.6663, 2.08214 )
 
-[node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.994979, 0.0787973, -0.0617225, 0.0150865, 0.727661, 0.685772, 0.0989504, 0.681397, -0.725196, -2.1701, 15.3314, 3.16812 )
+[node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( -0.994979, 0.0787973, -0.0617228, 0.0150863, 0.727661, 0.685772, 0.0989506, 0.681397, -0.725196, -2.17009, 6.66492, 3.16812 )
 bone_name = "lowerarmr"
 
-[node name="realhandguntest2" parent="Armature/Skeleton/BoneAttachment2" instance=ExtResource( 2 )]
-transform = Transform( -0.397991, 0.00603444, 0.0395801, 0.0315191, 0.291064, 0.272559, -0.0246891, 0.274309, -0.290078, -0.614154, 3.91692, -0.585062 )
+[node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
+transform = Transform( 1, -2.23517e-08, 0, -2.23517e-08, 1, 0, 2.23517e-08, 6.25849e-07, 1, -0.21189, 4.75169, 0.0451872 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/blank2 = SubResource( 3 )

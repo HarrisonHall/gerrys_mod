@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game/Areas/Blocks/DebugBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Objects/Mirror/Mirror.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Game/Objects/Ammo/Ammos.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Objects/Surfing/Debug/Surfer2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Game/Objects/GameObjects/Barrell/Barrell.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/Gun.tscn" type="PackedScene" id=9]
 
 [node name="DebugArea" type="Spatial"]
 
@@ -170,3 +171,6 @@ spot_angle = 37.2373
 [node name="DirectionalLight" type="DirectionalLight" parent="lights"]
 transform = Transform( 1, 0, 0, 0, 0.568002, 0.823027, 0, -0.823027, 0.568002, 0, 15.2993, 13.248 )
 visible = false
+
+[node name="Gun" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 16 )

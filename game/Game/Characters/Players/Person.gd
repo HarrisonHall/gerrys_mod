@@ -34,6 +34,10 @@ var slide_time = 0
 var SLIDE_MOM_FRAC = 2
 var slide_friction = 0.5
 
+var data = {
+	"holding_gun_type": ""
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Game = get_tree().get_current_scene()
@@ -102,7 +106,7 @@ func process_movement(delta):
 			momentum *= SLIDE_MOM_FRAC
 			momentum.y = INIT_JUMP_MOM
 			jump_time = MAX_JUMP_TIME
-		elif is_on_floor():
+		elif is_on_floor() and Input.is_action_just_pressed("gm_jump"):
 			jump_time = MAX_JUMP_TIME
 			momentum.y = INIT_JUMP_MOM
 		elif not is_on_ceiling() and jump_time > 0:
@@ -110,6 +114,12 @@ func process_movement(delta):
 			momentum += JUMP_MOM * (jump_time/MAX_JUMP_TIME) * delta * get_transform().basis.xform(Vector3(0, 1, 0))
 	else:
 		jump_time = 0
+	if Input.is_action_just_pressed("gm_drop"):
+		if is_holding:
+			drop_gun()
+	if Input.is_action_pressed("gm_int1"):
+		if is_holding:
+			$Model/Body.use_held_item()
 
 func move_player(delta):
 	if name == Game.username or (len(pos_buffer) == 0 and not $RemoteMovement.is_active()):
@@ -220,6 +230,9 @@ func queue_next_movement(delta):
 	is_crouching = crouch_buffer[0]
 	slide_time = slide_time_buffer[0]
 	
+	# update data
+	update_data(data_buffer[0])
+	
 	time_buffer.pop_front()
 	pos_buffer.pop_front()
 	mom_buffer.pop_front()
@@ -227,6 +240,7 @@ func queue_next_movement(delta):
 	vrot_buffer.pop_front()
 	crouch_buffer.pop_front()
 	slide_time_buffer.pop_front()
+	data_buffer.pop_front()
 
 const MAX_BUFF_LEN = 10
 var last_time = OS.get_unix_time()
@@ -237,6 +251,7 @@ var rot_buffer = []
 var vrot_buffer = []
 var crouch_buffer = []
 var slide_time_buffer = []
+var data_buffer = []
 func set_remote_values(d, time):
 	if len(time_buffer) >= MAX_BUFF_LEN:
 		time_buffer.pop_front()
@@ -256,12 +271,24 @@ func set_remote_values(d, time):
 	vrot_buffer.append(d["vrot"])
 	crouch_buffer.append(d["is_crouching"])
 	slide_time_buffer.append(d["slide_time"])
+	data_buffer.append(d["data"])
+
+func update_data(d):
+	if d["holding_gun_type"] != gun_type:
+		print("gun change: ",d)
+		if d["holding_gun_type"] != "":
+			gun_type = d["holding_gun_type"]
+			$Model/Body.soft_hold_object(gun_type)
+		else:
+			gun_type = d["holding_gun_type"]
+			$Model/Body.soft_let_go()
+	else:
+		print("gun didn't change: ", d)
 
 func update_player(result, response_code, headers, body):
 	got_response = true
 
 var SERVER_DELTA = 0.017
-#var SERVER_DELTA = 0.008
 var SKIP_FRACTION = 1/2
 var time_since_last = -1
 var got_response = true
@@ -284,6 +311,7 @@ func tell_server(delta):
 					"vrot": $CameraHinge.rotation_degrees.z,
 					"is_crouching": is_crouching,
 					"slide_time": slide_time,
+					"data": data,
 				}
 			}, 
 			"timestamp": OS.get_ticks_msec()
@@ -308,11 +336,9 @@ func update_bones():
 	# Move head and arms
 	var camera_rot = $CameraHinge.rotation_degrees
 	if o_bone_pose != null:
-		#print("changing ", ij)
 		ij += 1
 		var skel = $Model/Body.get_children()[0].get_node("Armature/Skeleton")
 		var bone_index = skel.find_bone("head")
-		#var bone_pose = o_bone_pose.rotated(Vector3(1, 0, 0), -camera_rot.z/120)
 		var bone_pose = o_bone_pose.rotated(Vector3(1, 0, 0), -camera_rot.z/120)
 		skel.set_bone_custom_pose(bone_index, bone_pose)
 
@@ -337,16 +363,40 @@ func make_camera_not_current():
 	if m:
 		m.current = false
 
-
 var head_depth = 0
 func _on_StandRoom_body_entered(body):
-	print("Something entered " + body.name)
 	head_depth += 1
 
-
 func _on_StandRoom_body_exited(body):
-	print("Something exited " + body.name)
 	head_depth -= 1
 
 func can_stand():
 	return head_depth <= 0
+
+var is_holding = false
+var og_gun = null
+var gun_type = ""
+func pick_up_gun(gun):
+	gun_type = gun.gun_obj
+	data["holding_gun_type"] = gun_type
+	og_gun = gun
+	is_holding = true
+	$Model/Body.hold_object(gun)
+	if Game.username == name:
+		print("Sending update for pick up")
+		#og_gun.send_update()
+
+func drop_gun():
+	is_holding = false
+	$Model/Body.let_go(get_global_transform().origin + Vector3(0, 2, 0))
+	data["holding_gun_type"] = ""
+	if Game.username == name:
+		print("Sending update for drop gun")
+		#og_gun.send_update()
+
+
+
+
+
+
+

@@ -58,7 +58,7 @@ func _on_Button_pressed():
 		clear_text()
 		add_info("Respawned player")
 	if words[0] == "make":
-		var b = Game.object_types.get(words[1], Game.object_types["Barrell"]).instance()
+		var b = Game.object_types.get(words[1].to_lower(), Game.object_types["barrell"]).instance()
 		print("created " + b.name)
 		Game.get_node("Map/Objects").add_child(b)
 		var btrans = b.get_global_transform()

@@ -103,4 +103,3 @@ shape = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.709, 0 )
 [connection signal="body_entered" from="StandRoom" to="." method="_on_StandRoom_body_entered"]
 [connection signal="body_exited" from="StandRoom" to="." method="_on_StandRoom_body_exited"]
-[connection signal="area_entered" from="SurfFeet" to="." method="_on_SurfFeet_area_entered"]

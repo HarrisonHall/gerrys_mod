@@ -33,6 +33,7 @@ def add_user(username):
             "vrot": 0,
             "is_crouching": False,
             "slide_time": 0,
+            "data": {}
         },
         "updates": {
             "players": {}
@@ -124,7 +125,7 @@ def add_object(username, obj, values):
         },
         "last_update_from": username,
         "type": values["type"],
-        "data": {}
+        "data": values.get("data", {})
     }
 
 def object_update_valid(username, obj, new_timestamp):

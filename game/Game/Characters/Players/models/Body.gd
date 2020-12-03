@@ -3,8 +3,9 @@ extends Spatial
 
 var model = null
 var current_model_name = ""
-var held_object = true
 var last_animation = ""
+
+onready var Game = get_tree().get_current_scene()
 
 var models = {
 	"seagul": preload("res://Game/Characters/Players/models/seagal/v2/seagullv2.tscn"),
@@ -123,15 +124,59 @@ func set_model(new_model):
 	model = models[new_model].instance()
 	add_child(model)
 	current_model_name = new_model
+	if held_object:
+		hold_object(original_gun)
 	return true
 
 func make_invisible():
-	if get_children()[0].get_node("bones/Skeleton") != null:
-		print("making invisible")
-		get_children()[0].get_node("bones/Skeleton").get_children()[0].layers = 2
+	if get_children()[0].get_node("Armature/Skeleton") != null:
+		get_children()[0].get_node("Armature/Skeleton").get_children()[0].layers = 2
 
 func make_visible():
-	if get_children()[0].get_node("bones/Skeleton") != null:
-		print("visible")
-		get_children()[0].get_node("bones/Skeleton").get_children()[0].layers = 1
+	if get_children()[0].get_node("Armature/Skeleton") != null:
+		get_children()[0].get_node("Armature/Skeleton").get_children()[0].layers = 1
+
+var original_gun = null
+var held_object = null
+func hold_object(gun):
+	if held_object:
+		held_object.queue_free()
+	original_gun = gun
+	held_object = Game.object_types[gun.gun_obj].instance()
+	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
+	var trans = held_object.get_global_transform()
+	hand.add_child(held_object)
+	trans.origin = hand.get_global_transform().origin
+	held_object.set_global_transform(trans)
+
+func soft_hold_object(gun_name):
+	if held_object:
+		held_object.queue_free()
+	held_object = Game.object_types[gun_name].instance()
+	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
+	var trans = held_object.get_global_transform()
+	hand.add_child(held_object)
+	trans.origin = hand.get_global_transform().origin
+	held_object.set_global_transform(trans)
+
+func soft_let_go():
+	if held_object:
+		held_object.queue_free()
+		held_object = null
+
+func let_go(pos):
+	held_object.queue_free()
+	held_object = null
+	original_gun.let_go(pos)
+
+func use_held_item():
+	if held_object:
+		held_object.use()
+
+
+
+
+
+
+
 

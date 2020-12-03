@@ -11,7 +11,9 @@ var arenas = {
 	"dg_worstmap": preload("res://Game/Areas/Arena/dg_worstmap/dg_worstmap.tscn")
 }
 var object_types = {
-	"Barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn")
+	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
+	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
+	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn")
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 

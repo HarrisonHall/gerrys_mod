@@ -10,10 +10,13 @@ var last_time = -1
 var ground_friction = 6
 var air_friction = 3
 
+var can_collide = true
 var push_amount = 7
 var deleted = false
 
 var obj_type = "generic"
+
+var data = {}
 
 onready var Game = get_tree().get_current_scene()
 
@@ -24,11 +27,9 @@ func _ready():
 func do_reparent():
 	# TODO: generalize under Game
 	if get_parent() != Game.get_node("Map/Objects"):
-		print("Reparenting")
 		var old_trans = get_global_transform()
 		var get_similar_one = Game.get_node("Map/Objects").get_node(name)
 		if get_similar_one != null:
-			print("Already created?")
 			deleted = true
 			queue_free()
 			return
@@ -36,8 +37,6 @@ func do_reparent():
 		old_parent.remove_child(self)
 		Game.get_node("Map/Objects").add_child(self)
 		set_global_transform(old_trans)
-	else:
-		print("Already has correct parent")
 
 var just_collided = false
 func _process(delta):
@@ -47,7 +46,7 @@ func _process(delta):
 	if deleted:
 		return
 	var get_collision = move_and_collide(mom*delta,true, true, true)
-	if get_collision != null:
+	if get_collision != null and can_collide:
 		var col_obj = get_collision.collider
 		if col_obj is KinematicBody:
 			var player_names = []
@@ -78,7 +77,6 @@ func send_update():
 		return
 	pos = get_global_transform().origin
 	rot = get_rotation()
-	print(OS.get_ticks_msec())
 	Game.Web.request("update_info", {
 		"username": Game.username,
 		"update": {
@@ -87,7 +85,8 @@ func send_update():
 					"position": [pos.x, pos.y, pos.z],
 					"momentum": [mom.x, mom.y, mom.z],
 					"rotation": [rot.x, rot.y, rot.z],
-					"type": obj_type
+					"type": obj_type,
+					"data": data
 				}
 			}
 		},
@@ -98,12 +97,9 @@ var can_update = false
 var last_timestamp = -1
 func get_update(obj, timestamp):
 	if not can_update:
-		print("Can't update")
-		return
+		return false
 	if timestamp <= last_timestamp:
-		#print("Invalid timestamp")
-		return
-	print(obj)
+		return false
 	last_timestamp = timestamp
 	rot = Vector3(obj["rotation"][0], obj["rotation"][1], obj["rotation"][2])
 	mom = Vector3(obj["momentum"][0], obj["momentum"][1], obj["momentum"][2])
@@ -113,10 +109,10 @@ func get_update(obj, timestamp):
 	trans.origin = pos
 	set_global_transform(trans)
 	set_rotation(rot)
+	return true
 
 var last_valid_pos = Vector3()
 func respawn():
-	print("respawning")
 	var trans = get_global_transform()
 	trans.origin = last_valid_pos
 	set_global_transform(trans)
