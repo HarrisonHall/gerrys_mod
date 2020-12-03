@@ -104,7 +104,6 @@ def get_objects(username):
 
 def update_object(username, obj, values, new_timestamp):
     old_obj = get_objects(username)[obj]
-    print(old_obj["position"], values.get("position", []))
     old_obj["position"] = values.get("position", old_obj["position"])
     old_obj["momentum"] = values.get("momentum", old_obj["momentum"])
     old_obj["rotation"] = values.get("rotation", old_obj["rotation"])
@@ -112,9 +111,9 @@ def update_object(username, obj, values, new_timestamp):
     old_obj["timestamps"][username] = new_timestamp
     old_obj["last_update_from"] = username
     old_obj["data"] = values.get("data", old_obj["data"])
-    print(old_obj["position"])
 
 def add_object(username, obj, values):
+    print("Creating",obj)
     current_objects[obj] = {
         "position": values.get("position", [0, 0, 0]),
         "momentum": values.get("momentum", [0, 0, 0]),

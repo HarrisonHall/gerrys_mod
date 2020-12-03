@@ -97,11 +97,15 @@ func update_players_s(obj):
 			continue
 		var obj_obj = $Map/Objects.get_node(obj)
 		if obj_obj == null:
+			print("Already has: ")
+			for c in $Map/Objects.get_children():
+				print(" "+c.name)
 			print("Making object "+obj)
 			# Make object
 			obj_obj = object_types[obj_data["type"]].instance()
+			obj_obj.set_name(str(obj))
 			$Map/Objects.add_child(obj_obj)
-			obj_obj.set_name(obj)
+			print("object "+obj+" given name: "+obj_obj.name)
 		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
 
 func get_player():

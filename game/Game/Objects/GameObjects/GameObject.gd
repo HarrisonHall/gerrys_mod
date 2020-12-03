@@ -11,6 +11,7 @@ var ground_friction = 6
 var air_friction = 3
 
 var push_amount = 7
+var deleted = false
 
 var obj_type = "generic"
 
@@ -23,21 +24,28 @@ func _ready():
 func do_reparent():
 	# TODO: generalize under Game
 	if get_parent() != Game.get_node("Map/Objects"):
+		print("Reparenting")
 		var old_trans = get_global_transform()
 		var get_similar_one = Game.get_node("Map/Objects").get_node(name)
 		if get_similar_one != null:
+			print("Already created?")
+			deleted = true
 			queue_free()
 			return
 		var old_parent = get_parent()
 		old_parent.remove_child(self)
 		Game.get_node("Map/Objects").add_child(self)
 		set_global_transform(old_trans)
+	else:
+		print("Already has correct parent")
 
 var just_collided = false
 func _process(delta):
 	if not can_update:
 		do_reparent()
 		can_update = true
+	if deleted:
+		return
 	var get_collision = move_and_collide(mom*delta,true, true, true)
 	if get_collision != null:
 		var col_obj = get_collision.collider
