@@ -118,9 +118,11 @@ func update_players_s(data):
 func get_player():
 	return $Map/Players.get_node(username)
 
+var obj_offset = 1
 func make_obj(type, n=""):
+	obj_offset += 1
 	if n == "":
-		n = username + "_thing_" + str(len(get_node("Map/Objects").get_children())+1)
+		n = username + "_thing_" + str(1+obj_offset)
 	if not (type in object_types):
 		return null
 	var obj_name = n.replace("@", "")

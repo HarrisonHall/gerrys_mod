@@ -58,10 +58,6 @@ func _on_Button_pressed():
 		clear_text()
 		add_info("Respawned player")
 	if words[0] == "make":
-		var name_should_be = Game.username + "_thing_" + str(len(Game.get_node("Map/Objects").get_children())+1)
-		if Game.get_node("Map/Objects/"+name_should_be):
-			print("Thing exists, skipping...")
-			return
 		if len(words) == 1:
 			print("ERROR: No object type")
 			return
@@ -69,7 +65,7 @@ func _on_Button_pressed():
 		if not (type in Game.object_types):
 			print("ERROR: No object of type ", words[1])
 			return
-		var b = Game.make_obj(type, name_should_be)
+		var b = Game.make_obj(type, "")
 		if b == null:
 			print("Error creating object ")
 			return

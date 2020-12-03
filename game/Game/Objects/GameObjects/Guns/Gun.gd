@@ -41,7 +41,7 @@ func let_go(pos):
 
 func get_update(obj, timestamp):
 	if .get_update(obj, timestamp):
-		if can_be_picked_up != obj["data"]["can_be_picked_up"]:
+		if can_be_picked_up != obj["data"].get("can_be_picked_up", can_be_picked_up):
 			print(obj)
 			if obj["data"]["can_be_picked_up"]:
 				pick_up_timer = 2
