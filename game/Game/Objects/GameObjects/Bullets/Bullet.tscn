@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/GameObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/GameObjects/Bullets/Bullet.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.0895837, 0.0980408, 0.329623 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Bullet" instance=ExtResource( 1 )]
+input_ray_pickable = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Hitbox" index="0"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="DebugMesh" type="MeshInstance" parent="." index="1"]
+transform = Transform( -0.1, 0, -3.49691e-08, 0, 0.1, 0, 8.74228e-09, 0, -0.4, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

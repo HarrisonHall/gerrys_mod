@@ -99,3 +99,10 @@ def update_player(username, player, data):
     for user in (set(users.current_users) - {username}):
         users.current_users[user]["updates"]["players"][player] = users.current_users[player]["player"]
     return True
+
+def update_damage(obj):
+    for user, info in obj["players"].items():
+        users.current_users[user]["updates"]["players"][user] = {
+            "damage": info["damage"]
+        }
+        

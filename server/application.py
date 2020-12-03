@@ -39,6 +39,9 @@ def echo_socket(ws):
                 elif "update_info" == incoming["endpoint"]:
                     print("Updating info")
                     d = games.update_info(incoming)
+                elif "take_damage" == incoming["endpoint"]:
+                    print("Updating damage")
+                    d = games.update_damage(incoming)
                 else:
                     d = games.update_game(incoming)
             except Exception as e:

@@ -9,6 +9,7 @@ var last_time = -1
 
 var ground_friction = 6
 var air_friction = 3
+var MIN_MOM = 0.4
 
 var can_collide = true
 var push_amount = 7
@@ -17,6 +18,8 @@ var deleted = false
 var obj_type = "generic"
 
 var data = {}
+var kill = false
+var queue_send_update = false
 
 onready var Game = get_tree().get_current_scene()
 
@@ -72,11 +75,19 @@ func _process(delta):
 	else:
 		mom = mom - delta * air_friction * mom.normalized()
 		mom += gravity * delta
+	
+	# Zero friction
+	if (mom.length() <= MIN_MOM):
+		mom = Vector3(0, mom.y, 0)
+		
+	if queue_send_update:
+		queue_send_update = false
+		send_update()
 
 
 func send_update():
 	if not can_update:
-		return
+		return false
 	pos = get_global_transform().origin
 	rot = get_rotation()
 	Game.Web.request("update_info", {
@@ -88,16 +99,23 @@ func send_update():
 					"momentum": [mom.x, mom.y, mom.z],
 					"rotation": [rot.x, rot.y, rot.z],
 					"type": obj_type,
-					"data": data
+					"data": data,
+					"kill": kill
 				}
 			}
 		},
 		"timestamp": OS.get_ticks_msec()
 	})
+	if kill: # TODO move?
+		queue_free()
+	return true
 
 var can_update = false
 var last_timestamp = -1
 func get_update(obj, timestamp):
+	if obj.get("kill", false):
+		kill = true
+		queue_free()
 	if not can_update:
 		return false
 	if timestamp <= last_timestamp:

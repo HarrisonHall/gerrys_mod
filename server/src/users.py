@@ -112,6 +112,7 @@ def update_object(username, obj, values, new_timestamp):
     old_obj["timestamps"][username] = new_timestamp
     old_obj["last_update_from"] = username
     old_obj["data"] = values.get("data", old_obj["data"])
+    old_obj["kill"] = values.get("kill", old_obj["kill"])
 
 def add_object(username, obj, values):
     print("Creating",obj)
@@ -125,7 +126,8 @@ def add_object(username, obj, values):
         },
         "last_update_from": username,
         "type": values["type"],
-        "data": values.get("data", {})
+        "data": values.get("data", {}),
+        "kill": False,
     }
 
 def object_update_valid(username, obj, new_timestamp):

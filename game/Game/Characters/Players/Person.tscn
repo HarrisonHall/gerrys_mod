@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game/Characters/Players/Person.gd" type="Script" id=1]
 [ext_resource path="res://Game/Characters/Players/models/Body.tscn" type="PackedScene" id=2]
@@ -19,16 +19,20 @@ height = 0.251533
 radius = 0.354401
 height = 1.94295
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="CapsuleShape" id=5]
+radius = 0.326881
+height = 1.86754
+
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.19707, 0.568791, 0.185442 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0.611765, 0.0666667, 0.0666667, 1 )
 
-[sub_resource type="CapsuleMesh" id=7]
-material = SubResource( 6 )
+[sub_resource type="CapsuleMesh" id=8]
+material = SubResource( 7 )
 
-[sub_resource type="BoxShape" id=8]
+[sub_resource type="BoxShape" id=9]
 extents = Vector3( 0.326655, 0.135583, 0.386251 )
 
 [node name="Person" type="KinematicBody"]
@@ -53,6 +57,12 @@ shape = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.53879, 0 )
 shape = SubResource( 4 )
 
+[node name="HurtboxMid" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="HurtboxMid"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.39356, 0 )
+shape = SubResource( 5 )
+
 [node name="StandRoom" type="Area" parent="."]
 monitorable = false
 collision_layer = 0
@@ -60,14 +70,14 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="StandRoom"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22452, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Model" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Model"]
 transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.8, 0, -0.2, -3.49691e-08, 0, 1.58981, 3.55271e-15 )
 visible = false
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 material/0 = null
 __meta__ = {
 "_editor_description_": ""
@@ -97,7 +107,7 @@ collision_mask = 2147483650
 [node name="SurfFeet" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="SurfFeet"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="CameraHinge" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.709, 0 )

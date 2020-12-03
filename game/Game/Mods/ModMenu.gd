@@ -61,14 +61,22 @@ func _on_Button_pressed():
 		var name_should_be = Game.username + "_thing_" + str(len(Game.get_node("Map/Objects").get_children())+1)
 		if Game.get_node("Map/Objects/"+name_should_be):
 			print("Thing exists, skipping...")
-		var b = Game.object_types.get(words[1].to_lower(), Game.object_types["barrell"]).instance()
+			return
+		if len(words) == 1:
+			print("ERROR: No object type")
+			return
+		var type = words[1]
+		if not (type in Game.object_types):
+			print("ERROR: No object of type ", words[1])
+			return
+		var b = Game.make_obj(type, name_should_be)
+		if b == null:
+			print("Error creating object ")
+			return
 		print("created " + b.name)
-		Game.get_node("Map/Objects").add_child(b)
 		var btrans = b.get_global_transform()
 		btrans.origin = Game.get_node("Map/Players/"+Game.username).get_global_transform().origin
 		btrans.origin.y += 3
 		b.set_global_transform(btrans)
-		b.set_name(name_should_be)
-		#b.set_name(b.get_name().replace("@", ""))
 		b.send_update()
 		clear_text()

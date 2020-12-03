@@ -13,7 +13,8 @@ var arenas = {
 var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
 	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
-	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn")
+	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn"),
+	"bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
@@ -64,8 +65,9 @@ func load_arena(arena_name):
 	new_player.respawn()
 
 var last_timestamp = -1
-func update_players_s(obj):
-	var data = obj
+func update_players_s(data):
+	if not data:
+		return
 	
 	# ensure new packet
 	var new_timestamp = data.get("timestamp", -2)
@@ -76,9 +78,15 @@ func update_players_s(obj):
 	# update players
 	for player in data.get("updates", {}).get("players", {}):
 		var p_data = data["updates"]["players"][player]
-		if player == username:  # Skip self
-			continue
 		var p_obj = $Map/Players.get_node(player)
+		if player == username:  # Skip self
+			#p_obj.update_data(p_data["data"])
+			if "damage" in p_data:
+				print("server damage!")
+				p_obj.data["health"] -= p_data["damage"]
+			else:
+				print("Update without damage!")
+			continue
 		if p_obj == null:
 			print("Making player: ", player)
 			p_obj = person.instance()
@@ -99,18 +107,35 @@ func update_players_s(obj):
 		if obj_data.get("last_update_from", "") == username:
 			continue
 		var obj_obj = $Map/Objects.get_node(obj_name)
-		if obj_obj == null:
-			print("Already has: ")
-			for c in $Map/Objects.get_children():
-				print(" "+c.name)
-			print("Making object "+obj+" (really: "+obj_name+")")
-			# Make object
-			obj_obj = object_types[obj_data["type"]].instance()
-			obj_obj.set_name(str(obj_name))
-			$Map/Objects.add_child(obj_obj)
-			obj_obj.set_name(str(obj_name))
-			print("object "+obj+" given name: "+obj_obj.name)
-		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
+		if obj_obj == null and not obj_data.get("kill", false):
+			obj_obj = make_obj(obj_data["type"], obj_name)
+			if obj_obj == null:
+				print("Unable to make obj")
+				continue
+		if obj_obj:
+			obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
 
 func get_player():
 	return $Map/Players.get_node(username)
+
+func make_obj(type, n=""):
+	if n == "":
+		n = username + "_thing_" + str(len(get_node("Map/Objects").get_children())+1)
+	if not (type in object_types):
+		return null
+	var obj_name = n.replace("@", "")
+	var obj_obj = $Map/Objects.get_node(obj_name)
+	if obj_obj != null:
+		return obj_obj
+	obj_obj = object_types[type].instance()
+	var otrans = obj_obj.get_global_transform()
+	obj_obj.set_name(str(obj_name))
+	$Map/Objects.add_child(obj_obj)
+	obj_obj.set_global_transform(otrans)
+	obj_obj.set_name(str(obj_name))
+	print("object "+n+" given name: "+obj_obj.name)
+	return obj_obj
+
+
+
+

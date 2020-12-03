@@ -35,7 +35,8 @@ var SLIDE_MOM_FRAC = 2
 var slide_friction = 0.5
 
 var data = {
-	"holding_gun_type": ""
+	"holding_gun_type": "",
+	"health": 100,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -282,6 +283,10 @@ func update_data(d):
 		else:
 			gun_type = d["holding_gun_type"]
 			$Model/Body.soft_let_go()
+	if d["health"] != data["health"]:
+		print("Took Damage: ", data["health"] - d["health"])
+		data["health"] = d["health"]
+		print("New health: ", data["health"])
 
 func update_player(result, response_code, headers, body):
 	got_response = true
@@ -314,6 +319,17 @@ func tell_server(delta):
 			}, 
 			"timestamp": OS.get_ticks_msec()
 		})
+
+func send_data():
+	Game.Web.request("update_player", {
+		"username": get_name(),
+		"players": {
+			get_name() : {
+				"data": data,
+			}
+		}, 
+		"timestamp": OS.get_ticks_msec()
+	})
 
 func respawn():
 	var spawn_pos = Game.get_node("Map/Arena/ARENA/Spawn").get_global_transform().origin
@@ -386,9 +402,24 @@ func drop_gun():
 	$Model/Body.let_go(get_global_transform().origin + Vector3(0, 2, 0))
 	data["holding_gun_type"] = ""
 
+func take_damage(d):
+	print("Took damage: ", d)
+	data["health"] -= d
+	Game.Web.request("take_damage", {
+		"username": Game.username,
+		"players": {
+			get_name() : {
+				"damage": d
+			}
+		}, 
+		"timestamp": OS.get_ticks_msec()
+	})
 
-
-
+func get_forward():
+	var cam = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")
+	if not cam:
+		return Vector3()
+	return cam.get_forward()
 
 
 
