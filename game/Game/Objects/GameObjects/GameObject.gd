@@ -28,7 +28,8 @@ func do_reparent():
 	# TODO: generalize under Game
 	if get_parent() != Game.get_node("Map/Objects"):
 		var old_trans = get_global_transform()
-		var get_similar_one = Game.get_node("Map/Objects").get_node(name)
+		var name_should_be = get_name().replace("@", "")
+		var get_similar_one = Game.get_node("Map/Objects").get_node(name_should_be)
 		if get_similar_one != null:
 			deleted = true
 			queue_free()
@@ -37,6 +38,7 @@ func do_reparent():
 		old_parent.remove_child(self)
 		Game.get_node("Map/Objects").add_child(self)
 		set_global_transform(old_trans)
+		set_name(name_should_be)
 
 var just_collided = false
 func _process(delta):

@@ -8,7 +8,7 @@ extends "res://Game/Objects/GameObjects/GameObject.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _init():
-	obj_type = "Barrell"
+	obj_type = "barrell"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

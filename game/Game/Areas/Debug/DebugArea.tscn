@@ -75,7 +75,7 @@ transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, -1.05, 4, 0 )
 [node name="DeathBox" parent="BottomFloor" instance=ExtResource( 3 )]
 transform = Transform( 50, 0, 0, 0, 2, 0, 0, 0, 50, 0, -36, 0 )
 
-[node name="Barrell" parent="BottomFloor" instance=ExtResource( 8 )]
+[node name="Barrell1" parent="BottomFloor" instance=ExtResource( 8 )]
 transform = Transform( 0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.55, 4, 0 )
 
 [node name="Barrell2" parent="BottomFloor" instance=ExtResource( 8 )]

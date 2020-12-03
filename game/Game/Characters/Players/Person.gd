@@ -282,8 +282,6 @@ func update_data(d):
 		else:
 			gun_type = d["holding_gun_type"]
 			$Model/Body.soft_let_go()
-	else:
-		print("gun didn't change: ", d)
 
 func update_player(result, response_code, headers, body):
 	got_response = true
@@ -382,17 +380,11 @@ func pick_up_gun(gun):
 	og_gun = gun
 	is_holding = true
 	$Model/Body.hold_object(gun)
-	if Game.username == name:
-		print("Sending update for pick up")
-		#og_gun.send_update()
 
 func drop_gun():
 	is_holding = false
 	$Model/Body.let_go(get_global_transform().origin + Vector3(0, 2, 0))
 	data["holding_gun_type"] = ""
-	if Game.username == name:
-		print("Sending update for drop gun")
-		#og_gun.send_update()
 
 
 

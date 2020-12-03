@@ -94,19 +94,21 @@ func update_players_s(obj):
 			p_obj.set_model(p_data["model"])
 	
 	for obj in data.get("objects", {}):
+		var obj_name = obj.replace("@", "")
 		var obj_data = data["objects"][obj]
 		if obj_data.get("last_update_from", "") == username:
 			continue
-		var obj_obj = $Map/Objects.get_node(obj)
+		var obj_obj = $Map/Objects.get_node(obj_name)
 		if obj_obj == null:
 			print("Already has: ")
 			for c in $Map/Objects.get_children():
 				print(" "+c.name)
-			print("Making object "+obj)
+			print("Making object "+obj+" (really: "+obj_name+")")
 			# Make object
 			obj_obj = object_types[obj_data["type"]].instance()
-			obj_obj.set_name(str(obj))
+			obj_obj.set_name(str(obj_name))
 			$Map/Objects.add_child(obj_obj)
+			obj_obj.set_name(str(obj_name))
 			print("object "+obj+" given name: "+obj_obj.name)
 		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
 
