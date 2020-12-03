@@ -12,7 +12,6 @@ func _process(delta):
 
 func use():
 	if cooldown <= 0:
-		print("Using!")
 		cooldown = new_cooldown
 		var b = Game.make_obj(bullet_type, "")
 		if b:

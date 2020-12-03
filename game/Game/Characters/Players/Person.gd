@@ -284,9 +284,8 @@ func update_data(d):
 			gun_type = d["holding_gun_type"]
 			$Model/Body.soft_let_go()
 	if d["health"] != data["health"]:
-		print("Took Damage: ", data["health"] - d["health"])
+		print(get_name() + " Took Damage: ", data["health"] - d["health"])
 		data["health"] = d["health"]
-		print("New health: ", data["health"])
 
 func update_player(result, response_code, headers, body):
 	got_response = true

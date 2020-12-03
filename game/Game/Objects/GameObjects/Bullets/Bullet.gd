@@ -32,9 +32,7 @@ func set_trans_mom(trans, mom2, look):
 	mom = mom2
 
 func send_update():
-	print("Sending update for bullet")
 	var sent = .send_update()
-	print("Sent: ", sent)
 
 func _on_Hitbox_area_entered(area):
 	if area.get_name() == "HurtboxMid":
