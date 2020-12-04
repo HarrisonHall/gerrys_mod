@@ -361,6 +361,11 @@ func set_model(new_model):
 		reset_head()
 		if name == Game.username:
 			make_camera_current()
+		if is_holding:
+			print("IS HOLDING")
+			$Model/Body.soft_hold_object(gun_type)
+		else:
+			print("NOT HOLDING")
 
 var height = 1
 func set_height(n):
