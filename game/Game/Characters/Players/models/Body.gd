@@ -144,9 +144,10 @@ func hold_object(gun):
 	original_gun = gun
 	held_object = Game.object_types[gun.gun_obj].instance()
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
-	var trans = held_object.get_global_transform()
+	#var trans = held_object.get_global_transform()
+	var trans = hand.get_global_transform()
 	hand.add_child(held_object)
-	trans.origin = hand.get_global_transform().origin
+	#trans.origin = hand.get_global_transform().origin
 	held_object.set_global_transform(trans)
 
 func soft_hold_object(gun_name):
@@ -154,9 +155,10 @@ func soft_hold_object(gun_name):
 		held_object.queue_free()
 	held_object = Game.object_types[gun_name].instance()
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
-	var trans = held_object.get_global_transform()
+	#var trans = held_object.get_global_transform()
+	var trans = hand.get_global_transform()
 	hand.add_child(held_object)
-	trans.origin = hand.get_global_transform().origin
+	#trans.origin = hand.get_global_transform().origin
 	held_object.set_global_transform(trans)
 
 func soft_let_go():

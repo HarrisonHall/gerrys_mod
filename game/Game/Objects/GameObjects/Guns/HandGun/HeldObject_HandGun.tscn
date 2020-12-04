@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Guns/HeldObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/Weapons/handgun/realhandgun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.gd" type="Script" id=3]
+
+[node name="HeldObject_HandGun" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+new_cooldown = 1.0
+
+[node name="DebugMesh" parent="." index="0"]
+visible = false
+
+[node name="realhandguntest2" parent="." index="1" instance=ExtResource( 2 )]
+transform = Transform( -0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, -0.767519, 0.0271113 )
+
+[node name="ShootFrom" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40684, -2 )

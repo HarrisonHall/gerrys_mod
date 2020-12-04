@@ -15,6 +15,8 @@ var object_types = {
 	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
 	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn"),
 	"bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
+	"HeldObject_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.tscn"),
+	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn")
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 

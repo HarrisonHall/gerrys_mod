@@ -5,6 +5,8 @@ var damage = 1
 var ttd = 5
 var update_period = 0.5
 var last_update = 0
+var hit_own_player = false
+var go_through_solid = true
 
 func _init():
 	._init()
@@ -36,9 +38,13 @@ func send_update():
 
 func _on_Hitbox_area_entered(area):
 	if area.get_name() == "HurtboxMid":
+		if not watching:
+			return
 		var pers = area.get_parent()
-		if watching:
-			pers.take_damage(damage)
-			#pers.send_data()
-			kill = true
-			send_update()
+		if not hit_own_player:
+			if pers.get_name() == Game.username:
+				return
+		pers.take_damage(damage)
+		#pers.send_data()
+		kill = true
+		send_update()

@@ -1550,7 +1550,7 @@ transform = Transform( -0.994979, 0.0787973, -0.0617228, 0.0150863, 0.727661, 0.
 bone_name = "lowerarmr"
 
 [node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
-transform = Transform( 1, -2.23517e-08, 0, -2.23517e-08, 1, 0, 2.23517e-08, 6.25849e-07, 1, -0.21189, 4.75169, 0.0451872 )
+transform = Transform( 0.997067, -0.0666079, -0.0377306, 0.020681, 0.708926, -0.70498, 0.073706, 0.702133, 0.708223, -0.21189, 4.75169, 0.0451868 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/blank2 = SubResource( 3 )

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Guns/Gun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/Weapons/handgun/realhandgun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.gd" type="Script" id=3]
+
+[node name="Gun_HandGun" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" parent="Hitbox" index="0"]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0.106522, 0 )
+
+[node name="DebugMesh" parent="." index="2"]
+visible = false
+
+[node name="realhandgun" parent="." index="3" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0, 0.1, 0.349062, 0.0737675, -0.204618 )
