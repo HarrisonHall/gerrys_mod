@@ -17,7 +17,7 @@ func use():
 		if b:
 			b.watching = true
 			var player = Game.get_node("Map/Players/"+Game.username)
-			b.set_trans_mom(get_global_transform(), 3*(player.get_forward() - get_global_transform().origin).normalized(), player.get_forward())
+			b.set_trans_mom(get_global_transform(), 6*(player.get_forward() - get_global_transform().origin).normalized(), player.get_forward())
 			b.queue_send_update = true
 
 func get_update(obj, timestamp):

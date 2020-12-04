@@ -1,6 +1,6 @@
 extends KinematicBody
 
-
+var time_alive = 0
 var pos = Vector3()
 var mom = Vector3()
 var rot = Vector3()
@@ -14,6 +14,7 @@ var MIN_MOM = 0.4
 var can_collide = true
 var push_amount = 7
 var deleted = false
+var created_online = false
 
 var obj_type = "generic"
 
@@ -45,6 +46,7 @@ func do_reparent():
 
 var just_collided = false
 func _process(delta):
+	time_alive += delta
 	if not can_update:
 		do_reparent()
 		can_update = true

@@ -69,6 +69,8 @@ def update_info(obj):
             if users.object_update_valid(username, obj, new_timestamp):
                 print("updating ", obj)
                 users.update_object(username, obj, objects[obj], new_timestamp)
+                if objects[obj].get("kill", False):
+                    users.remove_object(username, obj)
             else:
                 print("Update invalid: ", new_timestamp)
         else:

@@ -108,18 +108,25 @@ func update_players_s(data):
 			continue
 		var obj_obj = $Map/Objects.get_node(obj_name)
 		if obj_obj == null and not obj_data.get("kill", false):
-			obj_obj = make_obj(obj_data["type"], obj_name)
+			obj_obj = make_obj(obj_data["type"], obj_name, true)
 			if obj_obj == null:
-				print("Unable to make obj")
+				print("Unable to create online obj")
 				continue
 		if obj_obj:
 			obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
+	for obj in $Map/Objects.get_children():
+		if not (obj.name in data.get("objects", {})) and obj.created_online:
+			print("Deleting: ", obj.get_name())
+			obj.queue_free()
+		else:
+			#print("Maybe delete?: ", obj.get_name())
+			pass
 
 func get_player():
 	return $Map/Players.get_node(username)
 
 var obj_offset = 1
-func make_obj(type, n=""):
+func make_obj(type, n="", co=false):
 	obj_offset += 1
 	if n == "":
 		n = username + "_thing_" + str(1+obj_offset)
@@ -135,7 +142,13 @@ func make_obj(type, n=""):
 	$Map/Objects.add_child(obj_obj)
 	obj_obj.set_global_transform(otrans)
 	obj_obj.set_name(str(obj_name))
+	obj_obj.created_online = co
 	print("object "+n+" given name: "+obj_obj.name)
+	if obj_obj.get_name() != obj_name:
+		print("Deleting object, unable to assign correct name")
+		obj_obj.get_parent().remove_child(obj_obj)
+		obj_obj.queue_free()
+		return null
 	return obj_obj
 
 

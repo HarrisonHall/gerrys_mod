@@ -12,6 +12,7 @@ from time import time as timestamp
 next_id = 0
 current_users = {}
 current_objects = {}
+kill_queue = []
 DISCONNECT_TIME = 5
 
 users = {}
@@ -113,6 +114,9 @@ def update_object(username, obj, values, new_timestamp):
     old_obj["last_update_from"] = username
     old_obj["data"] = values.get("data", old_obj["data"])
     old_obj["kill"] = values.get("kill", old_obj["kill"])
+
+def remove_object(username, obj):
+    del current_objects[obj]
 
 def add_object(username, obj, values):
     print("Creating",obj)
