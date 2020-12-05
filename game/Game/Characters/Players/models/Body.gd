@@ -120,6 +120,7 @@ func set_model(new_model):
 		return false
 	if model != null:
 		model.queue_free()
+		remove_child(model)
 	
 	model = models[new_model].instance()
 	add_child(model)
@@ -151,16 +152,19 @@ func hold_object(gun):
 	held_object.set_global_transform(trans)
 
 func soft_hold_object(gun_name):
+	var old_held = held_object
 	if held_object:
 		held_object.queue_free()
 	held_object = Game.object_types[gun_name].instance()
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
+	hand.remove_child(old_held)
 	#var trans = held_object.get_global_transform()
 	var trans = hand.get_global_transform()
 	hand.add_child(held_object)
 	#trans.origin = hand.get_global_transform().origin
 	held_object.set_global_transform(trans)
-	print("Should be holding object")
+	print("Should be holding object ", hand, held_object, old_held)
+	print(held_object == old_held)
 
 func soft_let_go():
 	if held_object:

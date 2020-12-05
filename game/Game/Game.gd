@@ -16,7 +16,9 @@ var object_types = {
 	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn"),
 	"bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
 	"HeldObject_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.tscn"),
-	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn")
+	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn"),
+	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),
+	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
