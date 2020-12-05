@@ -458,7 +458,7 @@ tracks/4/path = NodePath("Armature/Skeleton:head")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = true
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = PoolRealArray( 0, 1, -1.77636e-15, 0, 0, -0.0728031, 0.74945, -0.0902634, 0.651826, 1, 1, 1, 1.33333, 1, -1.77636e-15, 0, 0, -0.0728031, 0.74945, -0.0902634, 0.651826, 1, 1, 1 )
 tracks/5/type = "transform"
 tracks/5/path = NodePath("Armature/Skeleton:lowerlegl")
@@ -493,7 +493,7 @@ tracks/9/path = NodePath("Armature/Skeleton:body")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = true
-tracks/9/enabled = true
+tracks/9/enabled = false
 tracks/9/keys = PoolRealArray( 0, 1, 1.40629e-08, -1.70683, 0.0693597, 0.00231838, -0.749008, 0.00262094, 0.662552, 1, 1, 1, 1.33333, 1, 1.40629e-08, -1.70683, 0.0693597, 0.00231838, -0.749008, 0.00262094, 0.662552, 1, 1, 1 )
 
 [sub_resource type="Animation" id=9]
@@ -1229,7 +1229,14 @@ transform = Transform( 1, -2.13163e-13, 2.38419e-07, 9.69593e-09, 0.999173, -0.0
 bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 2 )]
-transform = Transform( -2.97105, 4.70039e-08, -2.61866e-07, 6.81292e-08, 2.96123, -0.241446, 2.5718e-07, -0.241446, -2.96123, -8.1063e-08, 0.577275, 0.340003 )
+transform = Transform( -2.97105, -3.44589e-08, -2.49594e-07, 6.80448e-08, 2.96123, -0.241446, 2.5332e-07, -0.241446, -2.96123, -8.19564e-08, 0.577275, 0.340003 )
+
+[node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( -0.935314, 0.0147828, -0.353522, -0.130143, 0.914714, 0.382573, 0.329027, 0.403832, -0.853617, -0.485446, 0.772754, 2.21895 )
+bone_name = "lowerarmr"
+
+[node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
+transform = Transform( 0.470619, -0.0931569, -0.140852, 0.013678, 0.436697, -0.243122, 0.168317, 0.224983, 0.413585, -0.152059, 1.68393, 0.0145184 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Floattube = SubResource( 3 )

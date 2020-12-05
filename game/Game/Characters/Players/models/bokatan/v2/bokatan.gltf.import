@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/bokatantest3.5.gltf-7452d7b7844f821448fadd3adae95562.scn"
+path="res://.import/bokatan.gltf-cae0462be4f734020c80cc4608ece1aa.scn"
 
 [deps]
 
-source_file="res://Game/Characters/Players/models/bokatan/v2/bokatantest3.5.gltf"
-dest_files=[ "res://.import/bokatantest3.5.gltf-7452d7b7844f821448fadd3adae95562.scn" ]
+source_file="res://Game/Characters/Players/models/bokatan/v2/bokatan.gltf"
+dest_files=[ "res://.import/bokatan.gltf-cae0462be4f734020c80cc4608ece1aa.scn" ]
 
 [params]
 

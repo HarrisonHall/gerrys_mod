@@ -458,7 +458,7 @@ tracks/4/path = NodePath("Armature/Skeleton:head")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = true
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.0507577, 0.642981, 0.0371853, 0.763293, 1, 1, 1, 1.33333, 1, 0, 0, 0, 0.0507577, 0.642981, 0.0371853, 0.763293, 1, 1, 1 )
 tracks/5/type = "transform"
 tracks/5/path = NodePath("Armature/Skeleton:lowerlegl")
@@ -493,7 +493,7 @@ tracks/9/path = NodePath("Armature/Skeleton:body")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = true
-tracks/9/enabled = true
+tracks/9/enabled = false
 tracks/9/keys = PoolRealArray( 0, 1, 6.59115e-09, 0.156545, -0.0594741, -0.0594634, -0.688863, 0.0617641, 0.719803, 1, 1, 1, 1.33333, 1, 6.59115e-09, 0.156545, -0.0594741, -0.0594634, -0.688863, 0.0617641, 0.719803, 1, 1, 1 )
 
 [sub_resource type="Animation" id=9]
@@ -1225,11 +1225,18 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, -9.69575e-09, 1.97229e-10, 9.69575e-09, 0.999173, -0.0406669, 1.97231e-10, 0.0406669, 0.999173, -1.00106e-07, 2.41924, 0.419876 )
+transform = Transform( 1, -9.69578e-09, 1.97231e-10, 9.69578e-09, 0.999173, -0.0406675, 1.97224e-10, 0.0406675, 0.999173, -1.00107e-07, 2.41924, 0.419877 )
 bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 2 )]
 transform = Transform( -2.81548, 4.45416e-08, -2.48154e-07, 6.45609e-08, 2.80617, -0.228804, 2.43713e-07, -0.228804, -2.80617, 7.68333e-09, 0.805149, 0.624623 )
+
+[node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( -0.920892, 0.0716265, -0.383174, -0.0897482, 0.917609, 0.38722, 0.379338, 0.390978, -0.838593, -0.819747, 0.750194, 2.05853 )
+bone_name = "lowerarmr"
+
+[node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
+transform = Transform( 0.47046, -0.0601571, -0.158269, -0.0135327, 0.452522, -0.212228, 0.168774, 0.203973, 0.424158, -0.131848, 1.77654, 0.0760382 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Floattube = SubResource( 3 )

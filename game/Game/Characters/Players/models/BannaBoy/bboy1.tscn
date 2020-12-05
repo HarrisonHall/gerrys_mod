@@ -1151,11 +1151,18 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, -2.90818e-09, -6.00083e-10, 2.9029e-09, 0.999963, -0.00863213, 6.25165e-10, 0.00863213, 0.999963, -1.03273e-07, 2.40261, -0.0151478 )
+transform = Transform( 1, -2.90814e-09, -6.00084e-10, 2.90287e-09, 0.999964, -0.00863213, 6.25174e-10, 0.00863213, 0.999964, -1.03273e-07, 2.40261, -0.0151478 )
 bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 1 )]
 transform = Transform( -2.07188, 1.04649e-08, -1.81227e-07, 1.3592e-08, 2.07157, -0.0357682, 1.81019e-07, -0.0357682, -2.07157, 2.58279e-09, 0.716334, 0.832519 )
+
+[node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( -0.98108, 0.169156, -0.0941815, 0.0464452, 0.677879, 0.733706, 0.187954, 0.715449, -0.67291, -0.69272, 1.58836, 0.882906 )
+bone_name = "lowerarmr"
+
+[node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
+transform = Transform( 1, 0, 1.49012e-08, -2.98023e-08, 1, 2.98023e-08, 1.49012e-08, 0, 1, -0.130454, 1.4941, 0.00588059 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/crouchidle = SubResource( 3 )

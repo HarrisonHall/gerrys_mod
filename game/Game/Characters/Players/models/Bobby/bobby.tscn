@@ -384,7 +384,7 @@ tracks/4/path = NodePath("Armature/Skeleton:head")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = true
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = PoolRealArray( 0, 1, 7.10543e-15, 0, 0, 0.0435187, 0.753607, 0.043583, 0.654434, 1, 1, 1, 1.33333, 1, 7.10543e-15, 0, 0, 0.0435187, 0.753607, 0.043583, 0.654434, 1, 1, 1 )
 tracks/5/type = "transform"
 tracks/5/path = NodePath("Armature/Skeleton:lowerlegl")
@@ -419,7 +419,7 @@ tracks/9/path = NodePath("Armature/Skeleton:body")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = true
-tracks/9/enabled = true
+tracks/9/enabled = false
 tracks/9/keys = PoolRealArray( 0, 1, -6.24138e-08, -1.51108, 0.229953, -0.0545484, -0.74602, 0.0668888, 0.660307, 1, 1, 1, 1.33333, 1, -6.24138e-08, -1.51108, 0.229953, -0.0545484, -0.74602, 0.0668888, 0.660307, 1, 1, 1 )
 
 [sub_resource type="Animation" id=8]
@@ -1082,6 +1082,13 @@ bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 2 )]
 transform = Transform( -2.76729, 2.36496e-08, -2.42574e-07, 3.59314e-08, 2.76372, -0.140461, 2.41062e-07, -0.140461, -2.76372, -7.73496e-08, 0.57129, 0.324427 )
+
+[node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
+transform = Transform( -0.935314, 0.0147837, -0.353523, -0.130143, 0.914713, 0.382574, 0.329026, 0.403833, -0.853616, -0.485445, 0.772751, 2.21895 )
+bone_name = "lowerarmr"
+
+[node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
+transform = Transform( 0.470619, -0.0931565, -0.140851, 0.0136762, 0.436696, -0.243125, 0.168317, 0.224986, 0.413584, -0.117595, 1.63881, -0.00735378 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/crouchidle = SubResource( 3 )
