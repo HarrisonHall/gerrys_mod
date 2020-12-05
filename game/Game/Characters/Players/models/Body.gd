@@ -126,7 +126,10 @@ func set_model(new_model):
 	add_child(model)
 	current_model_name = new_model
 	if held_object:
-		hold_object(original_gun)
+		if get_name() == Game.username:
+			hold_object(original_gun)
+		else:
+			soft_hold_object(gun_name)
 	return true
 
 func make_invisible():
@@ -151,7 +154,9 @@ func hold_object(gun):
 	#trans.origin = hand.get_global_transform().origin
 	held_object.set_global_transform(trans)
 
-func soft_hold_object(gun_name):
+var gun_name = ""
+func soft_hold_object(gname):
+	gun_name = gname
 	var old_held = held_object
 	if held_object:
 		held_object.queue_free()
