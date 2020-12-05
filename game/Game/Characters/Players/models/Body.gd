@@ -160,6 +160,7 @@ func soft_hold_object(gun_name):
 	hand.add_child(held_object)
 	#trans.origin = hand.get_global_transform().origin
 	held_object.set_global_transform(trans)
+	print("Should be holding object")
 
 func soft_let_go():
 	if held_object:
