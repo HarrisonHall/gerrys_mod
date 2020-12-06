@@ -532,7 +532,7 @@ tracks/4/path = NodePath("Armature/Skeleton:head")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = true
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = PoolRealArray( 0, 1, 0, 0, 0, 5.82077e-11, -2.22045e-16, -3.77086e-15, 1, 1, 1, 1, 1.33333, 1, 0, 0, 0, 5.82077e-11, -2.22045e-16, -3.77086e-15, 1, 1, 1, 1 )
 tracks/5/type = "transform"
 tracks/5/path = NodePath("Armature/Skeleton:lowerlegl")
@@ -567,7 +567,7 @@ tracks/9/path = NodePath("Armature/Skeleton:body")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = true
-tracks/9/enabled = true
+tracks/9/enabled = false
 tracks/9/keys = PoolRealArray( 0, 1, 0, 0, 0, 4.65661e-10, 2.22045e-16, 2.243e-15, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, -0.000141305, 3.06426e-12, -3.02998e-13, 1, 1, 1, 1, 0.133333, 1, 0, 0, 0, -0.00110306, 2.39202e-11, -2.37886e-12, 0.999999, 1, 1, 1, 0.2, 1, 0, 0, 0, -0.00297841, 6.45876e-11, -6.43754e-12, 0.999996, 1, 1, 1, 0.533333, 1, 0, 0, 0, -0.0162984, 3.53436e-10, -3.52333e-11, 0.999867, 1, 1, 1, 0.6, 1, 0, 0, 0, -0.0178515, 3.87114e-10, -3.85936e-11, 0.999841, 1, 1, 1, 0.666667, 1, 0, 0, 0, -0.0184845, 7.81343e-10, -2.87834e-09, 0.999829, 1, 1, 1, 0.733333, 1, 0, 0, 0, -0.017925, 7.69213e-10, -2.87714e-09, 0.999839, 1, 1, 1, 0.8, 1, 0, 0, 0, -0.0165425, 7.39236e-10, -2.87419e-09, 0.999863, 1, 1, 1, 1.2, 1, 0, 0, 0, -0.00194235, 4.22628e-10, -2.84263e-09, 0.999998, 1, 1, 1, 1.26667, 1, 0, 0, 0, -0.000559588, 3.92639e-10, -2.8396e-09, 1, 1, 1, 1, 1.33333, 1, 0, 0, 0, 4.65661e-10, 2.22045e-16, 2.243e-15, 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=10]
@@ -1103,7 +1103,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 4.04109e-08, -5.39522e-09, -4.04196e-08, 0.999999, -0.00163388, 5.32919e-09, 0.00163388, 0.999999, -7.10543e-15, 2.38358, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("AttachCam") ]
 bones/2/name = "upperarml"
 bones/2/parent = 1
 bones/2/rest = Transform( -0.870655, -0.0379245, -0.49043, -0.393784, -0.543749, 0.741128, -0.294778, 0.838391, 0.458484, 0.669109, -0.172119, 2.56151e-07 )
@@ -1123,7 +1123,7 @@ bones/5/name = "lowerarmr"
 bones/5/parent = 4
 bones/5/rest = Transform( 0.917782, 0.340919, 0.203595, 0.146917, 0.1848, -0.971733, -0.368907, 0.92175, 0.119519, -5.81721e-08, 1.10547, -1.19209e-07 )
 bones/5/enabled = true
-bones/5/bound_children = [  ]
+bones/5/bound_children = [ NodePath("AttachHand") ]
 bones/6/name = "upperlegl"
 bones/6/parent = 0
 bones/6/rest = Transform( -0.994919, 0.100666, -0.00137003, -0.100637, -0.994823, -0.0141075, -0.00278309, -0.013898, 0.9999, 0.476315, -0.13609, -2.9461e-08 )
@@ -1158,7 +1158,7 @@ bone_name = "head"
 transform = Transform( -2.07188, 1.04649e-08, -1.81227e-07, 1.3592e-08, 2.07157, -0.0357682, 1.81019e-07, -0.0357682, -2.07157, 2.58279e-09, 0.716334, 0.832519 )
 
 [node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.98108, 0.169156, -0.0941815, 0.0464452, 0.677879, 0.733706, 0.187954, 0.715449, -0.67291, -0.69272, 1.58836, 0.882906 )
+transform = Transform( -0.996995, -0.0773876, 0.00355353, 0.0774237, -0.996936, 0.0112532, 0.00267159, 0.0114949, 0.999931, -1.15296, 1.23654, -0.0178792 )
 bone_name = "lowerarmr"
 
 [node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
