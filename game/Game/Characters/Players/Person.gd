@@ -275,7 +275,7 @@ func set_remote_values(d, time):
 	data_buffer.append(d["data"])
 
 func update_data(d):
-	if d["holding_gun_type"] != gun_type:
+	if d.get("holding_gun_type", gun_type) != gun_type:
 		print("gun change: ",d)
 		if d["holding_gun_type"] != "":
 			gun_type = d["holding_gun_type"]
@@ -283,7 +283,7 @@ func update_data(d):
 		else:
 			gun_type = d["holding_gun_type"]
 			$Model/Body.soft_let_go()
-	if d["health"] != data["health"]:
+	if d.get("health", data["health"]) != data["health"]:
 		print(get_name() + " Took Damage: ", data["health"] - d["health"])
 		data["health"] = d["health"]
 

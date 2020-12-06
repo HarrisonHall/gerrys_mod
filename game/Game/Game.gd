@@ -103,8 +103,6 @@ func update_players_s(data):
 			if "damage" in p_data:
 				print("server damage!")
 				p_obj.data["health"] -= p_data["damage"]
-			else:
-				print("Update without damage!")
 			continue
 		if p_obj == null:
 			print("Making player: ", player)
@@ -120,7 +118,7 @@ func update_players_s(data):
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])
 	for obj in $Map/Players.get_children():
-		if not (obj.name in data["updates"].get("players", {})) and obj.get_name() != username:
+		if not (obj.name in data.get("updates", {}).get("players", {})) and obj.get_name() != username:
 			print("Deleting: ", obj.get_name())
 			obj.queue_free()
 	

@@ -35,6 +35,7 @@ def update_game(obj):
     # Send update to player
     update = deepcopy(data.current_users[username]["updates"])
     update["players"] = {user: data.current_users[user]["player"] for user in data.current_users}
+    # TODO do this
 
     # If player just joined, send them all updates
     if data.just_joined(username):
