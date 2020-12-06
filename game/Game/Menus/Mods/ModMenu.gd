@@ -18,6 +18,9 @@ func clear_text():
 func add_info(info):
 	$ModContainer/ModInfo.text += "\n"+info
 
+func _on_ModInput_text_entered(new_text):
+	_on_ModConfirm_pressed()
+
 func _on_ModConfirm_pressed():
 	var text = $ModContainer/ModInput.text.to_lower()
 	var words = text.split(" ", false)

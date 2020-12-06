@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Game/Menus/Settings/SettingsScreen.gd" type="Script" id=1]
+[ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=2]
 
 [node name="SettingsScreen" type="Control"]
 anchor_right = 1.0
@@ -17,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,7 +27,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 35.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
@@ -33,21 +35,22 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Settings/Controls"]
 margin_right = 952.0
-margin_bottom = 504.0
+margin_bottom = 501.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="text" type="RichTextLabel" parent="Settings/Controls/VBoxContainer"]
 margin_right = 952.0
-margin_bottom = 250.0
+margin_bottom = 248.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 2 )
 text = "Mouse sensitivity"
 
 [node name="MSSlider" type="HSlider" parent="Settings/Controls/VBoxContainer"]
-margin_top = 254.0
+margin_top = 252.0
 margin_right = 952.0
-margin_bottom = 504.0
+margin_bottom = 501.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 0.5
@@ -74,6 +77,7 @@ margin_right = 952.0
 margin_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 2 )
 text = "Server choice"
 
 [node name="Visual Settings" type="HBoxContainer" parent="Settings"]
@@ -90,6 +94,7 @@ margin_right = 610.0
 margin_bottom = 302.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 2 )
 text = "Visual settings will go here.
 "
 [connection signal="value_changed" from="Settings/Controls/VBoxContainer/MSSlider" to="." method="_on_MSSlider_value_changed"]

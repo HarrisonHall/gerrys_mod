@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game/Menus/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Game/Menus/Mods/ModMenu.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Game/Menus/Settings/SettingsScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Game/Menus/SessionInfo/SessionInfo.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/Menus/ServerInfo/ServerInfo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=7]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -106,5 +107,6 @@ margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
+custom_fonts/font = ExtResource( 7 )
 text = "Exit"
 [connection signal="pressed" from="Margin/Menu/RightHalf/ExitButton" to="." method="_on_ExitButton_pressed"]

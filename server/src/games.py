@@ -18,7 +18,6 @@ def update_game(obj):
     new_timestamp = obj.get("timestamp", -1)
 
     # Make sure user can submit update
-    
     if not data.timestamp_valid(username, new_timestamp):
         print("INVALID TIMESTAMP", data.current_users[username]["last_given_timestamp"], new_timestamp)
         return {}
@@ -27,27 +26,13 @@ def update_game(obj):
     for player in players:
         update_player(username, player, obj["players"][player])
             
-    # TODO update other stuff
-
-    # TODO see if any other players need removing
-    to_remove = data.remove_users()
-
-    # Send update to player
-    #update = deepcopy(data.current_users[username]["updates"])
-    #print(update)
+    # Send game update to player
     update = {
         "players": {
             user: data.current_users[user]["player"] for user in data.current_users if user != username
         }
     }
 
-    # If player just joined, send them all updates
-    #if data.just_joined(username):
-    #    data.add_users(username, update)
-
-    # Zero the update
-    #data.zero_update(username)
-    
     d = {
         "updates": update,
         "objects": data.get_objects(username),
