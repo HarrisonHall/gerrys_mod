@@ -33,18 +33,20 @@ def update_game(obj):
     to_remove = data.remove_users()
 
     # Send update to player
-    update = deepcopy(data.current_users[username]["updates"])
-    update["players"] = {
-        user: data.current_users[user]["player"] for user in data.current_users
+    #update = deepcopy(data.current_users[username]["updates"])
+    #print(update)
+    update = {
+        "players": {
+            user: data.current_users[user]["player"] for user in data.current_users if user != username
+        }
     }
-    # TODO do this
 
     # If player just joined, send them all updates
-    if data.just_joined(username):
-        data.add_users(username, update)
+    #if data.just_joined(username):
+    #    data.add_users(username, update)
 
     # Zero the update
-    data.zero_update(username)
+    #data.zero_update(username)
     
     d = {
         "updates": update,

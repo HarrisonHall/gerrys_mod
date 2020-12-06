@@ -45,6 +45,7 @@ def echo_socket(ws):
                     incoming = loads(message)
                     data.user_pinged(incoming.get("username", ""))
                     if "connect_user" == incoming["endpoint"]:
+                        print("Connecting user")
                         d = data.connect_user(incoming)
                     elif "update_info" == incoming["endpoint"]:
                         print("Updating info")
@@ -53,7 +54,9 @@ def echo_socket(ws):
                         print("Updating damage")
                         d = games.update_damage(incoming)
                     else:
+                        print("Updating game")
                         d = games.update_game(incoming)
+                        print(d)
                     #print(d)
                     data.remove_users()
                 except Exception as e:
