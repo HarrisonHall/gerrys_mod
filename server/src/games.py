@@ -7,20 +7,20 @@ Handle updating game info.
 from copy import deepcopy
 from time import time as timestamp
 
-from . import users
+from . import data
 
 
 def update_game(obj):
     # Get variables
     username = obj.get("username", "")
-    users.user_pinged(username)
+    data.user_pinged(username)
     players = obj.get("players", [])
     new_timestamp = obj.get("timestamp", -1)
 
     # Make sure user can submit update
     
-    if not users.timestamp_valid(username, new_timestamp):
-        print("INVALID TIMESTAMP", users.current_users[username]["last_given_timestamp"], new_timestamp)
+    if not data.timestamp_valid(username, new_timestamp):
+        print("INVALID TIMESTAMP", data.current_users[username]["last_given_timestamp"], new_timestamp)
         return {}
     
     # update the rest of the players
@@ -30,21 +30,21 @@ def update_game(obj):
     # TODO update other stuff
 
     # TODO see if any other players need removing
-    to_remove = users.remove_users()
+    to_remove = data.remove_users()
 
     # Send update to player
-    update = deepcopy(users.current_users[username]["updates"])
+    update = deepcopy(data.current_users[username]["updates"])
 
     # If player just joined, send them all updates
-    if users.just_joined(username):
-        users.add_users(username, update)
+    if data.just_joined(username):
+        data.add_users(username, update)
 
     # Zero the update
-    users.zero_update(username)
+    data.zero_update(username)
     
     d = {
         "updates": update,
-        "objects": users.get_objects(username),
+        "objects": data.get_objects(username),
         "timestamp": timestamp(),
         "to_remove": to_remove
     }
@@ -53,28 +53,28 @@ def update_game(obj):
 def update_info(obj):
     # Get variables
     username = obj.get("username", "")
-    users.user_pinged(username)
+    data.user_pinged(username)
     new_timestamp = obj.get("timestamp", -1)
 
     updates = obj.get("update", {})
 
     for person in updates.get("people", {}):
         if "model" in updates["people"][person]:
-            users.current_users[username]["player"]["model"] = updates["people"][person]["model"]
+            data.current_users[username]["player"]["model"] = updates["people"][person]["model"]
 
     objects = updates.get("objects", {})
     for obj in objects:
-        if obj in users.get_objects(username):
+        if obj in data.get_objects(username):
             # Check timestamp before updating
-            if users.object_update_valid(username, obj, new_timestamp):
+            if data.object_update_valid(username, obj, new_timestamp):
                 print("updating ", obj)
-                users.update_object(username, obj, objects[obj], new_timestamp)
+                data.update_object(username, obj, objects[obj], new_timestamp)
                 if objects[obj].get("kill", False):
-                    users.remove_object(username, obj)
+                    data.remove_object(username, obj)
             else:
                 print("Update invalid: ", new_timestamp)
         else:
-            users.add_object(username, obj, objects[obj])
+            data.add_object(username, obj, objects[obj])
 
     return {}
 
@@ -82,29 +82,29 @@ def update_player(username, player, data):
     """
     Update player info
     """
-    pos = data.get("position", users.current_users[player]["player"]["position"])
-    mom = data.get("momentum", users.current_users[player]["player"]["momentum"])
-    rot = data.get("rotation", users.current_users[player]["player"]["rotation"])
-    vrot = data.get("vrot", users.current_users[player]["player"]["vrot"])
-    is_crouching = data.get("is_crouching", users.current_users[player]["player"]["is_crouching"])
-    slide_time = data.get("slide_time", users.current_users[player]["player"]["slide_time"])
-    dat = data.get("data", users.current_users[player]["player"]["data"])
+    pos = data.get("position", data.current_users[player]["player"]["position"])
+    mom = data.get("momentum", data.current_users[player]["player"]["momentum"])
+    rot = data.get("rotation", data.current_users[player]["player"]["rotation"])
+    vrot = data.get("vrot", data.current_users[player]["player"]["vrot"])
+    is_crouching = data.get("is_crouching", data.current_users[player]["player"]["is_crouching"])
+    slide_time = data.get("slide_time", data.current_users[player]["player"]["slide_time"])
+    dat = data.get("data", data.current_users[player]["player"]["data"])
     
-    users.current_users[player]["player"]["position"] = pos
-    users.current_users[player]["player"]["momentum"] = mom
-    users.current_users[player]["player"]["rotation"] = rot
-    users.current_users[player]["player"]["vrot"] = vrot
-    users.current_users[player]["player"]["is_crouching"] = is_crouching
-    users.current_users[player]["player"]["slide_time"] = slide_time
-    users.current_users[player]["player"]["data"] = dat
+    data.current_users[player]["player"]["position"] = pos
+    data.current_users[player]["player"]["momentum"] = mom
+    data.current_users[player]["player"]["rotation"] = rot
+    data.current_users[player]["player"]["vrot"] = vrot
+    data.current_users[player]["player"]["is_crouching"] = is_crouching
+    data.current_users[player]["player"]["slide_time"] = slide_time
+    data.current_users[player]["player"]["data"] = dat
     
-    for user in (set(users.current_users) - {username}):
-        users.current_users[user]["updates"]["players"][player] = users.current_users[player]["player"]
+    for user in (set(data.current_users) - {username}):
+        data.current_users[user]["updates"]["players"][player] = data.current_users[player]["player"]
     return True
 
 def update_damage(obj):
     for user, info in obj["players"].items():
-        users.current_users[user]["updates"]["players"][user] = {
+        data.current_users[user]["updates"]["players"][user] = {
             "damage": info["damage"]
         }
         

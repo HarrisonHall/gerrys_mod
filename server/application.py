@@ -11,7 +11,7 @@ from flask import (
 from flask_sockets import Sockets
 from json import dumps, loads
 
-from src import games, users
+from src import games, data
 
 
 app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")
@@ -26,30 +26,41 @@ def index():
         context={}
     )
 
+@app.route("/info")
+def info():
+    return jsonify({
+        "Current Player Count": data.current_player_count(),
+        "Last Player Joined": data.last_player_joined(),
+    })
+
 @sockets.route('/ping')
 def echo_socket(ws):
+    print("session: ", session)
     while True:
-        d = {}
-        message = ws.receive()
-        if message is not None:
-            try:
-                incoming = loads(message)
-                if "connect_user" == incoming["endpoint"]:
-                    d = users.connect_user(incoming)
-                elif "update_info" == incoming["endpoint"]:
-                    print("Updating info")
-                    d = games.update_info(incoming)
-                elif "take_damage" == incoming["endpoint"]:
-                    print("Updating damage")
-                    d = games.update_damage(incoming)
-                else:
-                    d = games.update_game(incoming)
-            except Exception as e:
-                print("ERROR")
-                print(e)
-        else:
-            print("Message was None")
-        ws.send(dumps(d))
+        try:
+            d = {}
+            message = ws.receive()
+            if message is not None:
+                try:
+                    incoming = loads(message)
+                    if "connect_user" == incoming["endpoint"]:
+                        d = data.connect_user(incoming)
+                    elif "update_info" == incoming["endpoint"]:
+                        print("Updating info")
+                        d = games.update_info(incoming)
+                    elif "take_damage" == incoming["endpoint"]:
+                        print("Updating damage")
+                        d = games.update_damage(incoming)
+                    else:
+                        d = games.update_game(incoming)
+                except Exception as e:
+                    print("Game logic error:", e)
+            else:
+                print("Message was None")
+            ws.send(dumps(d))
+        except Exception as e:
+            print("Disconnected user:", e)
+            return
 
 if __name__ == "__main__":
     app.run()

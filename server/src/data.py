@@ -12,6 +12,7 @@ from time import time as timestamp
 next_id = 0
 current_users = {}
 current_objects = {}
+last_player = "No player has joined yet"
 kill_queue = []
 DISCONNECT_TIME = 5
 
@@ -43,6 +44,7 @@ def add_user(username):
         "last_time": datetime.datetime.now(),
         "last_given_timestamp": 0,
     }
+    last_player = username
     return new_id
 
 def connect_user(obj):
@@ -138,3 +140,9 @@ def object_update_valid(username, obj, new_timestamp):
     return (
         get_objects(username)[obj]["timestamps"].get(username, -1) < new_timestamp
     )
+
+def current_player_count():
+    return len(current_users)
+
+def last_player_joined():
+    return last_player
