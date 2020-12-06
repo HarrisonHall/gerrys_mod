@@ -104,30 +104,30 @@ func update_players_s(data):
 	# update players
 	for player in data.get("updates", {}).get("players", {}):
 		var p_data = data["updates"]["players"][player]
-		var p_obj = $Map/Players.get_node(player)
 		if player == username:  # Skip self
 			#p_obj.update_data(p_data["data"])
+			var p_obj = $Map/Players.get_node(player)
 			if "damage" in p_data:
 				print("server damage!")
 				p_obj.data["health"] -= p_data["damage"]
 			continue
-		if p_obj == null:
-			print("Making player: ", player)
+		var p_obj = null
+		if not $Map/Players.has_node(player):
 			p_obj = person.instance()
 			p_obj.name = player
 			$Map/Players.add_child(p_obj)
+		else:
+			p_obj = $Map/Players.get_node(player)
 		var mom = p_data.get("momentum", [0, 0, 0])
 		var pos = p_data.get("position", [0, 0, 0])
 		var rot = p_data.get("rotation", [0, 0, 0])
 		var t = OS.get_unix_time()
-		#p_obj.set_remote_values(p_data, new_timestamp)
 		p_obj.set_remote_values(p_data, OS.get_ticks_msec())
 		
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])
 	for obj in $Map/Players.get_children():
 		if not (obj.name in data.get("updates", {}).get("players", {})) and obj.get_name() != username:
-			print("Deleting: ", obj.get_name())
 			obj.queue_free()
 	
 	for obj in data.get("objects", {}):
@@ -135,17 +135,15 @@ func update_players_s(data):
 		var obj_data = data["objects"][obj]
 		if obj_data.get("last_update_from", "") == username:
 			continue
-		var obj_obj = $Map/Objects.get_node(obj_name)
-		if obj_obj == null and not obj_data.get("kill", false):
-			obj_obj = make_obj(obj_data["type"], obj_name, true)
+		if not $Map/Objects.has_node(obj_name) and not obj_data.get("kill", false):
+			var obj_obj = make_obj(obj_data["type"], obj_name, true)
 			if obj_obj == null:
 				print("Unable to create online obj")
 				continue
-		if obj_obj:
-			obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
+		var obj_obj = $Map/Objects.get_node(obj_name)
+		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
 	for obj in $Map/Objects.get_children():
 		if not (obj.name in data.get("objects", {})) and obj.created_online:
-			print("Deleting: ", obj.get_name())
 			obj.queue_free()
 
 var obj_offset = 1
@@ -156,19 +154,18 @@ func make_obj(type, n="", co=false):
 	if not (type in object_types):
 		return null
 	var obj_name = n.replace("@", "")
-	var obj_obj = $Map/Objects.get_node(obj_name)
-	if obj_obj != null:
-		return obj_obj
-	obj_obj = object_types[type].instance()
-	var otrans = obj_obj.get_global_transform()
+	if $Map/Objects.has_node(obj_name):
+		return $Map/Objects.get_node(obj_name)
+	var obj_obj = object_types[type].instance()
+	#var otrans = obj_obj.get_global_transform()
+	var otrans = Transform()
 	obj_obj.set_name(str(obj_name))
 	$Map/Objects.add_child(obj_obj)
 	obj_obj.set_global_transform(otrans)
 	obj_obj.set_name(str(obj_name))
 	obj_obj.created_online = co
-	#print("object "+n+" given name: "+obj_obj.name)
 	if obj_obj.get_name() != obj_name:
-		print("Deleting object, unable to assign correct name")
+		print("Deleting object ("+obj_obj.get_name()+"), unable to assign correct name ("+obj_name+")")
 		obj_obj.get_parent().remove_child(obj_obj)
 		obj_obj.queue_free()
 		return null

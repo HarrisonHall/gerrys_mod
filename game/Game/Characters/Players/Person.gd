@@ -162,7 +162,7 @@ func move_player(delta):
 			# end early to start the next one if another one is in queue
 			if runtime < SERVER_DELTA*SKIP_FRACTION and len(time_buffer) > 0:
 				# Start next movement
-				print("Skipping time ", runtime)
+				#print("Skipping time ", runtime)
 				queue_next_movement(delta)
 		else:
 			# Start next movement
@@ -212,7 +212,7 @@ func queue_next_movement(delta):
 	if runtime > 0:
 		add_to_ttl += runtime
 	var ttl = clamp(float(time_buffer[0] - last_time)/1000.0, SERVER_DELTA/2, 3*SERVER_DELTA)
-	print("TTL:", float(time_buffer[0] - last_time)/1000.0, " ", ttl, " - ", SERVER_DELTA/2,"/", 3*SERVER_DELTA)
+	#print("TTL:", float(time_buffer[0] - last_time)/1000.0, " ", ttl, " - ", SERVER_DELTA/2,"/", 3*SERVER_DELTA)
 	#ttl += add_to_ttl
 	runtime = ttl
 	if last_time < 0:
@@ -221,10 +221,23 @@ func queue_next_movement(delta):
 		self, "translation", translation,
 		pos_buffer[0], ttl
 	)
+	
 	# Figure which way to rotate
+	var new_yrot = rot_buffer[0].y
+	var old_yrot = rotation_degrees.y
+	#print(new_yrot, old_yrot)
+	if new_yrot > old_yrot:
+		if abs(new_yrot - old_yrot) > abs(new_yrot - 360.0 - old_yrot):
+			new_yrot -= 360.0
+			#print("Increased yrot")
+	elif new_yrot < old_yrot:
+		if abs(new_yrot - old_yrot) > abs(new_yrot + 360.0 - old_yrot):
+			new_yrot += 360.0
+			#print("Decreased yrot")
+	rot_buffer[0].y = new_yrot
 	$RemoteMovement.interpolate_property(
-		self, "rotation_degrees", Vector3(rotation_degrees.x, wrapf(rotation_degrees.y, -180.0, 180.0), rotation_degrees.z),
-		Vector3(rot_buffer[0].x, wrapf(rot_buffer[0].y, -180.0, 180.0), rot_buffer[0].z), ttl
+		self, "rotation_degrees", rotation_degrees,
+		rot_buffer[0], ttl
 	)
 	$RemoteMovement.start()
 	last_time = time_buffer[0]
@@ -283,7 +296,6 @@ func set_remote_values(d, time):
 
 func update_data(d):
 	if d.get("holding_gun_type", gun_type) != gun_type:
-		print("gun change: ",d)
 		if d["holding_gun_type"] != "":
 			gun_type = d["holding_gun_type"]
 			$Model/Body.soft_hold_object(gun_type)
@@ -375,10 +387,7 @@ func set_model(new_model):
 		if name == Game.username:
 			make_camera_current()
 		if is_holding:
-			print("IS HOLDING")
 			$Model/Body.soft_hold_object(gun_type)
-		else:
-			print("NOT HOLDING")
 
 var height = 1
 func set_height(n):

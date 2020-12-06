@@ -146,6 +146,7 @@ func hold_object(gun):
 	if held_object:
 		held_object.queue_free()
 	original_gun = gun
+	gun_name = gun.obj_type
 	held_object = Game.object_types[gun.gun_obj].instance()
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
 	#var trans = held_object.get_global_transform()
@@ -160,9 +161,12 @@ func soft_hold_object(gname):
 	var old_held = held_object
 	if held_object:
 		held_object.queue_free()
+	print(gun_name)
 	held_object = Game.object_types[gun_name].instance()
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
-	hand.remove_child(old_held)
+	if old_held != null:
+		if old_held in hand.get_children():
+			hand.remove_child(old_held)
 	#var trans = held_object.get_global_transform()
 	var trans = hand.get_global_transform()
 	hand.add_child(held_object)

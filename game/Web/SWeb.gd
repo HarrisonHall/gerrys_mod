@@ -57,6 +57,8 @@ func request(endpoint, data):
 func received_data():
 	var raw = client.get_peer(1).get_packet().get_string_from_utf8()
 	var res = JSON.parse(raw)
+	if res.error != OK:
+		return
 	var obj = res.result
 	emit_signal("new_data", obj)
 

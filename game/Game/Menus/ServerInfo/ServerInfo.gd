@@ -22,11 +22,9 @@ func _process(delta):
 		)
 
 func update_main_page(result, response_code, headers, body):
-	print("Updating messages")
+	print("Updating server message.")
 	var message = ""
-#	for b in body:
-#		message += char(b)
-	print(body.get_string_from_utf8())
+	#print(body.get_string_from_utf8())
 	var json = JSON.parse(body.get_string_from_utf8()).result
 	$PageContainer/MainPage.text = ""
 	for key in json:
