@@ -22,6 +22,7 @@ with open("data/users.json", "r") as jsonfile:
 
 def add_user(username):
     global next_id
+    global last_player
     new_id = next_id
     next_id += 1
 
