@@ -58,7 +58,6 @@ func received_data():
 	var raw = client.get_peer(1).get_packet().get_string_from_utf8()
 	var res = JSON.parse(raw)
 	var obj = res.result
-	print(obj)
 	emit_signal("new_data", obj)
 
 func change_server_url(new_url):

@@ -94,7 +94,6 @@ var last_timestamp = -1
 func update_players_s(data):
 	if not data:
 		return
-	print("got update data")
 	
 	# ensure new packet
 	var new_timestamp = data.get("timestamp", -2)
@@ -121,7 +120,8 @@ func update_players_s(data):
 		var pos = p_data.get("position", [0, 0, 0])
 		var rot = p_data.get("rotation", [0, 0, 0])
 		var t = OS.get_unix_time()
-		p_obj.set_remote_values(p_data, new_timestamp)
+		#p_obj.set_remote_values(p_data, new_timestamp)
+		p_obj.set_remote_values(p_data, OS.get_ticks_msec())
 		
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])

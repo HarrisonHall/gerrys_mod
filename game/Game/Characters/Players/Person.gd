@@ -160,8 +160,9 @@ func move_player(delta):
 		# Do tween stuff
 		if $RemoteMovement.is_active():
 			# end early to start the next one if another one is in queue
-			if runtime < SERVER_DELTA*SKIP_FRACTION and len(pos_buffer) > 0:
+			if runtime < SERVER_DELTA*SKIP_FRACTION and len(time_buffer) > 0:
 				# Start next movement
+				print("Skipping time ", runtime)
 				queue_next_movement(delta)
 		else:
 			# Start next movement
@@ -207,7 +208,12 @@ func hitbox_max():
 func queue_next_movement(delta):
 	$RemoteMovement.stop_all()
 	$RemoteMovement.remove_all()
-	var ttl = clamp(time_buffer[0] - last_time, SERVER_DELTA/2, 3*SERVER_DELTA)
+	var add_to_ttl = 0.0
+	if runtime > 0:
+		add_to_ttl += runtime
+	var ttl = clamp(float(time_buffer[0] - last_time)/1000.0, SERVER_DELTA/2, 3*SERVER_DELTA)
+	print("TTL:", float(time_buffer[0] - last_time)/1000.0, " ", ttl, " - ", SERVER_DELTA/2,"/", 3*SERVER_DELTA)
+	#ttl += add_to_ttl
 	runtime = ttl
 	if last_time < 0:
 		ttl = SERVER_DELTA/2
@@ -215,9 +221,10 @@ func queue_next_movement(delta):
 		self, "translation", translation,
 		pos_buffer[0], ttl
 	)
+	# Figure which way to rotate
 	$RemoteMovement.interpolate_property(
-		self, "rotation_degrees", rotation_degrees,
-		rot_buffer[0], ttl
+		self, "rotation_degrees", Vector3(rotation_degrees.x, wrapf(rotation_degrees.y, -180.0, 180.0), rotation_degrees.z),
+		Vector3(rot_buffer[0].x, wrapf(rot_buffer[0].y, -180.0, 180.0), rot_buffer[0].z), ttl
 	)
 	$RemoteMovement.start()
 	last_time = time_buffer[0]
@@ -244,7 +251,7 @@ func queue_next_movement(delta):
 	data_buffer.pop_front()
 
 const MAX_BUFF_LEN = 10
-var last_time = OS.get_unix_time()
+var last_time = OS.get_ticks_msec()
 var time_buffer = []
 var pos_buffer = []
 var mom_buffer = []
