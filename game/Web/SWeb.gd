@@ -39,7 +39,8 @@ func _connected(proto = ""):
 	print("Connected to server: " + url)
 
 func _process(delta):
-	client.poll()
+	if is_connected:
+		client.poll()
 
 func request(endpoint, data):
 	data["endpoint"] = endpoint
@@ -59,6 +60,7 @@ func change_server_url(new_url):
 	client.connect("connection_error", self, "_closed")
 	client.connect("connection_established", self, "_connected")
 	client.connect("data_received", self, "received_data")
+	#client.encode_buffer_max_size = 8388608 * 4
 	#connect_to_server()
 
 

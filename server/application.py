@@ -54,6 +54,7 @@ def echo_socket(ws):
                         d = games.update_damage(incoming)
                     else:
                         d = games.update_game(incoming)
+                    #print(d)
                     data.remove_users()
                 except Exception as e:
                     print("Game logic error:", e)

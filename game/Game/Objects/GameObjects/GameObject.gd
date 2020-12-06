@@ -33,8 +33,7 @@ func do_reparent():
 	if get_parent() != Game.get_node("Map/Objects"):
 		var old_trans = get_global_transform()
 		var name_should_be = get_name().replace("@", "")
-		var get_similar_one = Game.get_node("Map/Objects").get_node(name_should_be)
-		if get_similar_one != null:
+		if Game.get_node("Map/Objects").has_node(name_should_be):
 			deleted = true
 			queue_free()
 			return
