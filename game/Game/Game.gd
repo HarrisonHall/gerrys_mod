@@ -31,6 +31,7 @@ var person = preload("res://Game/Characters/Players/Person.tscn")
 
 onready var Web = $Web
 var menu_up = true
+var show_hud = true
 
 # Game vars
 var username = "DEFAULT_USER"
@@ -59,9 +60,15 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			menu_up = false
 		else:
-			$UI.visible = true
+			$UI.visible = true and show_hud
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			menu_up = true
+	if Input.is_action_just_pressed("ui_clear"):
+		show_hud = not show_hud
+		if show_hud and menu_up and not $UI.visible:
+			$UI.visible = true
+		if not show_hud and menu_up and $UI.visible:
+			$UI.visible = false
 
 var cur_arena = ""
 func load_arena(arena_name):

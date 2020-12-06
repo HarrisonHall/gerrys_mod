@@ -43,6 +43,8 @@ func _process(delta):
 		client.poll()
 
 func request(endpoint, data):
+	if not is_connected:
+		return
 	data["endpoint"] = endpoint
 	var query = JSON.print(data)
 	client.get_peer(1).put_packet(query.to_utf8())
