@@ -24,7 +24,12 @@ func connect_to_server():
 		print("Unable to connect")
 		#set_process(false)
 	else:
+		print("Connected to server")
 		is_connected = true
+		client.connect("connection_closed", self, "_closed")
+		client.connect("connection_error", self, "_closed")
+		client.connect("connection_established", self, "_connected")
+		client.connect("data_received", self, "received_data")
 
 func _closed(was_clean = false):
 	is_connected = false
@@ -53,15 +58,12 @@ func received_data():
 	var raw = client.get_peer(1).get_packet().get_string_from_utf8()
 	var res = JSON.parse(raw)
 	var obj = res.result
+	print(obj)
 	emit_signal("new_data", obj)
 
 func change_server_url(new_url):
 	url = new_url
 	client = WebSocketClient.new()
-	client.connect("connection_closed", self, "_closed")
-	client.connect("connection_error", self, "_closed")
-	client.connect("connection_established", self, "_connected")
-	client.connect("data_received", self, "received_data")
 	#client.encode_buffer_max_size = 8388608 * 4
 	#connect_to_server()
 

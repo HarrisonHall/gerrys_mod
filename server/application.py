@@ -56,7 +56,6 @@ def echo_socket(ws):
                     else:
                         print("Updating game")
                         d = games.update_game(incoming)
-                        print(d)
                     #print(d)
                     data.remove_users()
                 except Exception as e:

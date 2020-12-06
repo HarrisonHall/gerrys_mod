@@ -299,7 +299,7 @@ func tell_server(delta):
 		return
 	time_since_last += delta
 	
-	if time_since_last >= SERVER_DELTA and name == Game.username:
+	if time_since_last >= SERVER_DELTA and name == Game.username and Game.Web.is_connected:
 		got_response = false
 		time_since_last = 0
 		var pos = get_global_transform().origin

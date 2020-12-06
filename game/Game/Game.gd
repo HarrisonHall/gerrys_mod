@@ -94,6 +94,7 @@ var last_timestamp = -1
 func update_players_s(data):
 	if not data:
 		return
+	print("got update data")
 	
 	# ensure new packet
 	var new_timestamp = data.get("timestamp", -2)
