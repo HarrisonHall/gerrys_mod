@@ -26,7 +26,7 @@ def index():
         context={}
     )
 
-@app.route("/info")
+@app.route("/info", methods=["POST"])
 def info():
     return jsonify({
         "Current Player Count": data.current_player_count(),
