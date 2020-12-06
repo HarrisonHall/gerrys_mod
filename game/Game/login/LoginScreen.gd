@@ -30,7 +30,8 @@ func login_response(result, response_code, headers, body):
 		else:
 			info_box.text += "Unable to log in\n"
 	else:
-		print("[Login] Wrong packet")
+		#print("[Login] Wrong packet")
+		pass
 
 func login_response_s(obj):
 	if fired:
@@ -47,7 +48,8 @@ func login_response_s(obj):
 		else:
 			info_box.text += "Unable to log in\n"
 	else:
-		print("[Login] Wrong packet")
+		#print("[Login] Wrong packet")
+		pass
 
 func _on_login_button_pressed():
 	if Game.singleplayer:
@@ -85,6 +87,8 @@ func _on_ExitButton_pressed():
 var last_times = []
 var r_rate = 0
 func ping_rate(data):
+	if Game.singleplayer:
+		return
 	last_times.append(OS.get_ticks_msec())
 	if len(last_times) > 100:
 		last_times.pop_front()

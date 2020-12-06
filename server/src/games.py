@@ -34,6 +34,7 @@ def update_game(obj):
 
     # Send update to player
     update = deepcopy(data.current_users[username]["updates"])
+    update["players"] = {user: data.current_users[user]["player"] for user in data.current_users}
 
     # If player just joined, send them all updates
     if data.just_joined(username):
@@ -78,17 +79,17 @@ def update_info(obj):
 
     return {}
 
-def update_player(username, player, data):
+def update_player(username, player, obj):
     """
     Update player info
     """
-    pos = data.get("position", data.current_users[player]["player"]["position"])
-    mom = data.get("momentum", data.current_users[player]["player"]["momentum"])
-    rot = data.get("rotation", data.current_users[player]["player"]["rotation"])
-    vrot = data.get("vrot", data.current_users[player]["player"]["vrot"])
-    is_crouching = data.get("is_crouching", data.current_users[player]["player"]["is_crouching"])
-    slide_time = data.get("slide_time", data.current_users[player]["player"]["slide_time"])
-    dat = data.get("data", data.current_users[player]["player"]["data"])
+    pos = obj.get("position", data.current_users[player]["player"]["position"])
+    mom = obj.get("momentum", data.current_users[player]["player"]["momentum"])
+    rot = obj.get("rotation", data.current_users[player]["player"]["rotation"])
+    vrot = obj.get("vrot", data.current_users[player]["player"]["vrot"])
+    is_crouching = obj.get("is_crouching", data.current_users[player]["player"]["is_crouching"])
+    slide_time = obj.get("slide_time", data.current_users[player]["player"]["slide_time"])
+    dat = obj.get("data", data.current_users[player]["player"]["data"])
     
     data.current_users[player]["player"]["position"] = pos
     data.current_users[player]["player"]["momentum"] = mom

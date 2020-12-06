@@ -13,13 +13,13 @@ func _ready():
 #	pass
 
 func clear_text():
-	$MarginContainer/VBoxContainer/Input.text = ""
+	$ModContainer/ModInput.text = ""
 
 func add_info(info):
-	$MarginContainer/VBoxContainer/Info.text += "\n" + info
+	$ModContainer/ModInfo.text += "\n"+info
 
-func _on_Button_pressed():
-	var text = $MarginContainer/VBoxContainer/Input.text.to_lower()
+func _on_ModConfirm_pressed():
+	var text = $ModContainer/ModInput.text.to_lower()
 	var words = text.split(" ", false)
 	if len(words) == 0:
 		return

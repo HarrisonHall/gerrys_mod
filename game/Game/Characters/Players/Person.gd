@@ -330,8 +330,14 @@ func send_data():
 		"timestamp": OS.get_ticks_msec()
 	})
 
-func respawn():
-	var spawn_pos = Game.get_node("Map/Arena/ARENA/Spawn").get_global_transform().origin
+func respawn(team=1):
+	var spawn = Game.get_node("Map/Arena/ARENA/Spawn")
+	var spawn_pos = spawn.get_global_transform().origin
+	if spawn.has_node(str(team)):
+		spawn_pos = spawn.get_node(str(team)).get_global_transform().origin
+	elif len(spawn.get_children()) > 0:
+		var childs = spawn.get_children()
+		spawn_pos = childs[randi() % childs.size()].get_global_transform().origin
 	var trans = get_global_transform()
 	trans.origin = spawn_pos
 	set_global_transform(trans)

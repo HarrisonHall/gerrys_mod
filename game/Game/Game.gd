@@ -1,14 +1,21 @@
 extends Spatial
 
 
-var login_screen_pck = preload("res://Game/login/LoginScreen.tscn")
-
-
 # arenas
 var menu_background_pck = preload("res://Game/Areas/Backgrounds/MenuBackground.tscn")
 var arenas = {
-	"DebugArea": preload("res://Game/Areas/Debug/DebugArea.tscn"),
-	"dg_worstmap": preload("res://Game/Areas/Arena/dg_worstmap/dg_worstmap.tscn")
+	"DebugArea": {
+		"scene": preload("res://Game/Areas/Debug/DebugArea.tscn"),
+		"name": "Debug Area",
+		"description": "The debug area",
+		"mode": "Free Play"
+	},
+	"dg_worstmap": {
+		"scene": preload("res://Game/Areas/Arena/dg_worstmap/dg_worstmap.tscn"),
+		"name": "Worst map",
+		"description": "Duck game arena",
+		"mode": "Team Deathmatch"
+	},
 }
 var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
@@ -28,17 +35,21 @@ var menu_up = true
 # Game vars
 var username = "DEFAULT_USER"
 var singleplayer = false
+var team = 1
+var settings = {
+	"gamemode": "Free Play"
+}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# load background
+	
+	# TODO load arena correctly
 	var menu_background = menu_background_pck.instance()
-	menu_background.name = "ARENA"
 	$Map/Arena.add_child(menu_background)
-	# load login screen
-	var login_screen = login_screen_pck.instance()
-	$UI.add_child(login_screen)
+	menu_background.name = "ARENA"
+	
 	OS.min_window_size = Vector2(640, 360)
 
 func _process(delta):
@@ -52,21 +63,25 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			menu_up = true
 
+var cur_arena = ""
 func load_arena(arena_name):
+	if not arena_name in arenas:
+		return
+	cur_arena = arena_name
 	var old_arena = $Map/Arena.get_node("ARENA")
 	if old_arena != null:
 		old_arena.name = "OLD_ARENA"
 		old_arena.queue_free()
-	var new_arena = arenas[arena_name].instance()
+	var new_arena = arenas[arena_name]["scene"].instance()
 	new_arena.name = "ARENA"
 	$Map/Arena.add_child(new_arena)
+
+func load_player():
 	var new_player = person.instance()
 	$Map/Players.add_child(new_player)
-	#new_player.get_node("CameraHinge/Camera").current = true
 	new_player.name = username
-	#Web.requests.connect("request_completed", self, "update_players")
 	Web.connect("new_data", self, "update_players_s")
-	new_player.respawn()
+	#new_player.respawn(team)
 
 var last_timestamp = -1
 func update_players_s(data):
@@ -104,6 +119,10 @@ func update_players_s(data):
 		
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])
+	for obj in $Map/Players.get_children():
+		if not (obj.name in data["updates"].get("players", {})) and obj.get_name() != username:
+			print("Deleting: ", obj.get_name())
+			obj.queue_free()
 	
 	for obj in data.get("objects", {}):
 		var obj_name = obj.replace("@", "")
@@ -122,12 +141,6 @@ func update_players_s(data):
 		if not (obj.name in data.get("objects", {})) and obj.created_online:
 			print("Deleting: ", obj.get_name())
 			obj.queue_free()
-		else:
-			#print("Maybe delete?: ", obj.get_name())
-			pass
-
-func get_player():
-	return $Map/Players.get_node(username)
 
 var obj_offset = 1
 func make_obj(type, n="", co=false):
@@ -147,13 +160,28 @@ func make_obj(type, n="", co=false):
 	obj_obj.set_global_transform(otrans)
 	obj_obj.set_name(str(obj_name))
 	obj_obj.created_online = co
-	print("object "+n+" given name: "+obj_obj.name)
+	#print("object "+n+" given name: "+obj_obj.name)
 	if obj_obj.get_name() != obj_name:
 		print("Deleting object, unable to assign correct name")
 		obj_obj.get_parent().remove_child(obj_obj)
 		obj_obj.queue_free()
 		return null
 	return obj_obj
+
+
+func get_current_player():
+	if $Map/Players.has_node(username):
+		return $Map/Players.get_node(username)
+	return null
+
+func clear_gameplay():
+	for child in $Map/Arena.get_children():
+		child.queue_free()
+	for child in $Map/Objects.get_children():
+		child.queue_free()
+	for child in $Map/Players.get_children():
+		child.queue_free()
+
 
 
 

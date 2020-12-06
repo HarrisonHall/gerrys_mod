@@ -66,6 +66,10 @@ def connect_user(obj):
     return d
 
 def user_pinged(username):
+    if username == "":
+        return
+    if username not in current_users:
+        return
     current_users[username]["last_time"] = datetime.datetime.now()
 
 def password_correct(username, password):
@@ -77,13 +81,14 @@ def zero_update(username):
     current_users[username]["updates"]["players"] = {}
 
 def remove_users():
-    return []
     to_remove = []
     current_time = datetime.datetime.now()
     for user in current_users:
         last_time = current_users[user]["last_time"]
         if (current_time - last_time).total_seconds() > DISCONNECT_TIME:
             to_remove.append(user)
+    for user in to_remove:
+        del current_users[user]
     return to_remove
 
 def just_joined(username):

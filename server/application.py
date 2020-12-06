@@ -40,9 +40,10 @@ def echo_socket(ws):
         try:
             d = {}
             message = ws.receive()
-            if message is not None:
+            if message is not None:                
                 try:
                     incoming = loads(message)
+                    data.user_pinged(incoming.get("username", ""))
                     if "connect_user" == incoming["endpoint"]:
                         d = data.connect_user(incoming)
                     elif "update_info" == incoming["endpoint"]:
@@ -53,6 +54,7 @@ def echo_socket(ws):
                         d = games.update_damage(incoming)
                     else:
                         d = games.update_game(incoming)
+                    data.remove_users()
                 except Exception as e:
                     print("Game logic error:", e)
             else:

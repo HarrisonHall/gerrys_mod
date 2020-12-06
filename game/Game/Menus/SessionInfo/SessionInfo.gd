@@ -1,7 +1,10 @@
-extends Spatial
+extends Control
 
 
-onready var Game = get_tree().get_current_scene()
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,8 +15,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_Area_area_entered(area):
-	if area.get_name() == "Hitbox":
-		if Game.username == area.get_parent().get_name():
-			area.get_parent().respawn(Game.team)
+func add_info(info):
+	$InfoContainer/Info.text += "\n" + info

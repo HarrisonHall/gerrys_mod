@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Characters/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Characters/Players/Cameras/GameCamera.gd" type="Script" id=2]
+
+[node name="GameCamera" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CrossHair" parent="." index="1"]
+visible = false
