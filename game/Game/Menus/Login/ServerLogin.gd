@@ -33,6 +33,12 @@ func _on_serverchoice_item_selected(index):
 	if index == 2: # singleplayer
 		Game.singleplayer = true
 
+func _on_username_text_entered(new_text):
+	_on_LoginButton_pressed()
+
+func _on_password_text_entered(new_text):
+	_on_LoginButton_pressed()
+
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
 		Game.load_arena("DebugArea")

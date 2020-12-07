@@ -36,7 +36,8 @@ def update_game(obj):
     d = {
         "updates": update,
         "objects": data.get_objects(username),
-        "timestamp": timestamp()
+        "timestamp": timestamp(),
+        "settings": data.get_settings(username)
     }
     return d
 
@@ -97,4 +98,15 @@ def update_damage(obj):
         data.current_users[user]["updates"]["players"][user] = {
             "damage": info["damage"]
         }
-        
+
+def update_server_settings(obj):
+    username = obj.get("username", "")
+    if username == "":
+        return {}
+    if "map" in obj:
+        if obj["map"] != data.current_settings["map"]:
+            data.current_settings["map"] = obj["map"]
+            data.current_objects = {}
+    return {
+        "settings": data.get_settings(username)
+    }

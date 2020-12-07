@@ -36,13 +36,18 @@ __meta__ = {
 }
 
 [node name="ModInfo" type="RichTextLabel" parent="ModContainer"]
-margin_right = 960.0
-margin_bottom = 177.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 955.0
+margin_bottom = 172.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
 scroll_active = false
 scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ModInput" type="LineEdit" parent="ModContainer"]
 margin_top = 181.0

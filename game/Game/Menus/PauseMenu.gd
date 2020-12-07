@@ -18,4 +18,8 @@ func _ready():
 
 
 func _on_ExitButton_pressed():
+	$ConfirmExit.popup_centered()
+
+
+func _on_ConfirmExit_confirmed():
 	get_tree().quit()

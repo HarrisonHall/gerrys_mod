@@ -99,5 +99,7 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Logout"
 [connection signal="item_selected" from="ServerSettings/Login/serverchoice" to="." method="_on_serverchoice_item_selected"]
+[connection signal="text_entered" from="ServerSettings/Login/username" to="." method="_on_username_text_entered"]
+[connection signal="text_entered" from="ServerSettings/Login/password" to="." method="_on_password_text_entered"]
 [connection signal="pressed" from="ServerSettings/Login/LoginButton" to="." method="_on_LoginButton_pressed"]
 [connection signal="pressed" from="ServerSettings/Logout/LogoutButton" to="." method="_on_LogoutButton_pressed"]
