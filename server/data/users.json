@@ -25,5 +25,14 @@
     },
 	"ben": {
 		"password": "lina"
+	},
+	"franky": {
+		"password": "jacky"
+	},
+	"bennett": {
+		"password": "mo"
+	},
+	"mo": {
+		"password": "bennett"
 	}
 }

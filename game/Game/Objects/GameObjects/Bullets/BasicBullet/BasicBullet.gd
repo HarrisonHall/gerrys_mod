@@ -1,17 +1,11 @@
 extends "res://Game/Objects/GameObjects/Bullets/Bullet.gd"
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _init():
 	._init()
-	obj_type = "bullet"
+	obj_type = "BasicBullet"
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Hitbox_body_entered(body):
+	if body.name == "StaticBody":
+		kill = true
+		send_update()

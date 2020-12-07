@@ -1521,14 +1521,14 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.998222, -0.0591914, 0.00697521, 0.0589231, 0.997688, 0.033867, -0.0089638, -0.0333957, 0.999402, -0.0558169, 2.51941, -0.323584 )
+transform = Transform( 1, -2.73273e-09, 2.3512e-07, 4.76225e-09, 0.999963, -0.00863224, -2.35088e-07, 0.00863224, 0.999963, -1.03779e-07, 4.31207, -0.0138553 )
 bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 2 )]
 transform = Transform( -2.449, 2.14765e-08, -2.14292e-07, 2.51728e-08, 2.44864, -0.0422791, 2.1389e-07, -0.0422791, -2.44864, -1.24947e-07, 0.620418, 0.538627 )
 
 [node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.934396, -0.353153, 0.0467229, -0.0487651, -0.00312093, -0.998806, 0.352878, -0.93556, -0.0143052, -0.400739, 2.24532, -2.2021 )
+transform = Transform( -0.99455, -0.104192, 0.00336439, 0.104233, -0.994411, 0.0168396, 0.00159101, 0.0170985, 0.999852, -0.669782, 2.84403, -0.0174431 )
 bone_name = "lowerarmr"
 
 [node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
