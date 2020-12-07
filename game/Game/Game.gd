@@ -94,7 +94,6 @@ func load_player():
 	$Map/Players.add_child(new_player)
 	new_player.name = username
 	Web.connect("new_data", self, "update_players_s")
-	#new_player.respawn(team)
 
 var last_timestamp = -1
 func update_players_s(data):
@@ -151,6 +150,14 @@ func update_players_s(data):
 	for obj in $Map/Objects.get_children():
 		if not (obj.name in data.get("objects", {})) and obj.created_online:
 			obj.queue_free()
+	
+	# Change map
+	var new_map = data.get("settings", {}).get("map", cur_arena)
+	if new_map != cur_arena:
+		clear_gameplay()
+		load_arena(new_map)
+		load_player()
+		get_current_player().respawn(team)
 
 var obj_offset = 1
 func make_obj(type, n="", co=false):
@@ -163,7 +170,6 @@ func make_obj(type, n="", co=false):
 	if $Map/Objects.has_node(obj_name):
 		return $Map/Objects.get_node(obj_name)
 	var obj_obj = object_types[type].instance()
-	#var otrans = obj_obj.get_global_transform()
 	var otrans = Transform()
 	obj_obj.set_name(str(obj_name))
 	$Map/Objects.add_child(obj_obj)
@@ -171,12 +177,14 @@ func make_obj(type, n="", co=false):
 	obj_obj.set_name(str(obj_name))
 	obj_obj.created_online = co
 	if obj_obj.get_name() != obj_name:
-		print("Deleting object ("+obj_obj.get_name()+"), unable to assign correct name ("+obj_name+")")
+		print(
+			"Deleting object ("+obj_obj.get_name()+
+			"), unable to assign correct name ("+obj_name+")"
+		)
 		obj_obj.get_parent().remove_child(obj_obj)
 		obj_obj.queue_free()
 		return null
 	return obj_obj
-
 
 func get_current_player():
 	if $Map/Players.has_node(username):
@@ -184,12 +192,19 @@ func get_current_player():
 	return null
 
 func clear_gameplay():
+	var del_num = 0
 	for child in $Map/Arena.get_children():
+		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
+		del_num += 1
 	for child in $Map/Objects.get_children():
+		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
+		del_num += 1
 	for child in $Map/Players.get_children():
+		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
+		del_num += 1
 
 
 

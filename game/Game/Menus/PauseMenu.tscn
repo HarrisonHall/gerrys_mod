@@ -109,4 +109,11 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 custom_fonts/font = ExtResource( 7 )
 text = "Exit"
+
+[node name="ConfirmExit" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+window_title = "Are you a loser?"
+dialog_text = "Only losers exit. Really exit?"
 [connection signal="pressed" from="Margin/Menu/RightHalf/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="confirmed" from="ConfirmExit" to="." method="_on_ConfirmExit_confirmed"]

@@ -12,6 +12,9 @@ from time import time as timestamp
 next_id = 0
 current_users = {}
 current_objects = {}
+current_settings = {
+    "map": "DebugArea"
+}
 last_player = "No player has joined yet"
 kill_queue = []
 DISCONNECT_TIME = 5
@@ -152,3 +155,6 @@ def current_player_count():
 
 def last_player_joined():
     return last_player
+
+def get_settings(username):
+    return current_settings

@@ -22,6 +22,10 @@ size_flags_vertical = 3
 [node name="InfoContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -29,8 +33,8 @@ __meta__ = {
 }
 
 [node name="Info" type="RichTextLabel" parent="InfoContainer"]
-margin_right = 960.0
-margin_bottom = 540.0
+margin_right = 950.0
+margin_bottom = 530.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )

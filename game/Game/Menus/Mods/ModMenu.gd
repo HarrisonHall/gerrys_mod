@@ -22,7 +22,7 @@ func _on_ModInput_text_entered(new_text):
 	_on_ModConfirm_pressed()
 
 func _on_ModConfirm_pressed():
-	var text = $ModContainer/ModInput.text.to_lower()
+	var text = $ModContainer/ModInput.text
 	var words = text.split(" ", false)
 	if len(words) == 0:
 		return
@@ -89,3 +89,34 @@ func _on_ModConfirm_pressed():
 		Game.team = team
 		add_info("Set team to "+ str(team))
 		clear_text()
+	if words[0] == "map":
+		if len(words) == 1:
+			print("ERROR: No map name")
+			return
+		if not (words[1] in Game.arenas):
+			print("ERROR: Invalid arena")
+			return
+		if Game.singleplayer:
+			Game.clear_gameplay()
+			Game.load_arena(words[1])
+			Game.load_player()
+			Game.get_current_player().respawn(Game.team)
+		else:
+			print("requested update")
+			Game.Web.request(
+				"server_settings",
+				{
+					"username": Game.username,
+					"map": words[1]
+				}
+			)
+		add_info("Set arena to "+ str(words[1]))
+		clear_text()
+
+
+
+
+
+
+
+

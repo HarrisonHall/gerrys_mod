@@ -53,10 +53,12 @@ def echo_socket(ws):
                     elif "take_damage" == incoming["endpoint"]:
                         print("Updating damage")
                         d = games.update_damage(incoming)
+                    elif "server_settings" == incoming["endpoint"]:
+                        print("Updating server settings")
+                        d = games.update_server_settings(incoming)
                     else:
-                        print("Updating game")
+                        # Update game
                         d = games.update_game(incoming)
-                    #print(d)
                     data.remove_users()
                 except Exception as e:
                     print("Game logic error:", e)
