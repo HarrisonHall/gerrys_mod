@@ -4,7 +4,6 @@ extends "res://Game/Objects/GameObjects/GameObject.gd"
 var pick_up_timer = 0
 var can_be_picked_up = true
 var gun_obj = "HeldObject"
-var ammo = 10
 
 
 func _init():
@@ -12,7 +11,8 @@ func _init():
 	obj_type = "gun"
 	can_collide = false
 	data = {
-		"can_be_picked_up": true
+		"can_be_picked_up": true,
+		"ammo": 10
 	}
 
 func _ready():

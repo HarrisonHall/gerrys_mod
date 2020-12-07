@@ -475,7 +475,10 @@ func noclip():
 	_noclip = not _noclip
 
 func ammo_count():
-	return 1
+	if self == Game.get_current_player():
+		if og_gun and is_holding:
+			return og_gun.data["ammo"]
+	return 0
 
 func health_count():
 	return data.get("health", 1)
