@@ -9,7 +9,9 @@ extends "res://Game/Objects/GameObjects/Guns/HeldObject.gd"
 # Called when the node enters the scene tree for the first time.
 func _init():
 	._init()
-	bspeed = 60
+	bspeed = 100
+	bullet_type = "BasicBullet"
+	bscale = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

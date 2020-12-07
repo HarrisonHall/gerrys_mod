@@ -55,7 +55,7 @@ func _on_ModConfirm_pressed():
 			"timestamp": OS.get_ticks_msec()
 		})
 	if words[0] == "respawn":
-		var p = Game.get_player()
+		var p = Game.get_current_player()
 		if p:
 			p.respawn()
 		clear_text()
