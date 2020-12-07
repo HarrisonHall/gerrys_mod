@@ -26,7 +26,7 @@ func use():
 			b.set_trans_mom($ShootFrom.get_global_transform(), bspeed*(player.get_forward() - get_global_transform().origin).normalized(), player.get_forward())
 			b.queue_send_update = true
 		if gun_ref:
-			gun_ref.ammo -= 1
+			gun_ref.data["ammo"] -= 1
 
 func get_update(obj, timestamp):
 	if .get_update(obj, timestamp):
@@ -37,7 +37,7 @@ func shoot_pos():
 
 func has_ammo():
 	if gun_ref:
-		return gun_ref.ammo > 0
+		return gun_ref.data["ammo"] > 0
 	return true
 
 func force_drop():
