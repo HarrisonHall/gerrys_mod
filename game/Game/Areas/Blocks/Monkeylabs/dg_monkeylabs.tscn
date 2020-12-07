@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Game/Areas/Blocks/Monkeylabs/testtube.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Areas/Blocks/Monkeylabs/monkeylabconfloor.tscn" type="PackedScene" id=2]
@@ -12,6 +12,13 @@
 [ext_resource path="res://Game/Areas/Blocks/Monkeylabs/slippymetaltest1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Game/Areas/Blocks/Monkeylabs/cage.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Game/Areas/Blocks/Monkeylabs/lpipe.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/sactable.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/bobochair.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/monkeybillboard.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/itemholder.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/gildedbananaboy.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/monkeylabfence.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/labdoor.tscn" type="PackedScene" id=19]
 
 [node name="dg_monkeylabs" type="Spatial"]
 
@@ -2685,6 +2692,9 @@ transform = Transform( -0.402555, 0, -0.915396, 0, 1, 0, 0.915396, 0, -0.402555,
 [node name="monkeycratetest17" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.953748, 0, -0.300606, 0, 1, 0, 0.300606, 0, 0.953748, -19.8282, 1.31656, 37.9352 )
 
+[node name="monkeycratetest31" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.803971, 0, 0.594668, 0, 1, 0, -0.594668, 0, 0.803971, 5.58988, 6.60634, 33.6402 )
+
 [node name="monkeycratetest22" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.923271, 0, 0.38415, 0, 1, 0, -0.38415, 0, 0.923271, -26.1154, 1.31656, 28.2008 )
 
@@ -2749,13 +2759,16 @@ transform = Transform( -8.74228e-08, 0, 5, 0, 2, 0, -2, 0, -2.18557e-07, -34.185
 transform = Transform( -8.74228e-08, 0, 5, 0, 2, 0, -2, 0, -2.18557e-07, 0, 0, -34 )
 
 [node name="slippymetaltest5" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, 1.41421, 10, 5, 37 )
+transform = Transform( 0, 0, -1.99999, 0, 2, 0, 1.99999, 0, 0, 10, 5, 49.8225 )
 
 [node name="slippymetaltest6" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1.41421, 0, 1.41421, 0, 2, 0, -1.41421, 0, 1.41421, -10, 5, 37 )
+transform = Transform( 0, 0, 1.99999, 0, 2, 0, -1.99999, 0, 0, -10, 5, 49.7005 )
 
 [node name="slippymetaltest9" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1.08397, 0, 0.489058, 0, 1.2, 0, -0.514798, 0, 1.02977, -36.7074, 5, -17.7989 )
+
+[node name="slippymetaltest10" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.899299, 0, 0.437335, 0, 1.23, 0, -0.437335, 0, 0.899299, 33.7523, 5, -21.4439 )
 
 [node name="slippymetaltest3" parent="." instance=ExtResource( 10 )]
 transform = Transform( -3, 0, -1.81195e-06, 0, 2, 0, 4.52987e-07, 0, -12, -30, 0, 0 )
@@ -2843,14 +2856,77 @@ transform = Transform( -0.676311, 0, 0.736617, 0, 1.5, 0, -0.736617, 0, -0.67631
 [node name="cagetest3" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.999875, 0, -0.0157947, 0, 1, 0, 0.0157947, 0, -0.999875, -15.3952, 0.610995, -26.7762 )
 
+[node name="cagetest12" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.499938, 0, 0.00789738, 0, 0.5, 0, -0.00789738, 0, 0.499938, -7.45816, 5.64481, 32.6744 )
+
+[node name="cagetest13" parent="cagetest12" instance=ExtResource( 11 )]
+transform = Transform( 0.973695, 0, 0.227858, 0, 1, 0, -0.227858, 0, 0.973695, -4.97472, 0, 2.22098 )
+
+[node name="cagetest14" parent="cagetest12" instance=ExtResource( 11 )]
+transform = Transform( 0.735861, 0, 0.677133, 0, 1, 0, -0.677133, 0, 0.735861, -3.11629, 4.74433, 0.963913 )
+
 [node name="cagetest4" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.885523, 0, -0.464595, 0, 1, 0, 0.464595, 0, -0.885523, 22.8232, 0.610995, 32.6266 )
+
+[node name="cagetest6" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.0205058, 0, -0.999789, 0, 1, 0, 0.999789, 0, -0.0205058, 47.5053, 5.6739, 7.37932 )
+
+[node name="cagetest11" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.0205058, 0, -0.99979, 0, 2, 0, 0.99979, 0, -0.0205058, 47.5053, 5.6739, 1.06193 )
+
+[node name="cagetest10" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.99864, 0, -0.866418, 0, 1, 0, 1.73284, 0, 0.49932, 33.963, 5.6739, 7.95697 )
+
+[node name="cagetest7" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.0205058, 0, -0.999789, 0, 1, 0, 0.999789, 0, -0.0205058, 47.5053, 5.6739, -6.62068 )
+
+[node name="cagetest9" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.0205058, 0, -0.999789, 0, 1, 0, 0.999789, 0, -0.0205058, 47.5053, 10.2709, -8.62068 )
+
+[node name="cagetest8" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.0205058, 0, -0.999789, 0, 1, 0, 0.999789, 0, -0.0205058, 47.5053, 5.6739, -11.6207 )
 
 [node name="lpipetest1" parent="." instance=ExtResource( 12 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 27.1956, 0.0334289, -45.0903 )
 
 [node name="lpipetest6" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.803348, 0, -0.59551, 0, 1, 0, 0.59551, 0, -0.803348, 12.008, 5.47556, -40.8748 )
+
+[node name="lpipetest12" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.580604, 0, -0.814186, 0, 1, 0, 0.814186, 0, -0.580604, 11.8528, 5.47556, 35.9971 )
+
+[node name="lpipetest13" parent="lpipetest12" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -1.49012e-07, 0, 1, 0, 1.49012e-07, 0, -1, -0.0217648, 0, 3.60983 )
+
+[node name="lpipetest13" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.995408, 0, -0.0957242, 0, 1, 0, 0.0957242, 0, 0.995408, 35.1774, 5.47556, -11.0029 )
+
+[node name="lpipetest13" parent="lpipetest13" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.0079155, 0, 3.59404 )
+
+[node name="lpipetest14" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.0957242, 0, -0.995408, 0, 1, 0, 0.995408, 0, -0.0957242, 21.1774, 0.47556, -5.0029 )
+
+[node name="lpipetest13" parent="lpipetest14" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.00839233, 0, 3.58903 )
+
+[node name="lpipetest16" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.99991, 0, -0.0133863, 0, 1, 0, 0.0133863, 0, 0.99991, -16.8226, 0.47556, -5.0029 )
+
+[node name="lpipetest13" parent="lpipetest16" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.75443e-08, 0, 1, 0, 8.75443e-08, 0, -1, -0.0047226, 0, 3.5803 )
+
+[node name="lpipetest17" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.99991, 0, -0.0133863, 0, 1, 0, 0.0133863, 0, 0.99991, -16.8226, 0.47556, -15.4909 )
+
+[node name="lpipetest13" parent="lpipetest17" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.75443e-08, 0, 1, 0, 8.75443e-08, 0, -1, -0.00448608, 0, 3.5979 )
+
+[node name="lpipetest15" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.0957242, 0, -0.995408, 0, 1, 0, 0.995408, 0, -0.0957242, 21.1774, 0.47556, 5.9971 )
+
+[node name="lpipetest13" parent="lpipetest15" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.00847101, 0, 3.58822 )
 
 [node name="lpipetest7" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.78686, 0, 0.617132, 0, 1, 0, -0.617132, 0, -0.78686, -11.96, 5.47556, -40.8748 )
@@ -2878,3 +2954,129 @@ transform = Transform( -1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 42.5881
 
 [node name="lpipetest2" parent="." instance=ExtResource( 12 )]
 transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -26.8044, 0.0334289, -45.0903 )
+
+[node name="monkeybillboardtest1" parent="." instance=ExtResource( 15 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.214643, 12.5495, 49.709 )
+
+[node name="bobochairtest3" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.54755, -37.6898 )
+
+[node name="sactabletest1" parent="." instance=ExtResource( 13 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 37.2366, 5.577, -0.173 )
+
+[node name="sactabletest10" parent="." instance=ExtResource( 13 )]
+transform = Transform( -8.77862e-08, -1.34573, 0.662588, 1.5, -6.55671e-08, 6.55671e-08, -2.98609e-08, 0.662588, 1.34573, 33.7249, 6.3014, -21.4307 )
+
+[node name="sactabletest8" parent="." instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 33.7249, 5.5769, -32.1732 )
+
+[node name="sactabletest9" parent="." instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 33.7249, 5.5769, -28.1732 )
+
+[node name="sactabletest11" parent="." instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 33.7249, 5.5769, -36.1732 )
+
+[node name="sactabletest12" parent="." instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 40.7249, 5.5769, -36.1732 )
+
+[node name="sactabletest13" parent="." instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 40.7249, 5.5769, -32.1732 )
+
+[node name="sactabletest14" parent="." instance=ExtResource( 13 )]
+transform = Transform( -6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 40.7249, 5.5769, -28.1732 )
+
+[node name="sactabletest2" parent="." instance=ExtResource( 13 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 19.7249, 0.283529, -14.2813 )
+
+[node name="sactabletest3" parent="." instance=ExtResource( 13 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 19.7249, 0.283529, 13.7187 )
+
+[node name="itemholder" parent="." instance=ExtResource( 16 )]
+transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 5.5281, 34 )
+
+[node name="gildedbananaboy" parent="." instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.42075, 33.9592 )
+
+[node name="labdoortest1" parent="." instance=ExtResource( 19 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.6486, 49.6906 )
+
+[node name="monkeylabfence" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0132126, 4.7754, 30.1407 )
+
+[node name="monkeylabfence2" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01321, 4.7754, 30.1407 )
+
+[node name="monkeylabfence3" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.98679, 4.7754, 30.1407 )
+
+[node name="monkeylabfence4" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98679, 4.7754, 30.1407 )
+
+[node name="monkeylabfence10" parent="." instance=ExtResource( 18 )]
+transform = Transform( 0.98995, 0, 0.707107, 0, 1, 0, -0.98995, 0, 0.707107, -11.9088, 4.7754, 32.1407 )
+
+[node name="monkeylabfence26" parent="." instance=ExtResource( 18 )]
+transform = Transform( -0.98995, 0, 0.707107, 0, 1, 0, -0.989949, 0, -0.707107, 11.9219, 4.7754, 32.1407 )
+
+[node name="monkeylabfence25" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1.06066, 0, 0.707107, 0, 1, 0, -1.06066, 0, 0.707107, -15.9088, 4.7754, 36.1407 )
+
+[node name="monkeylabfence27" parent="." instance=ExtResource( 18 )]
+transform = Transform( -1.06066, 0, 0.707107, 0, 1, 0, -1.06066, 0, -0.707107, 15.9178, 4.7754, 36.1407 )
+
+[node name="monkeylabfence5" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.01321, 4.7754, 30.1407 )
+
+[node name="monkeylabfence6" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, 20.0027 )
+
+[node name="monkeylabfence7" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, 16.0027 )
+
+[node name="monkeylabfence8" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, 12.0027 )
+
+[node name="monkeylabfence9" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, 8.00268 )
+
+[node name="monkeylabfence11" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, -19.9973 )
+
+[node name="monkeylabfence12" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, -15.9973 )
+
+[node name="monkeylabfence13" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, -11.9973 )
+
+[node name="monkeylabfence14" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.8657, 4.7754, -7.99732 )
+
+[node name="monkeylabfence15" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, -7.99732 )
+
+[node name="monkeylabfence16" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, -19.9973 )
+
+[node name="monkeylabfence23" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.8153, 5.47893, -47.9973 )
+
+[node name="monkeylabfence24" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.7351, 5.47893, -47.9973 )
+
+[node name="monkeylabfence17" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, -15.9973 )
+
+[node name="monkeylabfence18" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, -11.9973 )
+
+[node name="monkeylabfence19" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, 16.0027 )
+
+[node name="monkeylabfence21" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, 12.0027 )
+
+[node name="monkeylabfence22" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, 8.00268 )
+
+[node name="monkeylabfence20" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29.8153, 4.7754, 20.0027 )
