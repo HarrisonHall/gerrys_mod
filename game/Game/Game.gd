@@ -22,6 +22,12 @@ var arenas = {
 		"description": "Duck game arena",
 		"mode": "Team Deathmatch"
 	},
+	"dg_monkeylabs": {
+		"scene": preload("res://Game/Areas/Blocks/Monkeylabs/dg_monkeylabs.tscn"),
+		"name": "dg_monkeylabs",
+		"description": "Duck game arena",
+		"mode": "Team Deathmatch"
+	},
 }
 var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),

@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Game/Objects/Surfing/Debug/Surfer2.gd" type="Script" id=1]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.623529, 0.156863, 0.156863, 1 )
 
 [sub_resource type="PrismMesh" id=2]
-material = SubResource( 4 )
+material = SubResource( 1 )
 size = Vector3( 2, 1.45, 2 )
 
 [sub_resource type="ConvexPolygonShape" id=3]
