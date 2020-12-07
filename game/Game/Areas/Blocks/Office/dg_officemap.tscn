@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game/Areas/Blocks/Office/officefloor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Areas/Blocks/Office/officewall1.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Game/Areas/Blocks/Office/armchair.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/Areas/Blocks/Office/watercooler.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Areas/Blocks/Office/couch.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Game/Areas/Blocks/Monkeylabs/slippymetaltest1.tscn" type="PackedScene" id=8]
 
 [node name="dg_officemap" type="Spatial"]
 
@@ -570,6 +569,39 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -8 )
 
 [node name="officefloor256" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -16 )
+
+[node name="officefloor257" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -12 )
+
+[node name="officefloor258" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -8 )
+
+[node name="officefloor259" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -4 )
+
+[node name="officefloor260" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, 0 )
+
+[node name="officefloor261" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, 4 )
+
+[node name="officefloor262" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, 4 )
+
+[node name="officefloor263" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, 0 )
+
+[node name="officefloor264" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -4 )
+
+[node name="officefloor265" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -8 )
+
+[node name="officefloor266" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -12 )
+
+[node name="officefloor267" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -16 )
 
 [node name="officefloor139" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 8 )
@@ -1901,5 +1933,3 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.285
 
 [node name="Surfing" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -6 )
-
-[node name="slippymetaltest1" parent="Surfing" instance=ExtResource( 8 )]
