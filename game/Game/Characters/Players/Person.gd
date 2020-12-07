@@ -474,3 +474,14 @@ func noclip():
 		$CollisionFeet.disabled = true
 	_noclip = not _noclip
 
+func ammo_count():
+	return 1
+
+func health_count():
+	return data.get("health", 1)
+
+func soft_let_go():
+	#$Model/Body.soft_let_go()
+	drop_gun()
+
+

@@ -148,6 +148,7 @@ func hold_object(gun):
 	original_gun = gun
 	gun_name = gun.obj_type
 	held_object = Game.object_types[gun.gun_obj].instance()
+	held_object.gun_ref = gun
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
 	#var trans = held_object.get_global_transform()
 	var trans = hand.get_global_transform()
