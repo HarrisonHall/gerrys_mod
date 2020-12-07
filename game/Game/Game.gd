@@ -16,6 +16,12 @@ var arenas = {
 		"description": "Duck game arena",
 		"mode": "Team Deathmatch"
 	},
+	"dg_officemap": {
+		"scene": preload("res://Game/Areas/Blocks/Office/dg_officemap.tscn"),
+		"name": "dg_officemap",
+		"description": "Duck game arena",
+		"mode": "Team Deathmatch"
+	},
 }
 var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),

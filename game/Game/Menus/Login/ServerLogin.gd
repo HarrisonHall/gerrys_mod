@@ -35,7 +35,7 @@ func _on_serverchoice_item_selected(index):
 
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
-		Game.load_arena("DebugArea")
+		Game.load_arena("dg_officemap")
 		Game.load_player()
 		Game.get_current_player().respawn(Game.team)
 		logged_in = true
