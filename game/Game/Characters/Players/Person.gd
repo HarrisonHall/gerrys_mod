@@ -9,7 +9,8 @@ var ground_friction = 6
 
 var CAM_SENSITIVITY = .3
 
-const MAX_SPEED = 100
+#const MAX_SPEED = 100
+const MAX_SPEED = 200
 const MIN_MOM = 0.4
 const MIN_WALK = 0.5
 
@@ -33,6 +34,8 @@ var is_crouching = false
 var slide_time = 0
 var SLIDE_MOM_FRAC = 2
 var slide_friction = 0.5
+
+var _noclip = false
 
 var data = {
 	"holding_gun_type": "",
@@ -96,11 +99,15 @@ func process_movement(delta):
 		slide_time = 0
 		if Input.is_action_pressed("gm_crouch"):
 			is_crouching = true
+			if _noclip:
+				momentum.y = -INIT_JUMP_MOM
 		else:
 			is_crouching = false
 	if Input.is_action_pressed("gm_jump"):
 		#if $FNormCast.is_colliding():
-		if surf_depth > 0 or surf_depth2 > 0:
+		if _noclip:
+			momentum.y = INIT_JUMP_MOM
+		elif surf_depth > 0 or surf_depth2 > 0:
 			momentum.y += momentum.normalized().length() * SURF_JUMP_FACTOR
 			jump_time = MAX_JUMP_TIME
 		elif slide_time > 0 and is_on_floor():
@@ -125,7 +132,8 @@ func process_movement(delta):
 func move_player(delta):
 	if name == Game.username or (len(pos_buffer) == 0 and not $RemoteMovement.is_active()):
 		# Add gravity
-		momentum += gravity*delta
+		if not _noclip:
+			momentum += gravity*delta
 		
 		# Max speed
 		if (momentum.length() > MAX_SPEED):
@@ -155,6 +163,10 @@ func move_player(delta):
 			momentum = Vector3(0, momentum.y, 0)
 		
 		tell_server(delta)
+		
+		# Factor in noclip
+		if _noclip:
+			momentum.y = 0
 	else:
 		runtime -= delta
 		# Do tween stuff
@@ -198,10 +210,14 @@ func process_animations(delta):
 	$Model/Body.walk()
 
 func hitbox_min():
+	if _noclip:
+		return
 	$CollisionBodyMid.disabled = true
 	$CollisionBodyTop.disabled = true
 
 func hitbox_max():
+	if _noclip:
+		return
 	$CollisionBodyMid.disabled = false
 	$CollisionBodyTop.disabled = false
 
@@ -447,5 +463,25 @@ func get_forward():
 		return Vector3()
 	return cam.get_forward()
 
+func noclip():
+	if _noclip:
+		$CollisionBodyTop.disabled = false
+		$CollisionBodyMid.disabled = false
+		$CollisionFeet.disabled = false
+	else:
+		$CollisionBodyTop.disabled = true
+		$CollisionBodyMid.disabled = true
+		$CollisionFeet.disabled = true
+	_noclip = not _noclip
+
+func ammo_count():
+	return 1
+
+func health_count():
+	return data.get("health", 1)
+
+func soft_let_go():
+	#$Model/Body.soft_let_go()
+	drop_gun()
 
 

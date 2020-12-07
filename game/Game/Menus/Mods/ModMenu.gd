@@ -112,7 +112,12 @@ func _on_ModConfirm_pressed():
 			)
 		add_info("Set arena to "+ str(words[1]))
 		clear_text()
-
+	if words[0] == "noclip":
+		var p = Game.get_current_player()
+		if Game.get_current_player():
+			p.noclip()
+			add_info("Set noclip to "+ str(p._noclip))
+		clear_text()
 
 
 

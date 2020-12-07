@@ -70,10 +70,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if menu_up:
 			$UI.visible = false
+			$HUD.visible = true and show_hud
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			menu_up = false
 		else:
 			$UI.visible = true and show_hud
+			$HUD.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			menu_up = true
 	if Input.is_action_just_pressed("ui_clear"):

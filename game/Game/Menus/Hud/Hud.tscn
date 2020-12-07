@@ -1,28 +1,74 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Game/Menus/Hud/Hud.gd" type="Script" id=2]
 
 [node name="Hud" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MidContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_bottom = 40.0
+margin_right = 317.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="LeftContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 40.0
+margin_left = 321.0
+margin_right = 638.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="RightContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 8.0
-margin_right = 8.0
-margin_bottom = 40.0
+margin_left = 642.0
+margin_right = 960.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HealthContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer"]
+margin_right = 318.0
+margin_bottom = 268.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HealthLabel" type="Label" parent="HBoxContainer/RightContainer/HealthContainer"]
+margin_right = 318.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.756863, 0, 1, 1 )
+text = "Health: 100"
+align = 2
+
+[node name="AmmoContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer"]
+margin_top = 272.0
+margin_right = 318.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="AmmoLabel" type="Label" parent="HBoxContainer/RightContainer/AmmoContainer"]
+margin_top = 251.0
+margin_right = 318.0
+margin_bottom = 268.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0.866667, 1 )
+text = "Ammo: 100"
+align = 2
