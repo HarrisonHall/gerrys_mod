@@ -32,7 +32,7 @@ func do_reparent():
 	# TODO: generalize under Game
 	if get_parent() != Game.get_node("Map/Objects"):
 		var old_trans = get_global_transform()
-		var name_should_be = get_name().replace("@", "")
+		var name_should_be = Game.cur_arena + "_" + get_name().replace("@", "")
 		if Game.get_node("Map/Objects").has_node(name_should_be):
 			deleted = true
 			queue_free()

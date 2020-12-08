@@ -48,18 +48,20 @@ def echo_socket(ws):
                     if "connect_user" == incoming["endpoint"]:
                         print("Connecting user")
                         d = data.connect_user(incoming)
-                    elif "update_info" == incoming["endpoint"]:
-                        print("Updating info")
-                        d = games.update_info(incoming)
-                    elif "take_damage" == incoming["endpoint"]:
-                        print("Updating damage")
-                        d = games.update_damage(incoming)
-                    elif "server_settings" == incoming["endpoint"]:
-                        print("Updating server settings")
-                        d = games.update_server_settings(incoming)
                     else:
-                        # Update game
-                        d = games.update_game(incoming)
+                        data.ensure_user(incoming.get("username", ""))
+                        if "update_info" == incoming["endpoint"]:
+                            print("Updating info")
+                            d = games.update_info(incoming)
+                        elif "take_damage" == incoming["endpoint"]:
+                            print("Updating damage")
+                            d = games.update_damage(incoming)
+                        elif "server_settings" == incoming["endpoint"]:
+                            print("Updating server settings")
+                            d = games.update_server_settings(incoming)
+                        else:
+                            # Update game
+                            d = games.update_game(incoming)
                     data.remove_users()
                 except Exception as e:
                     print("Game logic error: ", e)

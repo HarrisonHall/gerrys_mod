@@ -187,7 +187,7 @@ func update_players_s(data):
 	# Change map
 	var new_map = data.get("settings", {}).get("map", cur_arena)
 	if new_map != cur_arena:
-		clear_gameplay()
+		clear_gameplay(true)
 		load_arena(new_map)
 		toggle_mode_menu(true)
 		#load_player()
@@ -197,7 +197,7 @@ var obj_offset = 1
 func make_obj(type, n="", co=false):
 	obj_offset += 1
 	if n == "":
-		n = username + "_thing_" + str(1+obj_offset)
+		n = cur_arena + "_" + username + "_thing_" + str(1+obj_offset)
 	if not (type in object_types):
 		return null
 	var obj_name = n.replace("@", "")
@@ -214,7 +214,7 @@ func make_obj(type, n="", co=false):
 	if obj_obj.get_name() != obj_name:
 		print(
 			"Deleting object ("+obj_obj.get_name()+
-			"), unable to assign correct name ("+obj_name+")"
+			"), unable to assign correct name '"+obj_name+"'"
 		)
 		obj_obj.get_parent().remove_child(obj_obj)
 		obj_obj.queue_free()
@@ -226,7 +226,7 @@ func get_current_player():
 		return $Map/Players.get_node(username)
 	return null
 
-func clear_gameplay():
+func clear_gameplay(kill=false):
 	var del_num = 0
 	for child in $Map/Arena.get_children():
 		child.set_name("to_delete_"+str(del_num))
@@ -235,13 +235,14 @@ func clear_gameplay():
 	for child in $Map/Objects.get_children():
 		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
+		if kill:
+			child.kill = true
+			child.send_update()
 		del_num += 1
 	for child in $Map/Players.get_children():
 		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
 		del_num += 1
-
-
 
 
 

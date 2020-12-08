@@ -51,6 +51,12 @@ def add_user(username):
     last_player = username
     return new_id
 
+def ensure_user(username):
+    if username in current_users:
+        return False
+    add_user(username)
+    return True
+
 def connect_user(obj):
     """
     See if a user can be connected.
