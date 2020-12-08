@@ -1103,7 +1103,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 4.04109e-08, -5.39522e-09, -4.04196e-08, 0.999999, -0.00163388, 5.32919e-09, 0.00163388, 0.999999, -7.10543e-15, 2.38358, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("AttachCam") ]
 bones/2/name = "upperarml"
 bones/2/parent = 1
 bones/2/rest = Transform( -0.870655, -0.0379245, -0.49043, -0.393784, -0.543749, 0.741128, -0.294778, 0.838391, 0.458484, 0.669109, -0.172119, 2.56151e-07 )
@@ -1123,7 +1123,7 @@ bones/5/name = "lowerarmr"
 bones/5/parent = 4
 bones/5/rest = Transform( 0.917782, 0.340919, 0.203595, 0.146917, 0.1848, -0.971733, -0.368907, 0.92175, 0.119519, -5.81721e-08, 1.10547, -1.19209e-07 )
 bones/5/enabled = true
-bones/5/bound_children = [  ]
+bones/5/bound_children = [ NodePath("AttachHand") ]
 bones/6/name = "upperlegl"
 bones/6/parent = 0
 bones/6/rest = Transform( -0.994919, 0.100666, -0.00137003, -0.100637, -0.994823, -0.0141075, -0.00278309, -0.013898, 0.9999, 0.476315, -0.13609, -2.9461e-08 )
@@ -1158,11 +1158,11 @@ bone_name = "head"
 transform = Transform( -2.07188, 1.04649e-08, -1.81227e-07, 1.3592e-08, 2.07157, -0.0357682, 1.81019e-07, -0.0357682, -2.07157, 2.58279e-09, 0.716334, 0.832519 )
 
 [node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.996995, -0.0773876, 0.00355353, 0.0774237, -0.996936, 0.0112532, 0.00267159, 0.0114949, 0.999931, -1.15296, 1.23654, -0.0178792 )
+transform = Transform( -0.98108, 0.169156, -0.0941815, 0.0464452, 0.677879, 0.733706, 0.187954, 0.715449, -0.67291, -0.69272, 1.58836, 0.882906 )
 bone_name = "lowerarmr"
 
 [node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
-transform = Transform( 1, 0, 1.49012e-08, -2.98023e-08, 1, 2.98023e-08, 1.49012e-08, 0, 1, -0.130454, 1.4941, 0.00588059 )
+transform = Transform( 0.233974, 0.0131154, -0.0870865, -0.0721581, 0.170278, -0.168222, 0.0504906, 0.182574, 0.163148, -0.0438006, 1.47916, 0.0141995 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/crouchidle = SubResource( 3 )
