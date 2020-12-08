@@ -58,8 +58,8 @@ def connect_user(obj):
     d = {}
     d["login_status"] = False
     if password_correct(
-            obj.get("username", ""),
-            obj.get("password", "")
+        obj.get("username", ""),
+        obj.get("password", "")
     ):
         d["login_status"] = True
         d["username"] = obj["username"]

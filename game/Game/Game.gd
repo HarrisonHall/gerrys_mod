@@ -87,6 +87,7 @@ func _process(delta):
 
 var cur_arena = ""
 func load_arena(arena_name):
+	print("trying to load arena")
 	if not arena_name in arenas:
 		return
 	cur_arena = arena_name

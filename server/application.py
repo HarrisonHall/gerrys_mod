@@ -65,6 +65,9 @@ def echo_socket(ws):
             else:
                 print("Message was None")
             ws.send(dumps(d))
+            if not d.get("login_status", True):
+                ws.close()
+                return
         except Exception as e:
             print("Disconnected user:", e)
             return

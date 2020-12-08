@@ -64,6 +64,7 @@ func _on_LogoutButton_pressed():
 	logged_in = false
 	Game.Web.client.disconnect_from_host()
 	Game.get_node("Map/Arena/ARENA").set_name("OLD_ARENA")
+	Game.get_node("Map/Arena/OLD_ARENA").queue_free()
 	Game.clear_gameplay()
 	var menu_background = Game.menu_background_pck.instance()
 	Game.get_node("Map/Arena").add_child(menu_background)
@@ -104,5 +105,3 @@ func received_login_data():
 			logged_in = true
 		else:
 			Game.get_node("UI/PauseMenu").SessionInfo.add_info("Unable to log in")
-	else:
-		print("Not a log in packet")
