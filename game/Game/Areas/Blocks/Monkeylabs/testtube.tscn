@@ -59,6 +59,17 @@ material/0 = null
 material/1 = null
 material/2 = null
 
+[node name="SpotLight" type="SpotLight" parent="StaticBody/Cube"]
+transform = Transform( -1.3775, -5.26395e-15, -1.20425e-07, -1.20425e-07, 6.02126e-08, 1.3775, 0, 1.3775, -6.02126e-08, 0, 5.61136, 0 )
+light_energy = 5.0
+spot_range = 1.25253
+spot_angle = 45.2851
+
+[node name="SpotLight2" type="SpotLight" parent="StaticBody/Cube"]
+transform = Transform( 1.3775, 0, 0, 0, 0.923283, -1.02228, 0, 1.02228, 0.923283, 0, 1.70048, 1.29283 )
+spot_range = 3.22744
+spot_angle = 37.284
+
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 0.725951, 0, 0, 0, 0.725951, 0, 0, 0, 0.725951, 0, 0, 0 )
 shape = SubResource( 2 )
