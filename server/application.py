@@ -10,6 +10,7 @@ from flask import (
 )
 from flask_sockets import Sockets
 from json import dumps, loads
+import traceback
 
 from src import games, data
 
@@ -61,7 +62,8 @@ def echo_socket(ws):
                         d = games.update_game(incoming)
                     data.remove_users()
                 except Exception as e:
-                    print("Game logic error:", e)
+                    print("Game logic error: ", e)
+                    traceback.print_exc()
             else:
                 print("Message was None")
             ws.send(dumps(d))

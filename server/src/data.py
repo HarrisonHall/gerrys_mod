@@ -32,7 +32,7 @@ def add_user(username):
     current_users[username] = {
         "id": new_id,
         "player": {
-            "position": [0, 0, 0],
+            "position": [-1000, -1000, -1000],
             "momentum": [0, 0, 0],
             "rotation": [0, 0, 0],
             "model": "seagal",
@@ -106,6 +106,8 @@ def add_users(username, d):
         d["players"][user] = current_users[user]["player"]
 
 def timestamp_valid(username, new_timestamp):
+    if username not in current_users:
+        return True
     if new_timestamp > current_users[username]["last_given_timestamp"]:
         current_users[username]["last_given_timestamp"] = new_timestamp
         return True
