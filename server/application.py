@@ -74,6 +74,7 @@ def echo_socket(ws):
                 return
         except Exception as e:
             print("Disconnected user:", e)
+            traceback.print_exc()
             return
 
 if __name__ == "__main__":

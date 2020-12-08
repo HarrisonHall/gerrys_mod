@@ -234,10 +234,10 @@ func clear_gameplay(kill=false):
 		del_num += 1
 	for child in $Map/Objects.get_children():
 		child.set_name("to_delete_"+str(del_num))
-		child.queue_free()
 		if kill:
 			child.kill = true
 			child.send_update()
+		#child.queue_free()
 		del_num += 1
 	for child in $Map/Players.get_children():
 		child.set_name("to_delete_"+str(del_num))

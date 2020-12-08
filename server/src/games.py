@@ -98,6 +98,7 @@ def update_damage(obj):
         data.current_users[user]["updates"]["players"][user] = {
             "damage": info["damage"]
         }
+    return {}
 
 def update_server_settings(obj):
     username = obj.get("username", "")
