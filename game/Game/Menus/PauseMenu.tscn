@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game/Menus/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Game/Menus/Mods/ModMenu.tscn" type="PackedScene" id=2]
@@ -7,12 +7,14 @@
 [ext_resource path="res://Game/Menus/SessionInfo/SessionInfo.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/Menus/ServerInfo/ServerInfo.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Game/Menus/Theme/BaseTheme.tres" type="Theme" id=8]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -46,6 +48,7 @@ margin_right = 304.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,19 +57,19 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 304.0
-margin_bottom = 164.0
+margin_bottom = 153.0
 
 [node name="ServerInfo" parent="Margin/Menu/LeftHalf" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 168.0
+margin_top = 173.0
 margin_right = 304.0
-margin_bottom = 332.0
+margin_bottom = 326.0
 
 [node name="SettingsScreen" parent="Margin/Menu/LeftHalf" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 336.0
+margin_top = 346.0
 margin_right = 304.0
 margin_bottom = 500.0
 
@@ -83,6 +86,7 @@ margin_right = 920.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -91,17 +95,17 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 304.0
-margin_bottom = 196.0
+margin_bottom = 184.0
 
 [node name="ModMenu" parent="Margin/Menu/RightHalf" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 200.0
+margin_top = 204.0
 margin_right = 304.0
-margin_bottom = 397.0
+margin_bottom = 388.0
 
 [node name="ExitButton" type="Button" parent="Margin/Menu/RightHalf"]
-margin_top = 401.0
+margin_top = 408.0
 margin_right = 304.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
@@ -111,9 +115,15 @@ custom_fonts/font = ExtResource( 7 )
 text = "Exit"
 
 [node name="ConfirmExit" type="ConfirmationDialog" parent="."]
-margin_right = 200.0
-margin_bottom = 70.0
+margin_left = 381.838
+margin_top = 240.416
+margin_right = 581.838
+margin_bottom = 310.416
+theme = ExtResource( 8 )
 window_title = "Are you a loser?"
 dialog_text = "Only losers exit. Really exit?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Margin/Menu/RightHalf/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="confirmed" from="ConfirmExit" to="." method="_on_ConfirmExit_confirmed"]

@@ -332,6 +332,9 @@ var got_response = true
 func tell_server(delta):
 	if Game.singleplayer:
 		return
+	if Game.serv_version_just_changed:
+		print("told not to update")
+		return
 	time_since_last += delta
 	
 	if time_since_last >= SERVER_DELTA and name == Game.username and Game.Web.is_connected:
@@ -351,7 +354,8 @@ func tell_server(delta):
 					"data": data,
 				}
 			}, 
-			"timestamp": OS.get_ticks_msec()
+			"timestamp": OS.get_ticks_msec(),
+			"settings": Game.settings
 		})
 
 func send_data():
@@ -362,7 +366,8 @@ func send_data():
 				"data": data,
 			}
 		}, 
-		"timestamp": OS.get_ticks_msec()
+		"timestamp": OS.get_ticks_msec(),
+		"settings": Game.settings
 	})
 
 func respawn(team=1):
@@ -454,7 +459,8 @@ func take_damage(d):
 				"damage": d
 			}
 		}, 
-		"timestamp": OS.get_ticks_msec()
+		"timestamp": OS.get_ticks_msec(),
+		"settings": Game.settings
 	})
 
 func get_forward():

@@ -2,15 +2,14 @@
 
 [ext_resource path="res://Game/Menus/Login/ServerLogin.gd" type="Script" id=1]
 [ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.227451, 0.2, 0.356863, 1 )
+[ext_resource path="res://Game/Menus/Theme/BaseTheme.tres" type="Theme" id=3]
 
 [node name="ServerLogin" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -21,32 +20,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ServerSettings" type="VBoxContainer" parent="."]
+[node name="Login" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Login" type="VBoxContainer" parent="ServerSettings"]
-margin_right = 960.0
-margin_bottom = 540.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="serverchoice" type="OptionButton" parent="ServerSettings/Login"]
-margin_right = 960.0
-margin_bottom = 132.0
+[node name="serverchoice" type="OptionButton" parent="Login"]
+margin_right = 920.0
+margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -55,51 +49,54 @@ align = 1
 items = [ "Heroku", null, false, 0, null, "Localhost", null, false, 1, null, "Single Player", null, false, 2, null ]
 selected = 0
 
-[node name="username" type="LineEdit" parent="ServerSettings/Login"]
-margin_top = 136.0
-margin_right = 960.0
-margin_bottom = 268.0
+[node name="username" type="LineEdit" parent="Login"]
+margin_top = 130.0
+margin_right = 920.0
+margin_bottom = 240.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 placeholder_text = "Username"
 
-[node name="password" type="LineEdit" parent="ServerSettings/Login"]
-margin_top = 272.0
-margin_right = 960.0
-margin_bottom = 404.0
+[node name="password" type="LineEdit" parent="Login"]
+margin_top = 260.0
+margin_right = 920.0
+margin_bottom = 370.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 secret = true
 placeholder_text = "Password"
 
-[node name="LoginButton" type="Button" parent="ServerSettings/Login"]
-margin_top = 408.0
-margin_right = 960.0
-margin_bottom = 540.0
+[node name="LoginButton" type="Button" parent="Login"]
+margin_top = 390.0
+margin_right = 920.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Login"
 
-[node name="Logout" type="VBoxContainer" parent="ServerSettings"]
+[node name="Logout" type="VBoxContainer" parent="."]
 visible = false
-margin_top = 272.0
-margin_right = 960.0
-margin_bottom = 540.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LogoutButton" type="Button" parent="ServerSettings/Logout"]
-margin_right = 960.0
-margin_bottom = 268.0
+[node name="LogoutButton" type="Button" parent="Logout"]
+margin_right = 920.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 text = "Logout"
-[connection signal="item_selected" from="ServerSettings/Login/serverchoice" to="." method="_on_serverchoice_item_selected"]
-[connection signal="text_entered" from="ServerSettings/Login/username" to="." method="_on_username_text_entered"]
-[connection signal="text_entered" from="ServerSettings/Login/password" to="." method="_on_password_text_entered"]
-[connection signal="pressed" from="ServerSettings/Login/LoginButton" to="." method="_on_LoginButton_pressed"]
-[connection signal="pressed" from="ServerSettings/Logout/LogoutButton" to="." method="_on_LogoutButton_pressed"]
+[connection signal="item_selected" from="Login/serverchoice" to="." method="_on_serverchoice_item_selected"]
+[connection signal="text_entered" from="Login/username" to="." method="_on_username_text_entered"]
+[connection signal="text_entered" from="Login/password" to="." method="_on_password_text_entered"]
+[connection signal="pressed" from="Login/LoginButton" to="." method="_on_LoginButton_pressed"]
+[connection signal="pressed" from="Logout/LogoutButton" to="." method="_on_LogoutButton_pressed"]

@@ -4,11 +4,11 @@
 [ext_resource path="res://Game/Characters/Players/models/Body.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.347309
+radius = 0.421843
 height = 0.193459
 
 [sub_resource type="CapsuleShape" id=2]
-radius = 0.33301
+radius = 0.436609
 height = 1.60477
 
 [sub_resource type="CapsuleShape" id=3]

@@ -32,7 +32,7 @@ func do_reparent():
 	# TODO: generalize under Game
 	if get_parent() != Game.get_node("Map/Objects"):
 		var old_trans = get_global_transform()
-		var name_should_be = get_name().replace("@", "")
+		var name_should_be = Game.cur_arena + "_" + get_name().replace("@", "")
 		if Game.get_node("Map/Objects").has_node(name_should_be):
 			deleted = true
 			queue_free()
@@ -89,6 +89,8 @@ func _process(delta):
 func send_update():
 	if not can_update:
 		return false
+	if Game.serv_version_just_changed:
+		return false
 	pos = get_global_transform().origin
 	rot = get_rotation()
 	Game.Web.request("update_info", {
@@ -105,7 +107,8 @@ func send_update():
 				}
 			}
 		},
-		"timestamp": OS.get_ticks_msec()
+		"timestamp": OS.get_ticks_msec(),
+		"settings": Game.settings
 	})
 	if kill: # TODO move?
 		queue_free()

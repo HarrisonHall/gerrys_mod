@@ -19,8 +19,14 @@ def update_game(obj):
 
     # Make sure user can submit update
     if not data.timestamp_valid(username, new_timestamp):
-        print("INVALID TIMESTAMP", data.current_users[username]["last_given_timestamp"], new_timestamp)
         return {}
+
+    if not data.settings_valid(obj.get("settings", {})):
+        d = {
+            "settings": data.get_settings(username),
+            "timestamp": timestamp(),
+        }
+        return d
     
     # update the rest of the players
     for player in players:
@@ -49,6 +55,13 @@ def update_info(obj):
 
     updates = obj.get("update", {})
 
+    if not data.settings_valid(obj.get("settings", {})):
+        d = {
+            "settings": data.get_settings(username),
+            "timestamp": timestamp(),
+        }
+        return d
+
     for person in updates.get("people", {}):
         if "model" in updates["people"][person]:
             data.current_users[username]["player"]["model"] = updates["people"][person]["model"]
@@ -58,12 +71,9 @@ def update_info(obj):
         if obj in data.get_objects(username):
             # Check timestamp before updating
             if data.object_update_valid(username, obj, new_timestamp):
-                print("updating ", obj)
                 data.update_object(username, obj, objects[obj], new_timestamp)
                 if objects[obj].get("kill", False):
                     data.remove_object(username, obj)
-            else:
-                print("Update invalid: ", new_timestamp)
         else:
             data.add_object(username, obj, objects[obj])
 
@@ -98,6 +108,7 @@ def update_damage(obj):
         data.current_users[user]["updates"]["players"][user] = {
             "damage": info["damage"]
         }
+    return {}
 
 def update_server_settings(obj):
     username = obj.get("username", "")
@@ -107,6 +118,9 @@ def update_server_settings(obj):
         if obj["map"] != data.current_settings["map"]:
             data.current_settings["map"] = obj["map"]
             data.current_objects = {}
+            for user in data.current_users:
+                data.current_users[user]["player"] = data.reset_player()
+            data.update_server_version()
     return {
         "settings": data.get_settings(username)
     }
