@@ -27,7 +27,6 @@ background_sky = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.680794, -3 )
 
 [node name="Everything" type="Spatial" parent="."]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
 
 [node name="armchair" parent="Everything" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.27852, -16 )
@@ -621,42 +620,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -4 )
 
 [node name="officefloor138" parent="Everything" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -8 )
-
-[node name="officefloor256" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -16 )
-
-[node name="officefloor257" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -12 )
-
-[node name="officefloor258" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -8 )
-
-[node name="officefloor259" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, -4 )
-
-[node name="officefloor260" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, 0 )
-
-[node name="officefloor261" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.24703, 4 )
-
-[node name="officefloor262" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, 4 )
-
-[node name="officefloor263" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, 0 )
-
-[node name="officefloor264" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -4 )
-
-[node name="officefloor265" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -8 )
-
-[node name="officefloor266" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -12 )
-
-[node name="officefloor267" parent="Everything" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.24703, -16 )
 
 [node name="officefloor139" parent="Everything" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 8 )
@@ -1953,3 +1916,11 @@ environment = SubResource( 2 )
 
 [node name="GameCamera" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -17, 2, 5 )
+
+[node name="Roof" type="Spatial" parent="."]
+
+[node name="officefloor267" parent="Roof" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.24703, -16 )
+
+[node name="officefloor268" parent="Roof" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.24703, -12 )
