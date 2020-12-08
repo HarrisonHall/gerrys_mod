@@ -41,7 +41,7 @@ def echo_socket(ws):
         try:
             d = {}
             message = ws.receive()
-            if message is not None:                
+            if message is not None:
                 try:
                     incoming = loads(message)
                     data.user_pinged(incoming.get("username", ""))
@@ -59,8 +59,9 @@ def echo_socket(ws):
                         elif "server_settings" == incoming["endpoint"]:
                             print("Updating server settings")
                             d = games.update_server_settings(incoming)
+                        elif "update_game" == incoming["endpoint"]:
+                            d = games.update_game(incoming)
                         else:
-                            # Update game
                             d = games.update_game(incoming)
                     data.remove_users()
                 except Exception as e:

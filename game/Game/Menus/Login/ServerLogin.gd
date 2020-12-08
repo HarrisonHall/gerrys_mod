@@ -13,11 +13,11 @@ func _ready():
 
 func _process(delta):
 	if not logged_in:
-		$ServerSettings/Login.visible = true
-		$ServerSettings/Logout.visible = false
+		$Login.visible = true
+		$Logout.visible = false
 	else:
-		$ServerSettings/Login.visible = false
-		$ServerSettings/Logout.visible = true
+		$Login.visible = false
+		$Logout.visible = true
 
 var server_choices = {
 	0: "ws://gerrys-mod-demo.herokuapp.com/ping",
@@ -72,14 +72,16 @@ func _on_LogoutButton_pressed():
 	menu_background.name = "ARENA"
 	Game.get_node("Map/Arena").add_child(menu_background)
 	menu_background.name = "ARENA"
+	Game.toggle_pause_menu(true)
+	Game.toggle_mode_menu(false)
 
 func send_login_request(proto = ""):
 	print("Sending login")
 	Game.Web.request(
 		"connect_user", 
 		{
-			"username": $ServerSettings/Login/username.text,
-			"password": $ServerSettings/Login/password.text
+			"username": $Login/username.text,
+			"password": $Login/password.text
 		}
 	)
 
@@ -102,6 +104,7 @@ func received_login_data():
 			)
 			Game.username = data["username"]
 			logged_in = true
+			Game.Web.connect("new_data", Game, "update_players_s")
 			Game.update_players_s(data)
 		else:
 			Game.get_node("UI/PauseMenu").SessionInfo.add_info("Unable to log in")

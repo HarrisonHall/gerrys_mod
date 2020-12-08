@@ -13,7 +13,8 @@ next_id = 0
 current_users = {}
 current_objects = {}
 current_settings = {
-    "map": "DebugArea"
+    "map": "DebugArea",
+    "serv_version": 0
 }
 last_player = "No player has joined yet"
 kill_queue = []
@@ -31,16 +32,7 @@ def add_user(username):
 
     current_users[username] = {
         "id": new_id,
-        "player": {
-            "position": [-1000, -1000, -1000],
-            "momentum": [0, 0, 0],
-            "rotation": [0, 0, 0],
-            "model": "seagal",
-            "vrot": 0,
-            "is_crouching": False,
-            "slide_time": 0,
-            "data": {}
-        },
+        "player": reset_player(),
         "updates": {
             "players": {}
         },
@@ -50,6 +42,18 @@ def add_user(username):
     }
     last_player = username
     return new_id
+
+def reset_player():
+    return {
+        "position": [-1000, -1000, -1000],
+        "momentum": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "model": "seagal",
+        "vrot": 0,
+        "is_crouching": False,
+        "slide_time": 0,
+        "data": {}
+    }
 
 def ensure_user(username):
     if username in current_users:
@@ -165,3 +169,9 @@ def last_player_joined():
 
 def get_settings(username):
     return current_settings
+
+def settings_valid(s):
+    return s.get("serv_version", -1) == current_settings["serv_version"]
+
+def update_server_version():
+    current_settings["serv_version"] += 1

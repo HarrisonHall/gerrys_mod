@@ -89,6 +89,8 @@ func _process(delta):
 func send_update():
 	if not can_update:
 		return false
+	if Game.serv_version_just_changed:
+		return false
 	pos = get_global_transform().origin
 	rot = get_rotation()
 	Game.Web.request("update_info", {
@@ -105,7 +107,8 @@ func send_update():
 				}
 			}
 		},
-		"timestamp": OS.get_ticks_msec()
+		"timestamp": OS.get_ticks_msec(),
+		"settings": Game.settings
 	})
 	if kill: # TODO move?
 		queue_free()

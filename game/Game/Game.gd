@@ -53,8 +53,10 @@ var singleplayer = false
 var team = 1
 var settings = {
 	"gamemode": "fp",
-	"time": 0
+	"time": 0,
+	"serv_version": 0
 }
+var serv_version_just_changed = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -81,8 +83,13 @@ func _process(delta):
 
 var menu_up = true
 var show_hud = true
-func toggle_pause_menu():
-	if menu_up:
+func toggle_pause_menu(show=-1):
+	if int(show) == -1:
+		show = menu_up
+	else:
+		assert(show in [true, false], "Improper toggle val: "+str(show))
+		show = not show
+	if show:
 		$UI.visible = false
 		$HUD.visible = true and show_hud
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -113,8 +120,8 @@ var cur_arena = ""
 func load_arena(arena_name):
 	assert(arena_name in arenas, "ERROR! Invalid arena: " + str(arena_name))
 	cur_arena = arena_name
-	var old_arena = $Map/Arena.get_node("ARENA")
-	if old_arena != null:
+	if $Map/Arena.has_node("ARENA"):
+		var old_arena = $Map/Arena.get_node("ARENA")
 		old_arena.name = "OLD_ARENA"
 		old_arena.queue_free()
 	var new_arena = arenas[arena_name]["scene"].instance()
@@ -126,7 +133,6 @@ func load_player():
 	var new_player = person.instance()
 	$Map/Players.add_child(new_player)
 	new_player.name = username
-	Web.connect("new_data", self, "update_players_s")
 
 var last_timestamp = -1
 func update_players_s(data):
@@ -190,8 +196,15 @@ func update_players_s(data):
 		clear_gameplay(true)
 		load_arena(new_map)
 		toggle_mode_menu(true)
+		toggle_pause_menu(true)
 		#load_player()
 		#get_current_player().respawn(team)
+	if settings["serv_version"] != data.get("settings", {}).get("serv_version", settings["serv_version"]):
+		serv_version_just_changed = true
+		print("Update serv version!")
+		settings["serv_version"] = data.get("settings", {}).get("serv_version", settings["serv_version"])
+	else:
+		serv_version_just_changed = false
 
 var obj_offset = 1
 func make_obj(type, n="", co=false):

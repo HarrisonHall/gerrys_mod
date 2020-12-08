@@ -16,7 +16,7 @@ func clear_text():
 	$ModContainer/ModInput.text = ""
 
 func add_info(info):
-	$ModContainer/ModInfo.text += "\n"+info
+	$ModContainer/ModInfo.text = info
 
 func _on_ModInput_text_entered(new_text):
 	_on_ModConfirm_pressed()
@@ -52,7 +52,8 @@ func _on_ModConfirm_pressed():
 					}
 				}
 			}, 
-			"timestamp": OS.get_ticks_msec()
+			"timestamp": OS.get_ticks_msec(),
+			"settings": Game.settings
 		})
 	if words[0] == "respawn":
 		var p = Game.get_current_player()
@@ -107,7 +108,8 @@ func _on_ModConfirm_pressed():
 				"server_settings",
 				{
 					"username": Game.username,
-					"map": words[1]
+					"map": words[1],
+					"settings": Game.settings
 				}
 			)
 		add_info("Set arena to "+ str(words[1]))
