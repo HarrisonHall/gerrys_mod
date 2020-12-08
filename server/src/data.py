@@ -64,9 +64,8 @@ def connect_user(obj):
         d["login_status"] = True
         d["username"] = obj["username"]
         pid = add_user(obj["username"])
-        d["updates"] = {
-            "new_arena": "DebugArea"
-        }
+        d["settings"] = get_settings(obj["username"])
+        d["timestamp"] = timestamp()
     return d
 
 def user_pinged(username):

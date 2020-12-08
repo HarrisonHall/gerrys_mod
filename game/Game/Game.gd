@@ -8,26 +8,29 @@ var arenas = {
 		"scene": preload("res://Game/Areas/Debug/DebugArea.tscn"),
 		"name": "Debug Area",
 		"description": "The debug area",
-		"mode": "Free Play"
+		"gamemode": "fp"
 	},
 	"dg_worstmap": {
 		"scene": preload("res://Game/Areas/Arena/dg_worstmap/dg_worstmap.tscn"),
 		"name": "Worst map",
-		"description": "Duck game arena",
-		"mode": "Team Deathmatch"
+		"description": "Simple combat testing map.",
+		"gamemode": "fp"
 	},
 	"dg_officemap": {
 		"scene": preload("res://Game/Areas/Blocks/Office/dg_officemap.tscn"),
 		"name": "dg_officemap",
-		"description": "Duck game arena",
-		"mode": "Team Deathmatch"
+		"description": "cs_office, am I right?",
+		"gamemode": "fp"
 	},
 	"dg_monkeylabs": {
 		"scene": preload("res://Game/Areas/Blocks/Monkeylabs/dg_monkeylabs.tscn"),
 		"name": "dg_monkeylabs",
-		"description": "Duck game arena",
-		"mode": "Team Deathmatch"
+		"description": "The real Monkey Labs...",
+		"gamemode": "fp"
 	},
+}
+var menu_types = {
+	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn")
 }
 var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
@@ -43,15 +46,14 @@ var object_types = {
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
 onready var Web = $Web
-var menu_up = true
-var show_hud = true
 
 # Game vars
 var username = "DEFAULT_USER"
 var singleplayer = false
 var team = 1
 var settings = {
-	"gamemode": "Free Play"
+	"gamemode": "fp",
+	"time": 0
 }
 
 
@@ -68,28 +70,48 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		if menu_up:
-			$UI.visible = false
-			$HUD.visible = true and show_hud
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			menu_up = false
-		else:
-			$UI.visible = true and show_hud
-			$HUD.visible = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			menu_up = true
+		toggle_pause_menu()
 	if Input.is_action_just_pressed("ui_clear"):
+		return
 		show_hud = not show_hud
 		if show_hud and menu_up and not $UI.visible:
 			$UI.visible = true
 		if not show_hud and menu_up and $UI.visible:
 			$UI.visible = false
 
+var menu_up = true
+var show_hud = true
+func toggle_pause_menu():
+	if menu_up:
+		$UI.visible = false
+		$HUD.visible = true and show_hud
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		menu_up = false
+	else:
+		$UI.visible = true and show_hud
+		$HUD.visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		menu_up = true
+
+var show_mode_menu = false
+func toggle_mode_menu(show=true):
+	$UI/ModeMenu.visible = show
+	$UI/PauseMenu.visible = not show
+	if not $UI/ModeMenu.has_node(settings["gamemode"]):
+		assert(
+			settings["gamemode"] in menu_types, 
+			"ERROR! Invalid Gamemode: "+str(settings["gamemode"])
+		)
+		for child in $UI/ModeMenu.get_children():
+			child.queue_free()
+		var new_menu = menu_types[settings["gamemode"]].instance()
+		$UI/ModeMenu.add_child(new_menu)
+	else:
+		$UI/ModeMenu.get_node(settings["gamemode"]).refresh()
+
 var cur_arena = ""
 func load_arena(arena_name):
-	print("trying to load arena")
-	if not arena_name in arenas:
-		return
+	assert(arena_name in arenas, "ERROR! Invalid arena: " + str(arena_name))
 	cur_arena = arena_name
 	var old_arena = $Map/Arena.get_node("ARENA")
 	if old_arena != null:
@@ -98,6 +120,7 @@ func load_arena(arena_name):
 	var new_arena = arenas[arena_name]["scene"].instance()
 	new_arena.name = "ARENA"
 	$Map/Arena.add_child(new_arena)
+	settings["gamemode"] = arenas[arena_name]["gamemode"]
 
 func load_player():
 	var new_player = person.instance()
@@ -166,8 +189,9 @@ func update_players_s(data):
 	if new_map != cur_arena:
 		clear_gameplay()
 		load_arena(new_map)
-		load_player()
-		get_current_player().respawn(team)
+		toggle_mode_menu(true)
+		#load_player()
+		#get_current_player().respawn(team)
 
 var obj_offset = 1
 func make_obj(type, n="", co=false):
@@ -181,6 +205,7 @@ func make_obj(type, n="", co=false):
 		return $Map/Objects.get_node(obj_name)
 	var obj_obj = object_types[type].instance()
 	var otrans = Transform()
+	otrans.origin = Vector3(-1000, -1000, -1000)
 	obj_obj.set_name(str(obj_name))
 	$Map/Objects.add_child(obj_obj)
 	obj_obj.set_global_transform(otrans)

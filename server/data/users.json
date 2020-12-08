@@ -30,9 +30,15 @@
 		"password": "jacky"
 	},
 	"bennett": {
-		"password": "mo"
+		"password": "moe"
 	},
-	"mo": {
+	"moe": {
 		"password": "bennett"
+	},
+	"noah": {
+		"password": "sonic"
+	},
+	"john": {
+		"password": "jack"
 	}
 }

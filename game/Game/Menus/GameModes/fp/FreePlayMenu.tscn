@@ -1,0 +1,103 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Game/Menus/GameModes/fp/FreePlayMenu.gd" type="Script" id=2]
+
+[node name="fp" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 860.0
+margin_bottom = 440.0
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_right = 860.0
+margin_bottom = 174.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sides" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 178.0
+margin_right = 860.0
+margin_bottom = 440.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Sides"]
+margin_right = 428.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Sides/Info"]
+margin_right = 428.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FPDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Sides/Info/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Welcome to Free Play!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Panel" parent="MarginContainer/VBoxContainer/Sides/Info"]
+margin_top = 133.0
+margin_right = 428.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MapDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Sides/Info/Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Sides"]
+margin_left = 432.0
+margin_right = 860.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/Sides/Play"]
+margin_right = 428.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Sides/Play/PlayButton" to="." method="_on_Button_pressed"]

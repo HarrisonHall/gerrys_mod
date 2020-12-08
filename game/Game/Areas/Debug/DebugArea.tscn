@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Game/Areas/Blocks/DebugBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Objects/Mirror/Mirror.tscn" type="PackedScene" id=2]
@@ -11,15 +11,17 @@
 [ext_resource path="res://Game/Objects/GameObjects/Guns/Gun.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Game/Objects/Lights/DebugLamp/DebugLamp.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Game/Characters/Players/Cameras/GameCamera.tscn" type="PackedScene" id=13]
 
-[sub_resource type="ProceduralSky" id=2]
+[sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.0862745, 0.52549, 0.768627, 1 )
 sky_horizon_color = Color( 0.976471, 0.862745, 0.556863, 1 )
 ground_bottom_color = Color( 0.027451, 0.109804, 0.0392157, 1 )
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 1 )
 background_color = Color( 1, 1, 1, 1 )
 ambient_light_color = Color( 1, 0.952941, 0.952941, 1 )
 
@@ -84,6 +86,14 @@ transform = Transform( 0.0866025, 0, 0.05, 0, 1, 0, -0.05, 0, 0.0866025, -0.6989
 
 [node name="Floor6" parent="BottomFloor" instance=ExtResource( 1 )]
 transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, -1.05, 4, 0 )
+
+[node name="DebugLamp" parent="BottomFloor/Floor6" instance=ExtResource( 12 )]
+transform = Transform( 0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -0.4, 1, 0 )
+color = Color( 1, 0.203922, 0.968627, 1 )
+energy = 5.0
+
+[node name="Barrell" parent="BottomFloor/Floor6" instance=ExtResource( 8 )]
+transform = Transform( 0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -0.4, 1, 0.6 )
 
 [node name="DeathBox" parent="BottomFloor" instance=ExtResource( 3 )]
 transform = Transform( 50, 0, 0, 0, 2, 0, 0, 0, 50, 0, -36, 0 )
@@ -229,4 +239,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, 16 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -13 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 2 )
+
+[node name="GameCamera" parent="." instance=ExtResource( 13 )]
+transform = Transform( -3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 0, -4.37114e-08, -56, 11, 0 )

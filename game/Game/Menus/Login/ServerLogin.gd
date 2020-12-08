@@ -63,10 +63,13 @@ func _on_LoginButton_pressed():
 func _on_LogoutButton_pressed():
 	logged_in = false
 	Game.Web.client.disconnect_from_host()
-	Game.get_node("Map/Arena/ARENA").set_name("OLD_ARENA")
-	Game.get_node("Map/Arena/OLD_ARENA").queue_free()
+	var old_arena = Game.get_node("Map/Arena").get_node("ARENA")
+	if old_arena != null:
+		old_arena.name = "OLD_ARENA"
+		old_arena.queue_free()
 	Game.clear_gameplay()
 	var menu_background = Game.menu_background_pck.instance()
+	menu_background.name = "ARENA"
 	Game.get_node("Map/Arena").add_child(menu_background)
 	menu_background.name = "ARENA"
 
@@ -94,14 +97,11 @@ func received_login_data():
 		if data["login_status"] == true:
 			logged_in = true
 			Game.get_node("UI/PauseMenu").SessionInfo.add_info("Logged in")
-			Game.username = data["username"]
-			Game.load_arena(data["updates"]["new_arena"])
 			Game.Web.client.disconnect(
 				"data_received", self, "received_login_data"
 			)
-			Game.load_arena("DebugArea")
-			Game.load_player()
-			Game.get_current_player().respawn(Game.team)
+			Game.username = data["username"]
 			logged_in = true
+			Game.update_players_s(data)
 		else:
 			Game.get_node("UI/PauseMenu").SessionInfo.add_info("Unable to log in")

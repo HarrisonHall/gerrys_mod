@@ -4,6 +4,7 @@
 [ext_resource path="res://Game/Characters/Players/Cameras/GameCamera.gd" type="Script" id=2]
 
 [node name="GameCamera" instance=ExtResource( 1 )]
+current = true
 script = ExtResource( 2 )
 
 [node name="CrossHair" parent="." index="1"]
