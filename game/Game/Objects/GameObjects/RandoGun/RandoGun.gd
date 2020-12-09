@@ -7,7 +7,7 @@ var r_seed = 0
 var rng = RandomNumberGenerator.new()
 var seeded = false
 
-var possible_guns = ["Gun_AK47", "Gun_HandGun"]
+var possible_guns = ["Gun_AK47", "Gun_BK47", "Gun_HandGun"]
 
 func _init():
 	._init()

@@ -5,7 +5,7 @@ onready var turner = $Base/Turner
 var turn_speed = PI
 var max_ttl = 8
 
-var possible_guns = ["Gun_AK47", "Gun_HandGun"]
+var possible_guns = ["Gun_AK47","Gun_BK47", "Gun_HandGun"]
 
 func _init():
 	._init()

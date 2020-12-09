@@ -7,6 +7,12 @@
 [node name="Gun_BK47" instance=ExtResource( 3 )]
 script = ExtResource( 2 )
 
+[node name="Ground" parent="." index="0"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 0.0693696, 0 )
+
+[node name="CollisionShape" parent="Hitbox" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0.106522, 0 )
+
 [node name="DebugMesh" parent="." index="2"]
 visible = false
 
