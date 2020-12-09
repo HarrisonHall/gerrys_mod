@@ -23,8 +23,7 @@ func _process(delta):
 
 func refresh():
 	loaded_player = false
-	print(Game.cur_arena)
-	$MarginContainer/VBoxContainer/Sides/Info/Panel2/MapDescription.text = Game.arenas[Game.cur_arena]["description"]
+	#$MarginContainer/VBoxContainer/Sides/Info/Panel2/MapDescription.text = Game.arenas[Game.cur_arena]["description"]
 	Game.Web.connect(
 		"new_data", self, "server_update"
 	)
@@ -32,12 +31,12 @@ func refresh():
 func server_update(obj):
 	return
 
-func _on_Button_pressed():
+func on_start():
 	Game.load_player()
 	Game.get_current_player().respawn(Game.team)
 	Game.toggle_mode_menu(false)
 	Game.toggle_pause_menu()
 	loaded_player = true
-	Game.Web.client.disconnect(
-		"data_received", self, "server_update"
-	)
+#	Game.Web.client.disconnect(
+#		"data_received", self, "server_update"
+#	)

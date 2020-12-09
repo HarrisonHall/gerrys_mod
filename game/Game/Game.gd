@@ -4,33 +4,40 @@ extends Spatial
 # arenas
 var menu_background_pck = preload("res://Game/Areas/Backgrounds/MenuBackground.tscn")
 var arenas = {
-	"DebugArea": {
+	"fp_debugarea": {
 		"scene": preload("res://Game/Areas/Debug/DebugArea.tscn"),
 		"name": "Debug Area",
 		"description": "The debug area",
 		"gamemode": "fp"
 	},
-	"dg_worstmap": {
+	"fp_worstmap": {
 		"scene": preload("res://Game/Areas/Arena/dg_worstmap/dg_worstmap.tscn"),
 		"name": "Worst map",
 		"description": "Simple combat testing map.",
 		"gamemode": "fp"
 	},
-	"dg_officemap": {
+	"fp_officemap": {
 		"scene": preload("res://Game/Areas/Blocks/Office/dg_officemap.tscn"),
 		"name": "dg_officemap",
 		"description": "cs_office, am I right?",
 		"gamemode": "fp"
 	},
-	"dg_monkeylabs": {
+	"fp_monkeylabs": {
 		"scene": preload("res://Game/Areas/Blocks/Monkeylabs/dg_monkeylabs.tscn"),
 		"name": "dg_monkeylabs",
 		"description": "The real Monkey Labs...",
 		"gamemode": "fp"
 	},
+	"dg_fd": {
+		"scene": preload("res://Game/Areas/Blocks/Monkeylabs/dg_monkeylabs.tscn"),
+		"name": "dg_fd",
+		"description": "A 'Duck Game' final destination!\nWho knows where this will lead???",
+		"gamemode": "dg"
+	},
 }
 var menu_types = {
-	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn")
+	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn"),
+	"dg": preload("res://Game/Menus/GameModes/dg/DuckGameMenu.tscn"),
 }
 var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
@@ -42,6 +49,7 @@ var object_types = {
 	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),
 	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
 	"BasicBullet": preload("res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.tscn"),
+	"GunSpawner": preload("res://Game/Objects/GameObjects/GunSpawner/GunSpawner.tscn"),
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
@@ -250,7 +258,8 @@ func clear_gameplay(kill=false):
 		if kill:
 			child.kill = true
 			child.send_update()
-		#child.queue_free()
+		if singleplayer:
+			child.queue_free()
 		del_num += 1
 	for child in $Map/Players.get_children():
 		child.set_name("to_delete_"+str(del_num))

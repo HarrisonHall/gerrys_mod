@@ -27,10 +27,10 @@ __meta__ = {
 [node name="ModContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -39,8 +39,8 @@ __meta__ = {
 }
 
 [node name="ModInfo" type="RichTextLabel" parent="ModContainer"]
-margin_right = 920.0
-margin_bottom = 153.0
+margin_right = 940.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
@@ -51,18 +51,18 @@ __meta__ = {
 }
 
 [node name="ModInput" type="LineEdit" parent="ModContainer"]
-margin_top = 173.0
-margin_right = 920.0
-margin_bottom = 326.0
+margin_top = 180.0
+margin_right = 940.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 placeholder_text = "Mod Command"
 
 [node name="ModConfirm" type="Button" parent="ModContainer"]
-margin_top = 346.0
-margin_right = 920.0
-margin_bottom = 500.0
+margin_top = 360.0
+margin_right = 940.0
+margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )

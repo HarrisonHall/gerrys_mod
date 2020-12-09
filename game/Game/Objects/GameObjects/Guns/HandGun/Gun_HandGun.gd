@@ -11,6 +11,6 @@ func _init():
 	obj_type = "Gun_HandGun"
 	gun_obj = "HeldObject_HandGun"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+#Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -13,7 +13,7 @@ next_id = 0
 current_users = {}
 current_objects = {}
 current_settings = {
-    "map": "DebugArea",
+    "map": "fp_debugarea",
     "serv_version": 0
 }
 last_player = "No player has joined yet"

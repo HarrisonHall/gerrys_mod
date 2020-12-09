@@ -27,20 +27,21 @@ __meta__ = {
 [node name="Login" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="serverchoice" type="OptionButton" parent="Login"]
-margin_right = 920.0
-margin_bottom = 110.0
+margin_right = 940.0
+margin_bottom = 115.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -50,18 +51,18 @@ items = [ "Heroku", null, false, 0, null, "Localhost", null, false, 1, null, "Si
 selected = 0
 
 [node name="username" type="LineEdit" parent="Login"]
-margin_top = 130.0
-margin_right = 920.0
-margin_bottom = 240.0
+margin_top = 135.0
+margin_right = 940.0
+margin_bottom = 250.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 placeholder_text = "Username"
 
 [node name="password" type="LineEdit" parent="Login"]
-margin_top = 260.0
-margin_right = 920.0
-margin_bottom = 370.0
+margin_top = 270.0
+margin_right = 940.0
+margin_bottom = 385.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -69,9 +70,9 @@ secret = true
 placeholder_text = "Password"
 
 [node name="LoginButton" type="Button" parent="Login"]
-margin_top = 390.0
-margin_right = 920.0
-margin_bottom = 500.0
+margin_top = 405.0
+margin_right = 940.0
+margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )

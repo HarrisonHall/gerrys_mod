@@ -41,7 +41,7 @@ func _on_password_text_entered(new_text):
 
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
-		Game.load_arena("dg_monkeylabs")
+		Game.load_arena("fp_debugarea")
 		Game.load_player()
 		Game.get_current_player().respawn(Game.team)
 		logged_in = true

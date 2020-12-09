@@ -24,6 +24,8 @@ var queue_send_update = false
 
 onready var Game = get_tree().get_current_scene()
 
+signal reparented
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -42,6 +44,7 @@ func do_reparent():
 		Game.get_node("Map/Objects").add_child(self)
 		set_global_transform(old_trans)
 		set_name(name_should_be)
+	emit_signal("reparented")
 
 var just_collided = false
 func _process(delta):
