@@ -47,7 +47,9 @@ var object_types = {
 	"HeldObject_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.tscn"),
 	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn"),
 	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),
+	"Gun_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/Gun_BK47.tscn"),
 	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
+	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
 	"BasicBullet": preload("res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.tscn"),
 	"GunSpawner": preload("res://Game/Objects/GameObjects/GunSpawner/GunSpawner.tscn"),
 }

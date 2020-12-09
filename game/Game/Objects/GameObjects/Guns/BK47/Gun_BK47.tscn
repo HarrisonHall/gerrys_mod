@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/BK47.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/Gun_BK47.gd" type="Script" id=2]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/Gun.tscn" type="PackedScene" id=3]
+
+[node name="Gun_BK47" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+
+[node name="DebugMesh" parent="." index="2"]
+visible = false
+
+[node name="BK47" parent="." index="3" instance=ExtResource( 1 )]
+transform = Transform( -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, 0, 0.3, -0.108611, 0.0824314, 0 )

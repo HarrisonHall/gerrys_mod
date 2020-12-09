@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Guns/HeldObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/BK47.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.gd" type="Script" id=3]
+
+[node name="HeldObject_AK47" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.474708 )
+script = ExtResource( 3 )
+
+[node name="DebugMesh" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0892549, -2.18114 )
+visible = false
+
+[node name="ShootFrom" parent="." index="1"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.512e-08, 0.256824, -8.39235 )
+
+[node name="BK47" parent="." index="2" instance=ExtResource( 2 )]
+transform = Transform( -2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, 0, -0.515084, -0.962147 )
