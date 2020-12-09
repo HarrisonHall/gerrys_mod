@@ -131,6 +131,7 @@ func get_update(obj, timestamp):
 	rot = Vector3(obj["rotation"][0], obj["rotation"][1], obj["rotation"][2])
 	mom = Vector3(obj["momentum"][0], obj["momentum"][1], obj["momentum"][2])
 	pos = Vector3(obj["position"][0], obj["position"][1], obj["position"][2])
+	data = obj.get("data", data)
 	
 	var trans = get_global_transform()
 	trans.origin = pos
