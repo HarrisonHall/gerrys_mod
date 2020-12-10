@@ -7,7 +7,7 @@ var movement_momentum = 80
 var crouch_momentum = 40
 var ground_friction = 6
 
-var CAM_SENSITIVITY = .3
+var CAM_SENSITIVITY = .2
 
 #const MAX_SPEED = 100
 const MAX_SPEED = 200
@@ -371,7 +371,7 @@ func send_data():
 	})
 
 func respawn(team=1):
-	var spawn = Game.get_node("Map/Arena/ARENA/Spawn")
+	var spawn = Game.Arena.get_node("ARENA/Spawn")
 	var spawn_pos = spawn.get_global_transform().origin
 	if spawn.has_node(str(team)):
 		spawn_pos = spawn.get_node(str(team)).get_global_transform().origin

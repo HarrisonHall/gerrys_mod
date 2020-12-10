@@ -34,8 +34,8 @@ __meta__ = {
 }
 
 [node name="Menu" type="HBoxContainer" parent="Margin"]
-margin_right = 920.0
-margin_bottom = 500.0
+margin_right = 1880.0
+margin_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -44,8 +44,8 @@ __meta__ = {
 }
 
 [node name="LeftHalf" type="VBoxContainer" parent="Margin/Menu"]
-margin_right = 304.0
-margin_bottom = 500.0
+margin_right = 624.0
+margin_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -56,34 +56,34 @@ __meta__ = {
 [node name="SessionInfo" parent="Margin/Menu/LeftHalf" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 304.0
-margin_bottom = 153.0
+margin_right = 624.0
+margin_bottom = 333.0
 
 [node name="ServerInfo" parent="Margin/Menu/LeftHalf" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 173.0
-margin_right = 304.0
-margin_bottom = 326.0
+margin_top = 353.0
+margin_right = 624.0
+margin_bottom = 686.0
 
 [node name="SettingsScreen" parent="Margin/Menu/LeftHalf" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 346.0
-margin_right = 304.0
-margin_bottom = 500.0
+margin_top = 706.0
+margin_right = 624.0
+margin_bottom = 1040.0
 
 [node name="CenterHalf" type="VBoxContainer" parent="Margin/Menu"]
-margin_left = 308.0
-margin_right = 612.0
-margin_bottom = 500.0
+margin_left = 628.0
+margin_right = 1252.0
+margin_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RightHalf" type="VBoxContainer" parent="Margin/Menu"]
-margin_left = 616.0
-margin_right = 920.0
-margin_bottom = 500.0
+margin_left = 1256.0
+margin_right = 1880.0
+margin_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -94,20 +94,20 @@ __meta__ = {
 [node name="ServerLogin" parent="Margin/Menu/RightHalf" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 304.0
-margin_bottom = 184.0
+margin_right = 624.0
+margin_bottom = 400.0
 
 [node name="ModMenu" parent="Margin/Menu/RightHalf" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 204.0
-margin_right = 304.0
-margin_bottom = 388.0
+margin_top = 420.0
+margin_right = 624.0
+margin_bottom = 820.0
 
 [node name="ExitButton" type="Button" parent="Margin/Menu/RightHalf"]
-margin_top = 408.0
-margin_right = 304.0
-margin_bottom = 500.0
+margin_top = 840.0
+margin_right = 624.0
+margin_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5

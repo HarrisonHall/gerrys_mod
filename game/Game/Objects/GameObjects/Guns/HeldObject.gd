@@ -22,7 +22,7 @@ func use():
 		b.scale *= bscale
 		if b:
 			b.watching = true
-			var player = Game.get_node("Map/Players/"+Game.username)
+			var player = Game.get_current_player()
 			b.set_trans_mom($ShootFrom.get_global_transform(), bspeed*(player.get_forward() - get_global_transform().origin).normalized(), player.get_forward())
 			b.queue_send_update = true
 		if gun_ref:

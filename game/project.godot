@@ -19,10 +19,14 @@ config/name="Gerry's Mod"
 run/main_scene="res://Game/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Events="*res://Events.gd"
+
 [display]
 
-window/size/width=960
-window/size/height=540
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -86,4 +90,5 @@ gm_drop={
 
 [rendering]
 
+quality/subsurface_scattering/quality=2
 environment/default_environment="res://default_env.tres"

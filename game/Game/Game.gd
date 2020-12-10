@@ -55,7 +55,18 @@ var object_types = {
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
-onready var Web = $Web
+onready var GameViewport = $MenuViewportContainer/GameViewport
+onready var MenuViewport = $MenuViewportContainer/MenuViewport
+
+onready var Web = $MenuViewportContainer/MenuViewport/Web
+onready var UI = $MenuViewportContainer/MenuViewport/UI
+onready var HUD = $MenuViewportContainer/MenuViewport/HUD
+onready var ModeMenu = $MenuViewportContainer/MenuViewport/UI/ModeMenu
+onready var PauseMenu = $MenuViewportContainer/MenuViewport/UI/PauseMenu
+
+onready var Arena = $MenuViewportContainer/GameViewport/Map/Arena
+onready var Objects = $MenuViewportContainer/GameViewport/Map/Objects
+onready var Players = $MenuViewportContainer/GameViewport/Map/Players
 
 # Game vars
 var username = "DEFAULT_USER"
@@ -68,14 +79,13 @@ var settings = {
 }
 var serv_version_just_changed = false
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# load background
 	
 	# TODO load arena correctly
 	var menu_background = menu_background_pck.instance()
-	$Map/Arena.add_child(menu_background)
+	Arena.add_child(menu_background)
 	menu_background.name = "ARENA"
 	
 	OS.min_window_size = Vector2(640, 360)
@@ -86,10 +96,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_clear"):
 		return
 		show_hud = not show_hud
-		if show_hud and menu_up and not $UI.visible:
-			$UI.visible = true
-		if not show_hud and menu_up and $UI.visible:
-			$UI.visible = false
+		if show_hud and menu_up and not UI.visible:
+			UI.visible = true
+		if not show_hud and menu_up and UI.visible:
+			UI.visible = false
 
 var menu_up = true
 var show_hud = true
@@ -100,48 +110,48 @@ func toggle_pause_menu(show=-1):
 		assert(show in [true, false], "Improper toggle val: "+str(show))
 		show = not show
 	if show:
-		$UI.visible = false
-		$HUD.visible = true and show_hud
+		UI.visible = false
+		HUD.visible = true and show_hud
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		menu_up = false
 	else:
-		$UI.visible = true and show_hud
-		$HUD.visible = false
+		UI.visible = true and show_hud
+		HUD.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		menu_up = true
 
 var show_mode_menu = false
 func toggle_mode_menu(show=true):
-	$UI/ModeMenu.visible = show
-	$UI/PauseMenu.visible = not show
-	if not $UI/ModeMenu.has_node(settings["gamemode"]):
+	ModeMenu.visible = show
+	PauseMenu.visible = not show
+	if not ModeMenu.has_node(settings["gamemode"]):
 		assert(
 			settings["gamemode"] in menu_types, 
 			"ERROR! Invalid Gamemode: "+str(settings["gamemode"])
 		)
-		for child in $UI/ModeMenu.get_children():
+		for child in ModeMenu.get_children():
 			child.queue_free()
 		var new_menu = menu_types[settings["gamemode"]].instance()
-		$UI/ModeMenu.add_child(new_menu)
+		ModeMenu.add_child(new_menu)
 	else:
-		$UI/ModeMenu.get_node(settings["gamemode"]).refresh()
+		ModeMenu.get_node(settings["gamemode"]).refresh()
 
 var cur_arena = ""
 func load_arena(arena_name):
 	assert(arena_name in arenas, "ERROR! Invalid arena: " + str(arena_name))
 	cur_arena = arena_name
-	if $Map/Arena.has_node("ARENA"):
-		var old_arena = $Map/Arena.get_node("ARENA")
+	if Arena.has_node("ARENA"):
+		var old_arena = Arena.get_node("ARENA")
 		old_arena.name = "OLD_ARENA"
 		old_arena.queue_free()
 	var new_arena = arenas[arena_name]["scene"].instance()
 	new_arena.name = "ARENA"
-	$Map/Arena.add_child(new_arena)
+	Arena.add_child(new_arena)
 	settings["gamemode"] = arenas[arena_name]["gamemode"]
 
 func load_player():
 	var new_player = person.instance()
-	$Map/Players.add_child(new_player)
+	Players.add_child(new_player)
 	new_player.name = username
 
 var last_timestamp = -1
@@ -160,18 +170,18 @@ func update_players_s(data):
 		var p_data = data["updates"]["players"][player]
 		if player == username:  # Skip self
 			#p_obj.update_data(p_data["data"])
-			var p_obj = $Map/Players.get_node(player)
+			var p_obj = Players.get_node(player)
 			if "damage" in p_data:
 				print("server damage!")
 				p_obj.data["health"] -= p_data["damage"]
 			continue
 		var p_obj = null
-		if not $Map/Players.has_node(player):
+		if not Players.has_node(player):
 			p_obj = person.instance()
 			p_obj.name = player
-			$Map/Players.add_child(p_obj)
+			Players.add_child(p_obj)
 		else:
-			p_obj = $Map/Players.get_node(player)
+			p_obj = Players.get_node(player)
 		var mom = p_data.get("momentum", [0, 0, 0])
 		var pos = p_data.get("position", [0, 0, 0])
 		var rot = p_data.get("rotation", [0, 0, 0])
@@ -180,7 +190,7 @@ func update_players_s(data):
 		
 		if "model" in p_data:
 			p_obj.set_model(p_data["model"])
-	for obj in $Map/Players.get_children():
+	for obj in Players.get_children():
 		if not (obj.name in data.get("updates", {}).get("players", {})) and obj.get_name() != username:
 			obj.queue_free()
 	
@@ -189,14 +199,14 @@ func update_players_s(data):
 		var obj_data = data["objects"][obj]
 		if obj_data.get("last_update_from", "") == username:
 			continue
-		if not $Map/Objects.has_node(obj_name) and not obj_data.get("kill", false):
+		if not Objects.has_node(obj_name) and not obj_data.get("kill", false):
 			var obj_obj = make_obj(obj_data["type"], obj_name, true)
 			if obj_obj == null:
 				print("Unable to create online obj")
 				continue
-		var obj_obj = $Map/Objects.get_node(obj_name)
+		var obj_obj = Objects.get_node(obj_name)
 		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
-	for obj in $Map/Objects.get_children():
+	for obj in Objects.get_children():
 		if not (obj.name in data.get("objects", {})) and obj.created_online:
 			obj.queue_free()
 	
@@ -224,13 +234,13 @@ func make_obj(type, n="", co=false):
 	if not (type in object_types):
 		return null
 	var obj_name = n.replace("@", "")
-	if $Map/Objects.has_node(obj_name):
-		return $Map/Objects.get_node(obj_name)
+	if Objects.has_node(obj_name):
+		return Objects.get_node(obj_name)
 	var obj_obj = object_types[type].instance()
 	var otrans = Transform()
 	otrans.origin = Vector3(-1000, -1000, -1000)
 	obj_obj.set_name(str(obj_name))
-	$Map/Objects.add_child(obj_obj)
+	Objects.add_child(obj_obj)
 	obj_obj.set_global_transform(otrans)
 	obj_obj.set_name(str(obj_name))
 	obj_obj.created_online = co
@@ -245,17 +255,17 @@ func make_obj(type, n="", co=false):
 	return obj_obj
 
 func get_current_player():
-	if $Map/Players.has_node(username):
-		return $Map/Players.get_node(username)
+	if Players.has_node(username):
+		return Players.get_node(username)
 	return null
 
 func clear_gameplay(kill=false):
 	var del_num = 0
-	for child in $Map/Arena.get_children():
+	for child in Arena.get_children():
 		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
 		del_num += 1
-	for child in $Map/Objects.get_children():
+	for child in Objects.get_children():
 		child.set_name("to_delete_"+str(del_num))
 		if kill:
 			child.kill = true
@@ -263,7 +273,7 @@ func clear_gameplay(kill=false):
 		if singleplayer:
 			child.queue_free()
 		del_num += 1
-	for child in $Map/Players.get_children():
+	for child in Players.get_children():
 		child.set_name("to_delete_"+str(del_num))
 		child.queue_free()
 		del_num += 1

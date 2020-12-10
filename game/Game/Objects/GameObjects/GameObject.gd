@@ -32,16 +32,16 @@ func _ready():
 
 func do_reparent():
 	# TODO: generalize under Game
-	if get_parent() != Game.get_node("Map/Objects"):
+	if get_parent() != Game.Objects:
 		var old_trans = get_global_transform()
 		var name_should_be = Game.cur_arena + "_" + get_name().replace("@", "")
-		if Game.get_node("Map/Objects").has_node(name_should_be):
+		if Game.Objects.has_node(name_should_be):
 			deleted = true
 			queue_free()
 			return
 		var old_parent = get_parent()
 		old_parent.remove_child(self)
-		Game.get_node("Map/Objects").add_child(self)
+		Game.Objects.add_child(self)
 		set_global_transform(old_trans)
 		set_name(name_should_be)
 	emit_signal("reparented")
@@ -59,7 +59,7 @@ func _process(delta):
 		var col_obj = get_collision.collider
 		if col_obj is KinematicBody:
 			var player_names = []
-			for child in Game.get_node("Map/Players").get_children():
+			for child in Game.Players.get_children():
 				player_names.append(child.name)
 			if (col_obj.name in player_names) and col_obj.name != Game.username:
 				pass

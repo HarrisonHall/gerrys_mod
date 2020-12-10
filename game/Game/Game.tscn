@@ -9,15 +9,38 @@
 [node name="Game" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="Map" type="Spatial" parent="."]
+[node name="MenuViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Arena" type="Spatial" parent="Map"]
+[node name="GameViewport" type="Viewport" parent="MenuViewportContainer"]
+size = Vector2( 1920, 1080 )
+handle_input_locally = false
+msaa = 3
+render_target_update_mode = 3
 
-[node name="Objects" type="Spatial" parent="Map"]
+[node name="Map" type="Spatial" parent="MenuViewportContainer/GameViewport"]
 
-[node name="Players" type="Spatial" parent="Map"]
+[node name="Arena" type="Spatial" parent="MenuViewportContainer/GameViewport/Map"]
 
-[node name="HUD" type="Control" parent="."]
+[node name="Objects" type="Spatial" parent="MenuViewportContainer/GameViewport/Map"]
+
+[node name="Players" type="Spatial" parent="MenuViewportContainer/GameViewport/Map"]
+
+[node name="MenuViewport" type="Viewport" parent="MenuViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+msaa = 2
+render_target_update_mode = 3
+
+[node name="HUD" type="Control" parent="MenuViewportContainer/MenuViewport"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,9 +50,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hud" parent="HUD" instance=ExtResource( 4 )]
+[node name="Hud" parent="MenuViewportContainer/MenuViewport/HUD" instance=ExtResource( 4 )]
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="MenuViewportContainer/MenuViewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -39,7 +62,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ModeMenu" type="Control" parent="UI"]
+[node name="ModeMenu" type="Control" parent="MenuViewportContainer/MenuViewport/UI"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,7 +72,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenu" parent="UI" instance=ExtResource( 1 )]
+[node name="PauseMenu" parent="MenuViewportContainer/MenuViewport/UI" instance=ExtResource( 1 )]
 
-[node name="Web" parent="." instance=ExtResource( 3 )]
+[node name="Web" parent="MenuViewportContainer/MenuViewport" instance=ExtResource( 3 )]
 mouse_filter = 2

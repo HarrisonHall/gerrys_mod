@@ -29,7 +29,7 @@ func _on_ModConfirm_pressed():
 	
 	if words[0] == "ping":
 		var new_val = float(words[1])
-		for person in Game.get_node("Map/Players").get_children():
+		for person in Game.Players.get_children():
 			person.SERVER_DELTA = new_val
 		add_info("Set ping to " + str(new_val))
 		clear_text()
@@ -37,9 +37,9 @@ func _on_ModConfirm_pressed():
 		var new_model = words[1]
 		var player = null
 		if Game.singleplayer:
-			player = Game.get_node("Map/Players").get_children()[0]
+			player = Game.Players.get_children()[0]
 		else:
-			player = Game.get_node("Map/Players/"+Game.username)
+			player = Game.get_current_player()
 		player.set_model(new_model)
 		add_info("Set model to " + new_model)
 		clear_text()
@@ -75,7 +75,7 @@ func _on_ModConfirm_pressed():
 			return
 		print("created " + b.name)
 		var btrans = b.get_global_transform()
-		btrans.origin = Game.get_node("Map/Players/"+Game.username).get_global_transform().origin
+		btrans.origin = Game.get_current_player().get_global_transform().origin
 		btrans.origin.y += 3
 		b.set_global_transform(btrans)
 		b.send_update()
