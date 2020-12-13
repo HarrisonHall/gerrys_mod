@@ -16,8 +16,11 @@ _global_script_class_icons={
 [application]
 
 config/name="Gerry's Mod"
+config/description="A mod that a guy named Gerry had."
 run/main_scene="res://Game/Game.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Game/Menus/Artwork/Gmod.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://Game/Menus/Artwork/GmodIcon.png"
 
 [autoload]
 
@@ -27,6 +30,8 @@ Events="*res://Events.gd"
 
 window/size/width=1920
 window/size/height=1080
+window/size/resizable=false
+window/size/borderless=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -90,5 +95,6 @@ gm_drop={
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=8
 quality/subsurface_scattering/quality=2
 environment/default_environment="res://default_env.tres"
