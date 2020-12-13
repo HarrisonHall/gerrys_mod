@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Menus/Theme/BaseTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Game/Menus/GameModes/dg/TableEntry.gd" type="Script" id=2]
+
+[node name="TableEntry" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Username" type="Label" parent="HSplitContainer"]
+margin_top = 527.0
+margin_right = 954.0
+margin_bottom = 553.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Name"
+
+[node name="Score" type="Label" parent="HSplitContainer"]
+margin_left = 966.0
+margin_top = 527.0
+margin_right = 1920.0
+margin_bottom = 553.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "100"
+align = 2

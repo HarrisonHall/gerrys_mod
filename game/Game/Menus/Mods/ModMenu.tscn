@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game/Menus/Mods/ModMenu.gd" type="Script" id=1]
-[ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Game/Menus/MenuFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Game/Menus/Theme/BaseTheme.tres" type="Theme" id=3]
+
 
 [node name="ModMenu" type="Control"]
 anchor_right = 1.0

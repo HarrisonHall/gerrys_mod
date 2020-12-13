@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Bullets/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BrainGun/BrainMesh.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.126579, 0.111727, 0.277428 )
+
+[node name="BulletBrain" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Hitbox" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0374467, 0 )
+shape = SubResource( 1 )
+
+[node name="DebugMesh" parent="." index="1"]
+visible = false
+
+[node name="braintest1" parent="." index="2" instance=ExtResource( 2 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.216422, 0.091759 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0374467, 0 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

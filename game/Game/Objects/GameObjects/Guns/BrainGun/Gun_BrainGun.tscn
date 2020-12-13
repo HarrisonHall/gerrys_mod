@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Guns/Gun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BrainGun/BrainGun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BrainGun/Gun_BrainGun.gd" type="Script" id=3]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.504356
+height = 0.167342
+
+[node name="Gun_BrainGun" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Hitbox" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0719959, 0 )
+shape = SubResource( 1 )
+
+[node name="DebugMesh" parent="." index="2"]
+visible = false
+
+[node name="brainguntest1" parent="." index="3" instance=ExtResource( 2 )]
+transform = Transform( -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0, 0.2, -0.338541, 0, -0.297096 )

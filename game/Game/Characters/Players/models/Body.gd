@@ -186,9 +186,9 @@ func let_go(pos):
 	held_object = null
 	original_gun.let_go(pos)
 
-func use_held_item():
+func use_held_item(t_inac=Vector3(), m_inac=Vector3()):
 	if held_object:
-		held_object.use()
+		held_object.use(t_inac, m_inac)
 
 
 

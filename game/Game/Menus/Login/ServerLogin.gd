@@ -42,9 +42,9 @@ func _on_password_text_entered(new_text):
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
 		Game.load_arena("fp_debugarea")
-		Game.load_player()
-		Game.get_current_player().respawn(Game.team)
 		logged_in = true
+		Game.toggle_pause_menu(true)
+		Game.toggle_mode_menu(true)
 		return
 	Game.Web.connect_to_server()
 	Game.Web.client.connect(
@@ -81,7 +81,8 @@ func send_login_request(proto = ""):
 		"connect_user", 
 		{
 			"username": $Login/username.text,
-			"password": $Login/password.text
+			"password": $Login/password.text,
+			"lobby": "DEFAULT"
 		}
 	)
 

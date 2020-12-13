@@ -126,8 +126,10 @@ func process_movement(delta):
 		if is_holding:
 			drop_gun()
 	if Input.is_action_pressed("gm_int1"):
+		var t_inac = momentum * (1/MAX_SPEED)
+		#var m_mod = Vector3()
 		if is_holding:
-			$Model/Body.use_held_item()
+			$Model/Body.use_held_item(t_inac)
 
 func move_player(delta):
 	if name == Game.username or (len(pos_buffer) == 0 and not $RemoteMovement.is_active()):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game/Menus/Settings/SettingsScreen.gd" type="Script" id=1]
-[ext_resource path="res://Game/Menus/General/MenuFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Game/Menus/MenuFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Game/Menus/Theme/BaseTheme.tres" type="Theme" id=3]
 
 [node name="SettingsScreen" type="Control"]
@@ -39,13 +39,14 @@ margin_bottom = 1042.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="text" type="RichTextLabel" parent="Settings/Visual Settings/VBoxContainer"]
+[node name="ScreenSize" type="OptionButton" parent="Settings/Visual Settings/VBoxContainer"]
 margin_right = 1912.0
 margin_bottom = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/normal_font = ExtResource( 2 )
-text = "Game visuals."
+text = "Fullscreen"
+items = [ "Small Window", null, false, 0, null, "Big Window", null, false, 1, null, "Fullscreen", null, false, 2, null ]
+selected = 2
 
 [node name="VisualOptions" type="OptionButton" parent="Settings/Visual Settings/VBoxContainer"]
 margin_top = 523.0
@@ -54,7 +55,7 @@ margin_bottom = 1042.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "PS2"
-items = [ "PS1", null, false, 0, null, "PS2", null, false, 1, null, "PS3", null, false, 2, null, "PS4", null, false, 3, null ]
+items = [ "PS1", null, false, 0, null, "PS2", null, false, 1, null, "PS3", null, false, 2, null, "PS4", null, false, 3, null, "PS5", null, false, 4, null ]
 selected = 1
 
 [node name="Controls" type="HBoxContainer" parent="Settings"]
@@ -114,5 +115,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
 text = "Server choice"
+[connection signal="item_selected" from="Settings/Visual Settings/VBoxContainer/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
 [connection signal="item_selected" from="Settings/Visual Settings/VBoxContainer/VisualOptions" to="." method="_on_VisualOptions_item_selected"]
 [connection signal="value_changed" from="Settings/Controls/VBoxContainer/MSSlider" to="." method="_on_MSSlider_value_changed"]

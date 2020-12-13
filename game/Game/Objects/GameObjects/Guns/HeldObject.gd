@@ -9,13 +9,15 @@ var bspeed = 16
 var bscale = 1
 var gun_ref = null
 
+var inaccuracy = .1  # innacurrate (out of 1.0)
+
 func _process(delta):
 	cooldown -= delta
 	if not has_ammo() and gun_ref:
 		gun_ref.kill = true
 		force_drop()
 
-func use():
+func use(t_inac=Vector3(), m_inac=Vector3()):
 	if cooldown <= 0 and has_ammo():
 		cooldown = new_cooldown
 		var b = Game.make_obj(bullet_type, "")
@@ -23,7 +25,11 @@ func use():
 		if b:
 			b.watching = true
 			var player = Game.get_current_player()
-			b.set_trans_mom($ShootFrom.get_global_transform(), bspeed*(player.get_forward() - get_global_transform().origin).normalized(), player.get_forward())
+			b.set_trans_mom(
+				$ShootFrom.get_global_transform(), # Position to create bullet
+				bspeed*(player.get_forward() - get_global_transform().origin).normalized() + m_inac*inaccuracy, # bullet momentum
+				player.get_forward() + t_inac*inaccuracy # bullet target
+			)
 			b.queue_send_update = true
 		if gun_ref:
 			gun_ref.data["ammo"] -= 1

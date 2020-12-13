@@ -7,7 +7,7 @@ var set_graphics = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	_on_ScreenSize_item_selected(2)
 
 
 func _process(delta):
@@ -53,6 +53,9 @@ func _on_VisualOptions_item_selected(index):
 	if index == 3:
 		new_size = Vector2(1920, 1080)
 		view.set_msaa(3)
+	if index == 4:
+		new_size = Vector2(1920, 1080)
+		view.set_msaa(4)
 	print("is same?: ",get_tree().get_root() == get_viewport())
 	if new_size != Vector2():
 		print("Emitting change!")
@@ -60,3 +63,23 @@ func _on_VisualOptions_item_selected(index):
 		#view.set_size_override(true, new_size)
 		view.set_size(new_size)
 		Events.emit_signal("viewport_changed")
+
+
+func _on_ScreenSize_item_selected(index):
+	var viewport = get_tree().get_root()
+	if index == 0:
+		OS.window_fullscreen = false
+		OS.set_window_size(Vector2(1280, 720))
+		#viewport.set_size_override(true, Vector2(1280, 720)) # Custom size for 2D.
+		#viewport.set_size_override_stretch(true) # Enable stretch for custom size.
+	if index == 1:
+		OS.window_fullscreen = false
+		OS.set_window_size(Vector2(1920, 1080))
+		#viewport.set_size_override(true, Vector2(1920, 1080)) # Custom size for 2D.
+		#viewport.set_size_override_stretch(true) # Enable stretch for custom size.
+	if index == 2:
+		OS.set_window_size(Vector2(1920, 1080))
+		OS.window_fullscreen = true
+		#OS.set_window_size(Vector2(1920, 1080))
+		#viewport.set_size_override(true, Vector2(1920, 1080)) # Custom size for 2D.
+		#viewport.set_size_override_stretch(true) # Enable stretch for custom size.

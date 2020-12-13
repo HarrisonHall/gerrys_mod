@@ -29,7 +29,7 @@ var arenas = {
 		"gamemode": "fp"
 	},
 	"dg_fd": {
-		"scene": preload("res://Game/Areas/Blocks/Monkeylabs/dg_monkeylabs.tscn"),
+		"scene": preload("res://Game/Areas/Arena/dg_fd/dg_fd.tscn"),
 		"name": "dg_fd",
 		"description": "A 'Duck Game' final destination!\nWho knows where this will lead???",
 		"gamemode": "dg"
@@ -40,18 +40,21 @@ var menu_types = {
 	"dg": preload("res://Game/Menus/GameModes/dg/DuckGameMenu.tscn"),
 }
 var object_types = {
+	"BasicBullet": preload("res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.tscn"),
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
-	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
-	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn"),
 	"bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
-	"HeldObject_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.tscn"),
+	"BulletBrain": preload("res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.tscn"),
+	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
 	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn"),
 	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),
+	"Gun_BrainGun": preload("res://Game/Objects/GameObjects/Guns/BrainGun/Gun_BrainGun.tscn"),
 	"Gun_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/Gun_BK47.tscn"),
-	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
-	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
-	"BasicBullet": preload("res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.tscn"),
 	"GunSpawner": preload("res://Game/Objects/GameObjects/GunSpawner/GunSpawner.tscn"),
+	"HeldObject": preload("res://Game/Objects/GameObjects/Guns/HeldObject.tscn"),
+	"HeldObject_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.tscn"),
+	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
+	"HeldObject_BrainGun": preload("res://Game/Objects/GameObjects/Guns/BrainGun/HeldObject_BrainGun.tscn"),
+	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
