@@ -23,6 +23,7 @@ data = PoolVector3Array( 0.2636, 0.2892, 0.204, 0.2141, 0.2677, 0.2061, 0.2317, 
 [node name="bosschair" type="Spatial"]
 
 [node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 collision_layer = 2
 collision_mask = 3
 
