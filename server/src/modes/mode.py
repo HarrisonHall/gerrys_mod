@@ -168,7 +168,7 @@ class Mode:
             #print("Invalid settings to update info")
             d = {
                 "settings": self.get_settings(),
-                "timestamp": timestamp(),
+                "timestamp": make_timestamp(),
             }
             return d
 
@@ -194,7 +194,7 @@ class Mode:
         old_obj["position"] = obj.get("position", old_obj["position"])
         old_obj["momentum"] = obj.get("momentum", old_obj["momentum"])
         old_obj["rotation"] = obj.get("rotation", old_obj["rotation"])
-        old_obj["timestamp"] = timestamp()
+        old_obj["timestamp"] = make_timestamp()
         old_obj["timestamps"][username] = new_timestamp
         old_obj["last_update_from"] = username
         old_obj["data"] = obj.get("data", old_obj["data"])
