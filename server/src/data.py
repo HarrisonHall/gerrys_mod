@@ -4,174 +4,139 @@ users.py
 handle adding and removing users
 """
 
+from copy import deepcopy
 import datetime
 from json import load
 from time import time as timestamp
+from threading import Lock
 
+import .mode
+
+
+lobbies = {}
+user_to_lobby = {}
 
 next_id = 0
-current_users = {}
-current_objects = {}
-current_settings = {
-    "map": "fp_debugarea",
-    "serv_version": 0
-}
 last_player = "No player has joined yet"
-kill_queue = []
-DISCONNECT_TIME = 5
 
 users = {}
 with open("data/users.json", "r") as jsonfile:
     users = load(jsonfile)
 
-def add_user(username):
-    global next_id
-    global last_player
-    new_id = next_id
-    next_id += 1
 
-    current_users[username] = {
-        "id": new_id,
-        "player": reset_player(),
-        "updates": {
-            "players": {}
-        },
-        "just_joined": True,
-        "last_time": datetime.datetime.now(),
-        "last_given_timestamp": 0,
-    }
-    last_player = username
-    return new_id
+def lobby_exists(lobby_name):
+    return lobby_name in lobbies
 
-def reset_player():
-    return {
-        "position": [-1000, -1000, -1000],
-        "momentum": [0, 0, 0],
-        "rotation": [0, 0, 0],
-        "model": "seagal",
-        "vrot": 0,
-        "is_crouching": False,
-        "slide_time": 0,
-        "data": {}
+def add_lobby(lobby_name):
+    lobbies[lobby_name] = {
+        "game": mode.mode(),
+        "lock": Lock()
     }
 
-def ensure_user(username):
-    if username in current_users:
-        return False
-    add_user(username)
-    return True
+def update_game(obj):
+    # Get variables
+    username = obj.get("username", "")
+    data.user_pinged(username)
+    players = obj.get("players", [])
+    new_timestamp = obj.get("timestamp", -1)
 
-def connect_user(obj):
-    """
-    See if a user can be connected.
-    """
-    d = {}
-    d["login_status"] = False
-    if password_correct(
-        obj.get("username", ""),
-        obj.get("password", "")
-    ):
-        d["login_status"] = True
-        d["username"] = obj["username"]
-        pid = add_user(obj["username"])
-        d["settings"] = get_settings(obj["username"])
-        d["timestamp"] = timestamp()
+    # Make sure user can submit update
+    if not data.timestamp_valid(username, new_timestamp):
+        return {}
+
+    if not data.settings_valid(obj.get("settings", {})):
+        d = {
+            "settings": data.get_settings(username),
+            "timestamp": timestamp(),
+        }
+        return d
+    
+    # update the rest of the players
+    for player in players:
+        update_player(username, player, obj["players"][player])
+            
+    # Send game update to player
+    update = {
+        "players": {
+            user: data.current_users[user]["player"] for user in data.current_users if user != username
+        }
+    }
+
+    d = {
+        "updates": update,
+        "objects": data.get_objects(username),
+        "timestamp": timestamp(),
+        "settings": data.get_settings(username)
+    }
     return d
 
-def user_pinged(username):
+def update_info(obj):
+    # Get variables
+    username = obj.get("username", "")
+    data.user_pinged(username)
+    new_timestamp = obj.get("timestamp", -1)
+
+    updates = obj.get("update", {})
+
+    if not data.settings_valid(obj.get("settings", {})):
+        d = {
+            "settings": data.get_settings(username),
+            "timestamp": timestamp(),
+        }
+        return d
+
+    for person in updates.get("people", {}):
+        if "model" in updates["people"][person]:
+            data.current_users[username]["player"]["model"] = updates["people"][person]["model"]
+
+    objects = updates.get("objects", {})
+    for obj in objects:
+        if obj in data.get_objects(username):
+            # Check timestamp before updating
+            if data.object_update_valid(username, obj, new_timestamp):
+                data.update_object(username, obj, objects[obj], new_timestamp)
+                if objects[obj].get("kill", False):
+                    data.remove_object(username, obj)
+        else:
+            data.add_object(username, obj, objects[obj])
+
+    return {}
+
+def update_player(username, player, obj):
+    """
+    Update player info
+    """
+    pos = obj.get("position", data.current_users[player]["player"]["position"])
+    mom = obj.get("momentum", data.current_users[player]["player"]["momentum"])
+    rot = obj.get("rotation", data.current_users[player]["player"]["rotation"])
+    vrot = obj.get("vrot", data.current_users[player]["player"]["vrot"])
+    is_crouching = obj.get("is_crouching", data.current_users[player]["player"]["is_crouching"])
+    slide_time = obj.get("slide_time", data.current_users[player]["player"]["slide_time"])
+    dat = obj.get("data", data.current_users[player]["player"]["data"])
+    
+    data.current_users[player]["player"]["position"] = pos
+    data.current_users[player]["player"]["momentum"] = mom
+    data.current_users[player]["player"]["rotation"] = rot
+    data.current_users[player]["player"]["vrot"] = vrot
+    data.current_users[player]["player"]["is_crouching"] = is_crouching
+    data.current_users[player]["player"]["slide_time"] = slide_time
+    data.current_users[player]["player"]["data"] = dat
+    
+    for user in (set(data.current_users) - {username}):
+        data.current_users[user]["updates"]["players"][player] = data.current_users[player]["player"]
+    return True
+
+def update_server_settings(obj):
+    username = obj.get("username", "")
     if username == "":
-        return
-    if username not in current_users:
-        return
-    current_users[username]["last_time"] = datetime.datetime.now()
-
-def password_correct(username, password):
-    if username in users:
-        return users[username]["password"] == password
-    return False
-
-def zero_update(username):
-    current_users[username]["updates"]["players"] = {}
-
-def remove_users():
-    to_remove = []
-    current_time = datetime.datetime.now()
-    for user in current_users:
-        last_time = current_users[user]["last_time"]
-        if (current_time - last_time).total_seconds() > DISCONNECT_TIME:
-            to_remove.append(user)
-    for user in to_remove:
-        del current_users[user]
-    return to_remove
-
-def just_joined(username):
-    jj = current_users[username]["just_joined"]
-    current_users[username]["just_joined"] = False
-    return jj
-
-def add_users(username, d):
-    if "players" not in d:
-        d["players"] = {}
-    for user in (set(current_users) - {username}):
-        d["players"][user] = current_users[user]["player"]
-
-def timestamp_valid(username, new_timestamp):
-    if username not in current_users:
-        return True
-    if new_timestamp > current_users[username]["last_given_timestamp"]:
-        current_users[username]["last_given_timestamp"] = new_timestamp
-        return True
-    return False
-
-def get_objects(username):
-    return current_objects
-
-def update_object(username, obj, values, new_timestamp):
-    old_obj = get_objects(username)[obj]
-    old_obj["position"] = values.get("position", old_obj["position"])
-    old_obj["momentum"] = values.get("momentum", old_obj["momentum"])
-    old_obj["rotation"] = values.get("rotation", old_obj["rotation"])
-    old_obj["timestamp"] = timestamp()
-    old_obj["timestamps"][username] = new_timestamp
-    old_obj["last_update_from"] = username
-    old_obj["data"] = values.get("data", old_obj["data"])
-    old_obj["kill"] = values.get("kill", old_obj["kill"])
-
-def remove_object(username, obj):
-    del current_objects[obj]
-
-def add_object(username, obj, values):
-    print("Creating",obj)
-    current_objects[obj] = {
-        "position": values.get("position", [0, 0, 0]),
-        "momentum": values.get("momentum", [0, 0, 0]),
-        "rotation": values.get("rotation", [0, 0, 0]),
-        "timestamp": timestamp(),
-        "timestamps": {
-            username: values.get("timestamp", -1),
-        },
-        "last_update_from": username,
-        "type": values["type"],
-        "data": values.get("data", {}),
-        "kill": False,
+        return {}
+    if "map" in obj:
+        if obj["map"] != data.current_settings["map"]:
+            data.current_settings["map"] = obj["map"]
+            data.current_objects = {}
+            for user in data.current_users:
+                data.current_users[user]["player"] = data.reset_player()
+            data.update_server_version()
+    return {
+        "settings": data.get_settings(username)
     }
-
-def object_update_valid(username, obj, new_timestamp):
-    return (
-        get_objects(username)[obj]["timestamps"].get(username, -1) < new_timestamp
-    )
-
-def current_player_count():
-    return len(current_users)
-
-def last_player_joined():
-    return last_player
-
-def get_settings(username):
-    return current_settings
-
-def settings_valid(s):
-    return s.get("serv_version", -1) == current_settings["serv_version"]
-
-def update_server_version():
-    current_settings["serv_version"] += 1

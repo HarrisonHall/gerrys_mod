@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Game/Characters/Players/Person.gd" type="Script" id=1]
 [ext_resource path="res://Game/Characters/Players/models/Body.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Characters/Players/PersonUI/NameTag3D.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.421843
@@ -111,5 +112,8 @@ shape = SubResource( 9 )
 
 [node name="CameraHinge" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.709, 0 )
+
+[node name="NameTag3D" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.09701, 0 )
 [connection signal="body_entered" from="StandRoom" to="." method="_on_StandRoom_body_entered"]
 [connection signal="body_exited" from="StandRoom" to="." method="_on_StandRoom_body_exited"]

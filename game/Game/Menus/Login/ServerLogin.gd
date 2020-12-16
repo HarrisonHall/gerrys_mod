@@ -82,7 +82,6 @@ func send_login_request(proto = ""):
 		{
 			"username": $Login/username.text,
 			"password": $Login/password.text,
-			"lobby": "DEFAULT"
 		}
 	)
 
@@ -92,7 +91,6 @@ func conn_closed(was_clean = false):
 	_on_LogoutButton_pressed()
 
 func received_login_data():
-	var data_good = false
 	var raw = Game.Web.client.get_peer(1).get_packet().get_string_from_utf8()
 	var res = JSON.parse(raw)
 	var data = res.result

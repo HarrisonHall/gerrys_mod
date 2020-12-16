@@ -58,21 +58,36 @@ var object_types = {
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
-onready var GameViewport = $MenuViewportContainer/GameViewport
-onready var MenuViewport = $MenuViewportContainer/MenuViewport
+#onready var GameViewport = $MenuViewportContainer/Seperation/GameViewport/GameViewport
+#onready var MenuViewport = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport
+#
+#onready var Web = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/Web
+#onready var UI = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/UI
+#onready var HUD = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/HUD
+#onready var ModeMenu = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/UI/ModeMenu
+#onready var PauseMenu = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/UI/PauseMenu
+#
+#onready var Arena = $MenuViewportContainer/Seperation/GameViewport/GameViewport/Map/Arena
+#onready var Objects = $MenuViewportContainer/Seperation/GameViewport/GameViewport/Map/Objects
+#onready var Players = $MenuViewportContainer/Seperation/GameViewport/GameViewport/Map/Players
 
-onready var Web = $MenuViewportContainer/MenuViewport/Web
-onready var UI = $MenuViewportContainer/MenuViewport/UI
-onready var HUD = $MenuViewportContainer/MenuViewport/HUD
-onready var ModeMenu = $MenuViewportContainer/MenuViewport/UI/ModeMenu
-onready var PauseMenu = $MenuViewportContainer/MenuViewport/UI/PauseMenu
+onready var GameViewport = $"GameViewport/GameViewport"
+onready var MenuViewport = $"MenuViewport/MenuViewport"
 
-onready var Arena = $MenuViewportContainer/GameViewport/Map/Arena
-onready var Objects = $MenuViewportContainer/GameViewport/Map/Objects
-onready var Players = $MenuViewportContainer/GameViewport/Map/Players
+onready var Web = $"MenuViewport/MenuViewport/Web"
+onready var UI = $"MenuViewport/MenuViewport/UI"
+onready var HUD = $"MenuViewport/MenuViewport/HUD/Hud"
+onready var ModeMenu = $"MenuViewport/MenuViewport/UI/ModeMenu"
+onready var PauseMenu = $"MenuViewport/MenuViewport/UI/PauseMenu"
+
+onready var Arena = $"GameViewport/GameViewport/Map/Arena"
+onready var Objects = $"GameViewport/GameViewport/Map/Objects"
+onready var Players = $"GameViewport/GameViewport/Map/Players"
+
 
 # Game vars
 var username = "DEFAULT_USER"
+var lobby = "DEFAULT"
 var singleplayer = false
 var team = 1
 var settings = {
@@ -84,13 +99,12 @@ var serv_version_just_changed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# load background
-	
-	# TODO load arena correctly
+	# Load menu
 	var menu_background = menu_background_pck.instance()
 	Arena.add_child(menu_background)
 	menu_background.name = "ARENA"
 	
+	# Set min window size
 	OS.min_window_size = Vector2(640, 360)
 
 func _process(delta):
@@ -281,5 +295,15 @@ func clear_gameplay(kill=false):
 		child.queue_free()
 		del_num += 1
 
+var last_rel = Vector2()
+func _input(event):
+	if menu_up:
+		return
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		last_rel = event.relative
 
+func get_mouse_movement():
+	var send = last_rel
+	last_rel = Vector2()
+	return send
 

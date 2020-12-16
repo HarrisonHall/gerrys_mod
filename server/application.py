@@ -12,7 +12,7 @@ from flask_sockets import Sockets
 from json import dumps, loads
 import traceback
 
-from src import games, data
+from src import game_handler
 
 
 app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")
@@ -36,46 +36,30 @@ def info():
 
 @sockets.route('/ping')
 def echo_socket(ws):
-    print("session: ", session)
     while True:
         try:
             d = {}
             message = ws.receive()
-            if message is not None:
-                try:
-                    incoming = loads(message)
-                    data.user_pinged(incoming.get("username", ""))
-                    if "connect_user" == incoming["endpoint"]:
-                        print("Connecting user")
-                        d = data.connect_user(incoming)
-                    else:
-                        data.ensure_user(incoming.get("username", ""))
-                        if "update_info" == incoming["endpoint"]:
-                            print("Updating info")
-                            d = games.update_info(incoming)
-                        elif "take_damage" == incoming["endpoint"]:
-                            print("Updating damage")
-                            d = games.update_damage(incoming)
-                        elif "server_settings" == incoming["endpoint"]:
-                            print("Updating server settings")
-                            d = games.update_server_settings(incoming)
-                        elif "update_game" == incoming["endpoint"]:
-                            d = games.update_game(incoming)
-                        else:
-                            d = games.update_game(incoming)
-                    data.remove_users()
-                except Exception as e:
-                    print("Game logic error: ", e)
-                    traceback.print_exc()
-            else:
+            if message is None:
                 print("Message was None")
-            ws.send(dumps(d))
-            if not d.get("login_status", True):
-                ws.close()
-                return
+                ws.send(dumps(d))
+            else:
+                incoming = loads(message)
+
+                if game_handler.base_object_valid(incoming):
+                    d = game_handler.update(incoming)
+                    game_handler.user_pinged(incoming.get("username"), incoming.get("timestamp"))
+                elif game_handler.can_add_user(incoming):
+                    print("ADDED USER")
+                    d = game_handler.add_user(incoming)
+                else:
+                    print("INVALID!")
+                    d = game_handler.invalid_packet_response(incoming)
+                ws.send(dumps(d))
         except Exception as e:
             print("Disconnected user:", e)
             traceback.print_exc()
+            ws.close()
             return
 
 if __name__ == "__main__":

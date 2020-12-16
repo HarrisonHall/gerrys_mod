@@ -9,8 +9,7 @@ var ground_friction = 6
 
 var CAM_SENSITIVITY = .2
 
-#const MAX_SPEED = 100
-const MAX_SPEED = 200
+const MAX_SPEED = 150
 const MIN_MOM = 0.4
 const MIN_WALK = 0.5
 
@@ -46,6 +45,9 @@ var data = {
 func _ready():
 	Game = get_tree().get_current_scene()
 	set_model("seagal")
+	set_process_input(true)
+	set_process_unhandled_input(true)
+	update_name(get_name())
 
 var runtime = 0
 
@@ -126,10 +128,20 @@ func process_movement(delta):
 		if is_holding:
 			drop_gun()
 	if Input.is_action_pressed("gm_int1"):
-		var t_inac = momentum * (1/MAX_SPEED)
+		var t_inac = momentum * (1/float(MAX_SPEED))
 		#var m_mod = Vector3()
 		if is_holding:
 			$Model/Body.use_held_item(t_inac)
+	
+	if self == Game.get_current_player() and false:
+		var m = Game.get_mouse_movement()
+		$CameraHinge.rotate_z(-deg2rad(m.y * CAM_SENSITIVITY))
+		self.rotate_y(deg2rad(m.x * CAM_SENSITIVITY * -1))
+
+		var camera_rot = $CameraHinge.rotation_degrees
+		camera_rot.z = clamp(camera_rot.z, -110, 110)
+		$CameraHinge.rotation_degrees = camera_rot
+		update_bones()
 
 func move_player(delta):
 	if name == Game.username or (len(pos_buffer) == 0 and not $RemoteMovement.is_active()):
@@ -343,7 +355,7 @@ func tell_server(delta):
 		got_response = false
 		time_since_last = 0
 		var pos = get_global_transform().origin
-		Game.Web.request("update_player", {
+		Game.Web.request("update_game", {
 			"username": Game.username,
 			"players": {
 				Game.username : {
@@ -495,4 +507,5 @@ func soft_let_go():
 	#$Model/Body.soft_let_go()
 	drop_gun()
 
-
+func update_name(n):
+	$NameTag3D.set_name(n)

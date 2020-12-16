@@ -4,6 +4,8 @@ var url = "ws://gerrys-mod-demo.herokuapp.com/ping"
 var client_id = -1
 var client_name = 0
 
+onready var Game = get_tree().get_current_scene()
+
 # Emits when new data is received, has obj (dict) parameter
 signal new_data
 
@@ -51,6 +53,7 @@ func request(endpoint, data):
 	if not is_connected:
 		return
 	data["endpoint"] = endpoint
+	data["lobby"] = Game.lobby
 	var query = JSON.print(data)
 	client.get_peer(1).put_packet(query.to_utf8())
 

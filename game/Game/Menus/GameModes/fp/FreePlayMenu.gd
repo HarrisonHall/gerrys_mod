@@ -15,11 +15,14 @@ func _process(delta):
 	server_delta -= delta
 	if server_delta < 0 and not loaded_player:
 		server_delta = max_server_delta
-		Game.Web.request("",{
-			"username": Game.username,
-			"timestamp": OS.get_ticks_msec(),
-			"settings": Game.settings
-		})
+		Game.Web.request(
+			"update_game",
+			{
+				"username": Game.username,
+				"timestamp": OS.get_ticks_msec(),
+				"settings": Game.settings
+			}
+		)
 
 func refresh():
 	loaded_player = false

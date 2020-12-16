@@ -23,6 +23,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="Camera" type="Camera" parent="Viewport/CamOffset"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.105888 )
+cull_mask = 524287
 fov = 120.0
 
 [node name="Surface" type="MeshInstance" parent="."]
