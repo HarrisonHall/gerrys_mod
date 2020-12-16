@@ -208,6 +208,8 @@ class Mode:
             self.add_player(username)
             print(f"Added player {username} but updating player {player}")
             print(player in self.users)
+        if username != player and player not in self.users:
+            return False
 
         pos = obj.get("position", self.users[player]["player"]["position"])
         mom = obj.get("momentum", self.users[player]["player"]["momentum"])
