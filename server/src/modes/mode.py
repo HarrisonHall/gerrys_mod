@@ -118,6 +118,12 @@ class Mode:
             print("Removed old users:", to_remove)
         return to_remove
 
+    def user_pinged(self, username : str) -> bool:
+        if username not in self.users:
+            return False
+        self.users[username]["last_time"] = datetime.datetime.now()
+        return True
+
     def update_damage(self, obj):
         # TODO, probably deprecated
         for user, info in obj["players"].items():
@@ -128,7 +134,7 @@ class Mode:
 
     def update_game(self, obj):
         # Get variables
-        username = obj.get("username", "")
+        username = obj.get("username")
         players = obj.get("players", [])
         
         if not self.settings_valid(obj.get("settings", {})):
@@ -148,6 +154,10 @@ class Mode:
                 user: self.users[user]["player"] for user in self.users if user != username
             }
         }
+
+        # Do game logic
+        self.user_pinged(username)
+        self.remove_old_users()
 
         d = {
             "updates": update,
