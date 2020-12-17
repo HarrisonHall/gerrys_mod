@@ -93,16 +93,16 @@ transform = Transform( 0.5, 0, 8.74228e-08, 0, 0.5, 0, -8.74228e-08, 0, 0.5, 39.
 transform = Transform( -0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -32, 0.32687, -35 )
 
 [node name="couch" parent="Everything" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2854, 0.500001, -9.42042 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2854, 0.269093, -9.42042 )
 
 [node name="couch3" parent="Everything" instance=ExtResource( 7 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.2854, 0.500001, -35.4204 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.2854, 0.283076, -35.4204 )
 
 [node name="couch2" parent="Everything" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2854, 0.500001, -1.42042 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.2854, 0.260577, -1.42042 )
 
 [node name="couch4" parent="Everything" instance=ExtResource( 7 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.2854, 0.500001, 28.5796 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.2854, 0.281673, 28.5796 )
 
 [node name="Surfing" type="Spatial" parent="Everything"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -6 )
@@ -3250,10 +3250,10 @@ transform = Transform( 0.791063, 0, -0.611734, 0, 1, 0, 0.611734, 0, 0.791063, 2
 transform = Transform( -0.386147, 0, -0.922437, 0, 1, 0, 0.922437, 0, -0.386147, 39.8571, 0.292849, 5.4165 )
 
 [node name="couch" parent="." instance=ExtResource( 7 )]
-transform = Transform( 0.75, 0, 0, 0, 1, 0, 0, 0, 1, 21.6967, 0.320691, 35.032 )
+transform = Transform( 0.75, 0, 0, 0, 1, 0, 0, 0, 1, 21.6967, 0.287434, 35.032 )
 
 [node name="couch3" parent="." instance=ExtResource( 7 )]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 39.9723, 0.260781, 0.0320015 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 39.9723, 0.279097, 0.0320015 )
 
 [node name="rollingchair2" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.0174737, 0, -0.749796, 0, 0.75, 0, 0.749796, 0, 0.0174737, 36.4439, 0.415032, -31.3946 )
@@ -3307,7 +3307,7 @@ transform = Transform( 0.290637, 0, 0.691397, 0, 0.75, 0, -0.691397, 0, 0.290637
 transform = Transform( -0.000353442, 0.75, 2.44291e-06, -0.749982, -0.00035345, 0.00518357, 0.00518357, -6.30962e-11, 0.749982, -32.1194, 0.95538, -48.4623 )
 
 [node name="couch2" parent="." instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.840652, 0.177631, -34.8671 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.840652, 0.269457, -34.8671 )
 
 [node name="pottedplant18" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08784, 0.205872, -31.2327 )
