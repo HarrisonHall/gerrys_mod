@@ -118,6 +118,12 @@ class Mode:
             print("Removed old users:", to_remove)
         return to_remove
 
+    def user_pinged(self, username : str) -> bool:
+        if username not in self.users:
+            return False
+        self.users[username]["last_time"] = datetime.datetime.now()
+        return True
+
     def update_damage(self, obj):
         # TODO, probably deprecated
         for user, info in obj["players"].items():
@@ -128,7 +134,7 @@ class Mode:
 
     def update_game(self, obj):
         # Get variables
-        username = obj.get("username", "")
+        username = obj.get("username")
         players = obj.get("players", [])
         
         if not self.settings_valid(obj.get("settings", {})):
@@ -149,6 +155,10 @@ class Mode:
             }
         }
 
+        # Do game logic
+        self.user_pinged(username)
+        self.remove_old_users()
+
         d = {
             "updates": update,
             "objects": self.objects,
@@ -168,7 +178,7 @@ class Mode:
             #print("Invalid settings to update info")
             d = {
                 "settings": self.get_settings(),
-                "timestamp": timestamp(),
+                "timestamp": make_timestamp(),
             }
             return d
 
@@ -194,7 +204,7 @@ class Mode:
         old_obj["position"] = obj.get("position", old_obj["position"])
         old_obj["momentum"] = obj.get("momentum", old_obj["momentum"])
         old_obj["rotation"] = obj.get("rotation", old_obj["rotation"])
-        old_obj["timestamp"] = timestamp()
+        old_obj["timestamp"] = make_timestamp()
         old_obj["timestamps"][username] = new_timestamp
         old_obj["last_update_from"] = username
         old_obj["data"] = obj.get("data", old_obj["data"])
@@ -208,6 +218,8 @@ class Mode:
             self.add_player(username)
             print(f"Added player {username} but updating player {player}")
             print(player in self.users)
+        if username != player and player not in self.users:
+            return False
 
         pos = obj.get("position", self.users[player]["player"]["position"])
         mom = obj.get("momentum", self.users[player]["player"]["momentum"])

@@ -3,7 +3,7 @@ extends "res://Game/Objects/GameObjects/GameObject.gd"
 var watching = false
 var damage = 1
 var ttd = 3
-var update_period = 0.5
+var update_period = 10
 var last_update = 0
 var hit_own_player = false
 var go_through_solid = true

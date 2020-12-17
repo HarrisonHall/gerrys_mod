@@ -30,8 +30,8 @@ def index():
 @app.route("/info", methods=["POST"])
 def info():
     return jsonify({
-        "Current Player Count": data.current_player_count(),
-        "Last Player Joined": data.last_player_joined(),
+        "Current Player Count": game_handler.current_player_count(),
+        "Last Player Joined": game_handler.last_player_joined(),
     })
 
 @sockets.route('/ping')
