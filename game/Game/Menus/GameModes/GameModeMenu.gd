@@ -43,3 +43,6 @@ func on_start():
 #	Game.Web.client.disconnect(
 #		"data_received", self, "server_update"
 #	)
+
+func load_hub():
+	Game.change_lobby(Game.base_lobby, "")
