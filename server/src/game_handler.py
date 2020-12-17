@@ -81,6 +81,9 @@ def can_add_user(obj):
             if raw_user_data[username]["password"] == password:
                 if username not in users:
                     return True
+                elif (make_timestamp() - users[username]["last_timestamp"]) > 3:
+                    return True
+                    
     return False
 
 def current_player_count():
@@ -135,13 +138,11 @@ def update(obj):
     user_pinged(username, timestamp)
 
     if endpoint == SERVER_SETTINGS:
-        print("SERVER SETTINGS")
         d = lobby.update_settings(obj)
     elif endpoint == TAKE_DAMAGE:
         print("TAKE DAMAGE")
         d = lobby.take_damage(obj)
     elif endpoint == UPDATE_INFO:
-        print("UPDATE INFO")
         d = lobby.update_info(obj)
     elif endpoint == UPDATE_GAME:
         #print("UPDATE GAME")

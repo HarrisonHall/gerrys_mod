@@ -40,7 +40,6 @@ class Mode:
             "last_time": datetime.datetime.now(),
             "last_given_timestamp": 0
         }
-        print(f"added player {username}")
         return username
 
     def base_player(self):
@@ -175,7 +174,6 @@ class Mode:
         updates = obj.get("update", {})
 
         if not self.settings_valid(obj.get("settings", {})):
-            #print("Invalid settings to update info")
             d = {
                 "settings": self.get_settings(),
                 "timestamp": make_timestamp(),
@@ -216,8 +214,6 @@ class Mode:
         """
         if username == player and username not in self.users:
             self.add_player(username)
-            print(f"Added player {username} but updating player {player}")
-            print(player in self.users)
         if username != player and player not in self.users:
             return False
 

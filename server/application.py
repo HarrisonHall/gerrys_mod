@@ -41,7 +41,6 @@ def echo_socket(ws):
             d = {}
             message = ws.receive()
             if message is None:
-                print("Message was None")
                 ws.send(dumps(d))
             else:
                 incoming = loads(message)
@@ -50,10 +49,8 @@ def echo_socket(ws):
                     d = game_handler.update(incoming)
                     game_handler.user_pinged(incoming.get("username"), incoming.get("timestamp"))
                 elif game_handler.can_add_user(incoming):
-                    print("ADDED USER")
                     d = game_handler.add_user(incoming)
                 else:
-                    print("INVALID!")
                     d = game_handler.invalid_packet_response(incoming)
                 ws.send(dumps(d))
         except Exception as e:
