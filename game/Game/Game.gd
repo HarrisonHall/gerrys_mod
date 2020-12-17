@@ -64,19 +64,6 @@ var object_types = {
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
-#onready var GameViewport = $MenuViewportContainer/Seperation/GameViewport/GameViewport
-#onready var MenuViewport = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport
-#
-#onready var Web = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/Web
-#onready var UI = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/UI
-#onready var HUD = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/HUD
-#onready var ModeMenu = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/UI/ModeMenu
-#onready var PauseMenu = $MenuViewportContainer/Seperation/MenuViewport/MenuViewport/UI/PauseMenu
-#
-#onready var Arena = $MenuViewportContainer/Seperation/GameViewport/GameViewport/Map/Arena
-#onready var Objects = $MenuViewportContainer/Seperation/GameViewport/GameViewport/Map/Objects
-#onready var Players = $MenuViewportContainer/Seperation/GameViewport/GameViewport/Map/Players
-
 onready var GameViewport = $"GameViewport/GameViewport"
 onready var MenuViewport = $"MenuViewport/MenuViewport"
 

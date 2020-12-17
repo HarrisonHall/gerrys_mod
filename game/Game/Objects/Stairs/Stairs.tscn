@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.0627451, 0.517647, 0.423529, 1 )
+
+[sub_resource type="PrismMesh" id=1]
+material = SubResource( 3 )
+left_to_right = 0.0
+size = Vector3( 2.1, 2, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=2]
+data = PoolVector3Array( -1.05, 1, 1, 1.05, -1, 1, -1.05, -1, 1, -1.05, 1, -1, -1.05, -1, -1, 1.05, -1, -1, -1.05, 1, 1, -1.05, 1, -1, 1.05, -1, 1, -1.05, 1, -1, 1.05, -1, -1, 1.05, -1, 1, -1.05, 1, -1, -1.05, 1, 1, -1.05, -1, -1, -1.05, 1, 1, -1.05, -1, 1, -1.05, -1, -1, -1.05, -1, 1, 1.05, -1, 1, -1.05, -1, -1, 1.05, -1, 1, 1.05, -1, -1, -1.05, -1, -1 )
+
+[node name="Stairs" type="Spatial"]
+
+[node name="Position3D" type="Position3D" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Position3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Position3D"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Position3D/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 2 )
