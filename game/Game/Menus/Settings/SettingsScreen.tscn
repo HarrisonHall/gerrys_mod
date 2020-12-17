@@ -58,14 +58,14 @@ text = "PS2"
 items = [ "PS1", null, false, 0, null, "PS2", null, false, 1, null, "PS3", null, false, 2, null, "PS4", null, false, 3, null, "PS5", null, false, 4, null ]
 selected = 1
 
-[node name="OptionButton" type="OptionButton" parent="Settings/Visual Settings/VBoxContainer"]
+[node name="Shaders" type="OptionButton" parent="Settings/Visual Settings/VBoxContainer"]
 margin_top = 697.0
 margin_right = 1912.0
 margin_bottom = 1042.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "No Shader"
-items = [ "No Shader", null, false, 0, null, "Cyber Shader", null, false, 1, null, "Blur Shader", null, false, 2, null, "Toon Shader", null, false, 3, null, "Xray Glow Shader", null, false, 4, null, "Xray Shader", null, false, 5, null, "Item 6", null, false, 6, null, "Item 7", null, false, 7, null, "Item 8", null, false, 8, null, "Item 9", null, false, 9, null, "Item 10", null, false, 10, null, "Item 11", null, false, 11, null, "Item 12", null, false, 12, null, "Item 13", null, false, 13, null, "Item 14", null, false, 14, null ]
+items = [ "No Shader", null, false, 0, null, "Cyber Shader", null, false, 1, null, "Test Shader", null, false, 2, null, "Outline Shader", null, false, 3, null, "Random Shader", null, false, 4, null, "Random Random Shader", null, false, 5, null, "Item 6", null, true, 6, null, "Item 7", null, true, 7, null, "Item 8", null, true, 8, null, "Item 9", null, true, 9, null, "Item 10", null, true, 10, null, "Item 11", null, true, 11, null, "Item 12", null, true, 12, null, "Item 13", null, true, 13, null, "Item 14", null, true, 14, null ]
 selected = 0
 
 [node name="Controls" type="HBoxContainer" parent="Settings"]
@@ -127,5 +127,5 @@ custom_fonts/normal_font = ExtResource( 2 )
 text = "Server choice"
 [connection signal="item_selected" from="Settings/Visual Settings/VBoxContainer/ScreenSize" to="." method="_on_ScreenSize_item_selected"]
 [connection signal="item_selected" from="Settings/Visual Settings/VBoxContainer/VisualOptions" to="." method="_on_VisualOptions_item_selected"]
-[connection signal="item_selected" from="Settings/Visual Settings/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Settings/Visual Settings/VBoxContainer/Shaders" to="." method="_on_OptionButton_item_selected"]
 [connection signal="value_changed" from="Settings/Controls/VBoxContainer/MSSlider" to="." method="_on_MSSlider_value_changed"]
