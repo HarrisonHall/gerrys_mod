@@ -4,20 +4,14 @@ uniform sampler2D ViewportTexture;
 uniform float a = 0.5;
 
 void fragment() {
-	vec3 test = -8.0 * texture(TEXTURE, UV).xyz;
-   
-	test += texture(TEXTURE, UV + vec2(0.0, a*SCREEN_PIXEL_SIZE.y)).xyz;
-	test += texture(TEXTURE, UV + vec2(0.0, -a*SCREEN_PIXEL_SIZE.y)).xyz;
-    test += texture(TEXTURE, UV + vec2(a*SCREEN_PIXEL_SIZE.x, 0.0)).xyz;
-    test += texture(TEXTURE, UV + vec2(-a*SCREEN_PIXEL_SIZE.x, 0.0)).xyz;
-    test += texture(TEXTURE, UV + a*SCREEN_PIXEL_SIZE.xy).xyz;
-    test += texture(TEXTURE, UV - a*SCREEN_PIXEL_SIZE.xy).xyz;
-    test += texture(TEXTURE, UV + a*vec2(-SCREEN_PIXEL_SIZE.x, SCREEN_PIXEL_SIZE.y)).xyz;
-    test += texture(TEXTURE, UV + a*vec2(SCREEN_PIXEL_SIZE.x, -SCREEN_PIXEL_SIZE.y)).xyz;
-	
-	if(test.x > 0.2 || test.y > 0.2 || test.z > 0.2) {
-		COLOR = vec4(0, 0, 0, 0.7);
-	} else {
-		COLOR = texture(TEXTURE, UV);
-	}
+    vec2 ruv = SCREEN_UV - vec2(0.5, 0.5);
+    vec2 dir = normalize(ruv);
+    float len = length(ruv);
+    
+    len = pow(len * 2.0, 1.0 + a / 10.0) * 0.5;
+    ruv = len * dir;
+    
+    vec3 col = texture(TEXTURE, vec2(0.5, 0.5) + ruv).xyz;
+    
+    COLOR.xyz = col;
 }
