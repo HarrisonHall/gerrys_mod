@@ -34,6 +34,12 @@ var arenas = {
 		"description": "A 'Duck Game' final destination!\nWho knows where this will lead???",
 		"gamemode": "dg"
 	},
+	"fp_hub": {
+		"scene": preload("res://Game/Areas/Hub/Hubmap.tscn"),
+		"name": "fp_hub",
+		"description": "hub world",
+		"gamemode": "fp"
+	},
 }
 var menu_types = {
 	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn"),
