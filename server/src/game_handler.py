@@ -82,6 +82,8 @@ def can_add_user(obj):
                 if username not in users:
                     return True
                 elif (make_timestamp() - users[username]["last_timestamp"]) > 3:
+                    user[username]["last_timestamp"] = -1
+                    user[username]["last_user_timestamp"] = -1
                     return True
                     
     return False

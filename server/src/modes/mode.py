@@ -7,7 +7,7 @@ class Mode:
     
     def __init__(self):
         self.settings = {
-            "map": "fp_debugarea",
+            "map": "fp_hub",
             "serv_version": 0,
             "mode": "fp",
         }
