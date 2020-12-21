@@ -62,7 +62,7 @@ func _on_LoginButton_pressed():
 
 func _on_LogoutButton_pressed():
 	logged_in = false
-	Game.Web.client.disconnect_from_host()
+	Game.Web.server_disconnect()
 	var old_arena = Game.Arena.get_node("ARENA")
 	if old_arena != null:
 		old_arena.name = "OLD_ARENA"
@@ -74,6 +74,7 @@ func _on_LogoutButton_pressed():
 	menu_background.name = "ARENA"
 	Game.toggle_pause_menu(true)
 	Game.toggle_mode_menu(false)
+	Game.cur_arena = "MENU"
 
 func send_login_request(proto = ""):
 	print("Sending login")
@@ -87,7 +88,6 @@ func send_login_request(proto = ""):
 
 func conn_closed(was_clean = false):
 	print("Handling connection error...")
-	logged_in = false
 	_on_LogoutButton_pressed()
 
 func received_login_data():
@@ -105,5 +105,11 @@ func received_login_data():
 			logged_in = true
 			Game.Web.connect("new_data", Game, "update_players_s")
 			Game.update_players_s(data)
+			Game.just_logged_in = true
 		else:
 			Game.PauseMenu.SessionInfo.add_info("Unable to log in")
+			Game.Web.client.disconnect(
+				"data_received", self, "received_login_data"
+			)
+			logged_in = false
+			Game.Web.server_disconnect()

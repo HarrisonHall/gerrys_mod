@@ -26,7 +26,7 @@ func _process(delta):
 
 func refresh():
 	loaded_player = false
-	assert(Game.cur_arena in Game.arenas, "Uh oh! not a real arena!")
+	assert(Game.cur_arena in Game.arenas, "Uh oh! not a real arena: " + str(Game.cur_arena))
 	$MarginContainer/VBoxContainer/Sides/Info/Panel2/MapDescription.text = Game.arenas[Game.cur_arena]["description"]
 	Game.Web.connect(
 		"new_data", self, "server_update"
@@ -44,3 +44,10 @@ func _on_Button_pressed():
 	Game.Web.client.disconnect(
 		"data_received", self, "server_update"
 	)
+
+func load_hub():
+	Game.change_lobby(Game.base_lobby, "")
+
+
+func _on_HubButton_pressed():
+	load_hub()

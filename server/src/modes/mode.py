@@ -100,9 +100,16 @@ class Mode:
     def restart(self):
         self.start_time = datetime.datetime.now()
 
-    def remove_object(self, username, obj):
+    def remove_object(self, username : str, obj : str) -> bool:
         assert (obj in self.objects), f"Object not in objects: {obj}"
         del self.objects[obj]
+        return True
+
+    def remove_user(self, user : str) -> bool:
+        if user not in self.users:
+            return False
+        del self.users[user]
+        return True
 
     def remove_old_users(self):
         to_remove = []
@@ -112,7 +119,7 @@ class Mode:
             if (current_time - last_time).total_seconds() > self.DISCONNECT_TIME:
                 to_remove.append(user)
         for user in to_remove:
-            del self.users[user]
+            self.remove_user(user)
         if len(to_remove) > 0:
             print("Removed old users:", to_remove)
         return to_remove

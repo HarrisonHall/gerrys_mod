@@ -98,11 +98,21 @@ margin_right = 1820.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/Sides/Play"]
+margin_right = 900.0
+margin_bottom = 278.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"
+
+[node name="HubButton" type="Button" parent="MarginContainer/VBoxContainer/Sides/Play"]
+margin_top = 298.0
 margin_right = 900.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Play"
+text = "Back"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Sides/Play/PlayButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Sides/Play/HubButton" to="." method="_on_HubButton_pressed"]

@@ -10,17 +10,18 @@ from .modes import *
 
 
 # Server Constants
+CHANGE_LOBBY = "change_lobby"
 CONNECT_USER = "connect_user"
+CUSTOM_UPDATE = "custom_update"
 LOGIN_STATUS = "login_status"
 SERVER_SETTINGS = "server_settings"
 TAKE_DAMAGE = "take_damage"
 UPDATE_GAME = "update_game"
 UPDATE_INFO = "update_info"
-CUSTOM_UPDATE = "custom_update"
 ENDPOINTS = [
     CONNECT_USER, LOGIN_STATUS, SERVER_SETTINGS,
     TAKE_DAMAGE, UPDATE_GAME, UPDATE_INFO,
-    CUSTOM_UPDATE
+    CUSTOM_UPDATE, CHANGE_LOBBY
 ]
 
 # Server Variables
@@ -71,6 +72,9 @@ def base_object_valid(obj):
     if not endpoint_valid(endpoint):
         print(f"Wrong endpoint: {endpoint}")
         return False
+    if endpoint == CONNECT_USER:
+        print("User reconnecting")
+        return False
     return True
 
 def can_add_user(obj):
@@ -82,11 +86,30 @@ def can_add_user(obj):
                 if username not in users:
                     return True
                 elif (make_timestamp() - users[username]["last_timestamp"]) > 3:
-                    user[username]["last_timestamp"] = -1
-                    user[username]["last_user_timestamp"] = -1
+                    users[username]["last_timestamp"] = -1
+                    users[username]["last_user_timestamp"] = -1
                     return True
-                    
     return False
+
+def change_lobby(obj : dict) -> dict:
+    """
+    Remove a player from current lobby, make new lobby ready for player.
+    """
+    username = obj.get("username")
+    old_lobby_name = user_to_lobby[username]
+    new_lobby_name = obj.get("new_lobby", old_lobby_name)
+    old_lobby = lobbies[old_lobby_name]
+    old_lobby.remove_user(username)
+    if make_lobby(new_lobby_name):
+        print("Made new lobby!")
+    else:
+        print("Did not make new lobby")
+    new_lobby = lobbies[new_lobby_name]
+    user_to_lobby[username] = new_lobby_name
+    return {
+        "settings": new_lobby.get_settings(),
+        "timestamp": make_timestamp()
+    }
 
 def current_player_count():
     return str(len(users))
@@ -109,12 +132,22 @@ def make_lobby(lobby_name):
     Makes lobby based on name.
     BASENAME_GAMEMODE_MAP
     """
-    assert lobby_name not in lobbies, f"Invalid: Lobby '{lobby_name}' already exists"
+    #assert lobby_name not in lobbies, f"Invalid: Lobby '{lobby_name}' already exists"
+    if lobby_name in lobbies:
+        return False
     parts = lobby_name.split("_")
     if len(parts) == 1:
-        lobbies[lobby_name] = FreePlay() # TODO set map_name to fp_hubworld
-    if len(parts) == 2:
+        lobbies[lobby_name] = FreePlay(map_name="fp_hub") # TODO set map_name to fp_hubworld
+    elif len(parts) == 2:
         print("TODO, make other lobby types")
+    elif len(parts) == 3:
+        if parts[1] == "fp":
+            lobbies[lobby_name] = FreePlay(map_name=f"{parts[1]}_{parts[2]}")
+            print(f"Made lobby {lobby_name} with map {lobbies[lobby_name].settings['map']}")
+        else:
+            return False
+    else:
+        return False
     return True
 
 def user_pinged(username, new_timestamp) -> False:
@@ -127,7 +160,6 @@ def user_pinged(username, new_timestamp) -> False:
     return True
 
 def update(obj):
-    
     endpoint = obj.get("endpoint")
     username = obj.get("username")
     lobby_name = user_to_lobby[username]
@@ -149,6 +181,9 @@ def update(obj):
     elif endpoint == UPDATE_GAME:
         #print("UPDATE GAME")
         d = lobby.update_game(obj)
+    elif endpoint == CHANGE_LOBBY:
+        print("Changing lobby")
+        d = change_lobby(obj)
     else:
         print("CUSTOM UPDATE")
         d = lobby.custom_update(obj)

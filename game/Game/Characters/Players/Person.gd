@@ -161,7 +161,19 @@ func move_player(delta):
 #		else:
 #			var move_vector = move_and_slide(momentum, Vector3(0, 1, 0))
 #			momentum = move_vector
-		var move_vector = move_and_slide(momentum, Vector3(0, 1, 0))
+		#var move_vector = move_and_slide(momentum, Vector3(0, 1, 0))
+		var snap = -$FNormCast.get_collision_normal()
+		var move_vector = momentum
+		var on_stairs = false
+		if $FNormCast.is_colliding() and momentum.y <= 0:
+			move_vector = move_and_slide_with_snap(momentum, snap, Vector3(0, 1, 0), true, 4, 0.785398)
+			if move_vector.y < 0:
+				move_vector.y = 0
+				pass
+			#on_stairs = true
+			#print(snap)
+		else:
+			move_vector = move_and_slide(momentum, Vector3(0, 1, 0))
 		momentum = move_vector
 		
 		# Ground friction

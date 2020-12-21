@@ -80,7 +80,8 @@ onready var Players = $"GameViewport/GameViewport/Map/Players"
 
 # Game vars
 var username = "DEFAULT_USER"
-var lobby = "DEFAULT"
+var base_lobby = "DEFAULT"
+var lobby = base_lobby
 var singleplayer = false
 var team = 1
 var settings = {
@@ -89,6 +90,7 @@ var settings = {
 	"serv_version": 0
 }
 var serv_version_just_changed = false
+var just_logged_in = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -149,6 +151,7 @@ func toggle_mode_menu(show=true):
 var cur_arena = ""
 func load_arena(arena_name):
 	assert(arena_name in arenas, "ERROR! Invalid arena: " + str(arena_name))
+	print("Setting arena to ", arena_name)
 	cur_arena = arena_name
 	if Arena.has_node("ARENA"):
 		var old_arena = Arena.get_node("ARENA")
@@ -227,14 +230,14 @@ func update_players_s(data):
 		load_arena(new_map)
 		toggle_mode_menu(true)
 		toggle_pause_menu(true)
-		#load_player()
-		#get_current_player().respawn(team)
 	if settings["serv_version"] != data.get("settings", {}).get("serv_version", settings["serv_version"]):
 		serv_version_just_changed = true
 		print("Update serv version!")
 		settings["serv_version"] = data.get("settings", {}).get("serv_version", settings["serv_version"])
 	else:
 		serv_version_just_changed = false
+	
+	just_logged_in = false
 
 var obj_offset = 1
 func make_obj(type, n="", co=false):
@@ -300,3 +303,16 @@ func get_mouse_movement():
 	last_rel = Vector2()
 	return send
 
+func change_lobby(bl, mod):
+	base_lobby = bl
+	lobby = bl
+	if mod != "":
+		lobby += "_" + mod
+	Web.request(
+		"change_lobby",
+		{
+			"username": username,
+			"new_lobby": lobby
+		}
+	)
+	#clear_gameplay()

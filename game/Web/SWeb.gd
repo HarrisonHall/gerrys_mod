@@ -33,6 +33,11 @@ func connect_to_server():
 		client.connect("connection_established", self, "_connected")
 		client.connect("data_received", self, "received_data")
 
+func server_disconnect():
+	if is_connected:
+		client.disconnect_from_host()
+		is_connected = false
+
 func _closed(was_clean = false):
 	is_connected = false
 	if was_clean:
@@ -54,6 +59,8 @@ func request(endpoint, data):
 		return
 	data["endpoint"] = endpoint
 	data["lobby"] = Game.lobby
+	if not ("timestamp" in data):
+		data["timestamp"] = OS.get_ticks_msec()
 	var query = JSON.print(data)
 	client.get_peer(1).put_packet(query.to_utf8())
 

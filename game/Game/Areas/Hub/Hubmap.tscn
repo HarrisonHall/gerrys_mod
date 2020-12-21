@@ -6397,6 +6397,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 12 )
 [node name="HubGates2" parent="floorwall14" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 0, 0 )
 message_text = "Free Play - Monkey Labs - Origins of Bobo "
+lobby_mod = "fp_monkeylabs"
 
 [node name="hublargewalls" parent="floorwall14/HubGates2" instance=ExtResource( 3 )]
 transform = Transform( 3.5, 0, 0, 0, 3.816, 0, 0, 0, 1, 7, 0, -2 )
@@ -6869,7 +6870,7 @@ transform = Transform( 1.75, 0, 0, 0, 3, 0, 0, 0, 2, -6.99146, 26.2278, -1.99998
 [node name="Spawn" type="Spatial" parent="."]
 
 [node name="1" type="Spatial" parent="Spawn"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.6043, 0.343432, -56.204 )
 
 [node name="Roof" type="Spatial" parent="."]
 transform = Transform( -1.35505e-07, 0, -2.8, 0, 1, 0, 3.1, 0, -1.22392e-07, 36, 28.5, -76 )
