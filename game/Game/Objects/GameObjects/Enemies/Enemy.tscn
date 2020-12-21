@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/GameObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Objects/GameObjects/Enemies/Enemy.gd" type="Script" id=2]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Hitbox" parent="." index="0"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="HurtBox" type="Area" parent="." index="1"]
+
+[node name="VisionBox" type="Area" parent="." index="2"]
+collision_mask = 3
+
+[node name="RotationTween" type="Tween" parent="." index="3"]
+
+[node name="Forward" type="Position3D" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )

@@ -26,14 +26,19 @@ script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.3, 0, 0, 0, 4, 0, 0, 0, 0.3, 0, 4, 0 )
+layers = 4
 mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0 )
+layers = 4
 mesh = SubResource( 4 )
 material/0 = null
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.477, 0 )
-omni_range = 12.4831
+light_cull_mask = 4294967291
+shadow_enabled = true
+shadow_color = Color( 0.635294, 0.0901961, 0.0901961, 1 )
+omni_range = 18.8483

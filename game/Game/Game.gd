@@ -272,6 +272,11 @@ func get_current_player():
 		return Players.get_node(username)
 	return null
 
+func get_player(p):
+	if Players.has_node(p):
+		return Players.get_node(p)
+	return null
+
 func clear_gameplay(kill=false):
 	var del_num = 0
 	for child in Arena.get_children():

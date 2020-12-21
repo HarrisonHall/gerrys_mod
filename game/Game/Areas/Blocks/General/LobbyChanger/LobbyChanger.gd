@@ -17,7 +17,13 @@ func _ready():
 
 func _on_Area_body_entered(body):
 	if body == Game.get_current_player():
-		Game.change_lobby(Game.base_lobby, lobby_mod)
+		if Game.singleplayer:
+			Game.clear_gameplay()
+			Game.load_arena(lobby_mod)
+			Game.load_player()
+			Game.get_current_player().respawn(Game.team)
+		else:
+			Game.change_lobby(Game.base_lobby, lobby_mod)
 
 func set_lobby_mod(l):
 	lobby_mod = l

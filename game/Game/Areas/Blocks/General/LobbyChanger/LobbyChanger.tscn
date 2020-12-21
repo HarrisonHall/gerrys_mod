@@ -4,12 +4,12 @@
 
 [sub_resource type="BoxShape" id=1]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 albedo_color = Color( 0.2, 0.054902, 0.333333, 0.678431 )
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 3 )
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
 
 [node name="LobbyChanger" type="Spatial"]
 script = ExtResource( 1 )
@@ -20,6 +20,6 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="DebugMesh" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

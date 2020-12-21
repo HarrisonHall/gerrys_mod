@@ -8,6 +8,7 @@ var gun_obj = "HeldObject"
 
 func _init():
 	._init()
+	gravity = Vector3(0, -10, 0)
 	obj_type = "gun"
 	can_collide = false
 	data = {
@@ -29,7 +30,7 @@ func picked_up():
 	visible = false
 	send_update()
 
-func let_go(pos):
+func let_go(pos, new_mom=Vector3()):
 	print("Let go")
 	pick_up_timer = 2
 	visible = true
@@ -37,6 +38,7 @@ func let_go(pos):
 	data["can_be_picked_up"] = true
 	var trans = get_global_transform()
 	trans.origin = pos
+	mom = new_mom
 	set_global_transform(trans)
 	send_update()
 

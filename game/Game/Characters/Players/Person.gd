@@ -472,7 +472,8 @@ func pick_up_gun(gun):
 
 func drop_gun():
 	is_holding = false
-	$Model/Body.let_go(get_global_transform().origin + Vector3(0, 2, 0))
+	var f_mom = (get_forward() - $Model/Body.get_hand_pos()).normalized() * 10 + momentum*(1/5)
+	$Model/Body.let_go(get_global_transform().origin + Vector3(0, 2, 0), f_mom)
 	data["holding_gun_type"] = ""
 
 func take_damage(d):

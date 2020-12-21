@@ -181,16 +181,22 @@ func soft_let_go():
 		held_object.queue_free()
 		held_object = null
 
-func let_go(pos):
+func let_go(pos, fmom=Vector3()):
 	held_object.queue_free()
 	held_object = null
-	original_gun.let_go(pos)
+	original_gun.let_go(pos, fmom)
 
 func use_held_item(t_inac=Vector3(), m_inac=Vector3()):
 	if held_object:
 		held_object.use(t_inac, m_inac)
 
-
+func get_hand_pos():
+	if len(get_children()) > 0:
+		if get_children()[0].has_node("Armature/Skeleton/AttachHand/Hand"):
+			return get_children()[0].get_node(
+				"Armature/Skeleton/AttachHand/Hand"
+			).get_global_transform().origin
+	return Vector3()
 
 
 
