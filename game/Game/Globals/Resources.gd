@@ -55,6 +55,8 @@ var object_types = {
 	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
 	"bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
 	"BulletBrain": preload("res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.tscn"),
+	"Casing": preload("res://Casing.tscn"),
+	"Flash": preload("res://Game/Objects/Weapons/muzzleflashtest.tscn"),
 	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
 	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn"),
 	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),

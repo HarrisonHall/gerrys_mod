@@ -59,7 +59,7 @@ func _on_ModConfirm_pressed():
 			print("ERROR: No object type")
 			return
 		var type = words[1]
-		if not (type in Game.object_types):
+		if not (type in Resources.object_types):
 			print("ERROR: No object of type ", words[1])
 			return
 		var b = Resources.make_obj(type, "")

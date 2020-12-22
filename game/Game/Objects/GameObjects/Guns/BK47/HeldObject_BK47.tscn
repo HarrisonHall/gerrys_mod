@@ -1,20 +1,72 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game/Objects/GameObjects/Guns/HeldObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/BK47.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.gd" type="Script" id=3]
+[ext_resource path="res://Casing.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shoot"
+length = 0.133333
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1.722, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0666667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_emit_flash"
+}, {
+"args": [  ],
+"method": "_emit_casing"
+} ]
+}
 
 [node name="HeldObject_AK47" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.474708 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.474708 )
 script = ExtResource( 3 )
 new_cooldown = 0.1
+casing = ExtResource( 4 )
 
 [node name="DebugMesh" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0892549, -2.18114 )
 visible = false
 
 [node name="ShootFrom" parent="." index="1"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.512e-08, 0.256824, -8.39235 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.05303e-07, 0.391401, -7.9327 )
 
-[node name="BK47" parent="." index="2" instance=ExtResource( 2 )]
-transform = Transform( -2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, 0, -0.515084, -0.962147 )
+[node name="Pivot" type="Spatial" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.20404 )
+
+[node name="MuzzleFlash" type="Spatial" parent="Pivot" index="0"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.34794, -9.49332 )
+
+[node name="BK47" parent="Pivot" index="1" instance=ExtResource( 2 )]
+transform = Transform( -2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, 0, -0.515084, -3.16618 )
+
+[node name="CasingSpawn" type="Spatial" parent="Pivot" index="2"]
+transform = Transform( 1.73205, -0.99994, 0.0110067, 0.99994, 1.73208, 0.00294906, -0.0110067, 0.00294907, 1.99997, 0.545464, 0.863893, -3.71593 )
+
+[node name="MuzzleSpawn" type="Spatial" parent="Pivot" index="3"]
+transform = Transform( -2, 3.01992e-07, -1.32005e-14, 0, -8.74228e-08, -2, -3.01992e-07, -2, 8.74228e-08, 0, 0.382541, -9.47993 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+process_priority = 10
+anims/shoot = SubResource( 1 )
