@@ -11,6 +11,7 @@ func _ready():
 	collision_layer = 0b01
 	collision_mask = 0b10
 	can_collide = false
+	gravity = Vector3(0, -10, 0)
 	data["follow_name"] = ""
 	data["ai_rate"] = 0
 	data["state"] = State.IDLE
@@ -27,6 +28,7 @@ func _process(delta):
 
 
 var follow_speed = 1
+var MIN_FOLLOW_DISTANCE = 4
 var MAX_FOLLOW_DISTANCE = 25
 var rot_speed = 90  # deg/sec
 var yrot = 0
@@ -41,6 +43,8 @@ func walk_towards(delta):
 	mypos.y = 0
 	newpos.y = 0
 	var walk_dir = (newpos - mypos)
+	if walk_dir.length() < MIN_FOLLOW_DISTANCE:
+		return
 	if walk_dir.length() > MAX_FOLLOW_DISTANCE:
 		follow_obj = null
 		data["state"] = State.IDLE

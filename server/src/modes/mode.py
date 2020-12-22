@@ -1,15 +1,19 @@
 import datetime
 from time import time as make_timestamp
+import random
+
+random.seed()
 
 class Mode:
     DISCONNECT_TIME = 3
     TIME_LIMIT = 60*5
-    
+
     def __init__(self):
         self.settings = {
             "map": "fp_hub",
             "serv_version": 0,
             "mode": "fp",
+            "random_seed": random.randint(0, 100)
         }
         self.start()
 

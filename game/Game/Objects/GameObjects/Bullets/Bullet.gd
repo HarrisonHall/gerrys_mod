@@ -48,3 +48,6 @@ func _on_Hitbox_area_entered(area):
 		#pers.send_data()
 		kill = true
 		send_update()
+	if area.get_name() == "EnemyHurtBox":
+		var enemy = area.get_parent()
+		Events.notify("Damage", "Bullet hit " + enemy.get_name(), 0.5)

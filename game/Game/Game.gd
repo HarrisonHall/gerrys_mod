@@ -40,6 +40,18 @@ var arenas = {
 		"description": "hub world",
 		"gamemode": "fp"
 	},
+	"fp_maze1": {
+		"scene": preload("res://Game/Areas/Arena/maze_maze/maze1.tscn"),
+		"name": "fp_maze1",
+		"description": "maze1",
+		"gamemode": "fp"
+	},
+	"fp_maze2": {
+		"scene": preload("res://Game/Areas/Arena/maze_maze/maze1.tscn"),
+		"name": "fp_maze2",
+		"description": "maze2, fool",
+		"gamemode": "fp"
+	},
 }
 var menu_types = {
 	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn"),
@@ -74,6 +86,7 @@ onready var UI = $"MenuViewport/MenuViewport/UI"
 onready var HUD = $"MenuViewport/MenuViewport/HUD/Hud"
 onready var ModeMenu = $"MenuViewport/MenuViewport/UI/ModeMenu"
 onready var PauseMenu = $"MenuViewport/MenuViewport/UI/PauseMenu"
+onready var NotificationSystem = $"MenuViewport/NotificationViewport/NotificationSystem"
 
 onready var Arena = $"GameViewport/GameViewport/Map/Arena"
 onready var Objects = $"GameViewport/GameViewport/Map/Objects"
@@ -89,7 +102,8 @@ var team = 1
 var settings = {
 	"gamemode": "fp",
 	"time": 0,
-	"serv_version": 0
+	"serv_version": 0,
+	"random_seed": 0
 }
 var serv_version_just_changed = false
 var just_logged_in = false
@@ -163,6 +177,7 @@ func load_arena(arena_name):
 	new_arena.name = "ARENA"
 	Arena.add_child(new_arena)
 	settings["gamemode"] = arenas[arena_name]["gamemode"]
+	Events.alert("Welcome to " + arenas[arena_name]["name"], 4)
 
 func load_player():
 	var new_player = person.instance()

@@ -5,7 +5,7 @@
 [ext_resource path="res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.0734342, 0.081615, 0.103307 )
+extents = Vector3( 0.0734342, 0.081615, 2.74222 )
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -28,7 +28,7 @@ script = ExtResource( 3 )
 disabled = true
 
 [node name="CollisionShape2" type="CollisionShape" parent="Hitbox" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.163264 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.45238 )
 shape = SubResource( 1 )
 
 [node name="DebugMesh" parent="." index="1"]

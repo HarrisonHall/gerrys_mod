@@ -97,7 +97,7 @@ func received_login_data():
 	if "login_status" in data:
 		if data["login_status"] == true:
 			logged_in = true
-			Game.PauseMenu.SessionInfo.add_info("Logged in")
+			Events.notify("Log in", "Successfully logged in", 2)
 			Game.Web.client.disconnect(
 				"data_received", self, "received_login_data"
 			)
@@ -107,7 +107,7 @@ func received_login_data():
 			Game.update_players_s(data)
 			Game.just_logged_in = true
 		else:
-			Game.PauseMenu.SessionInfo.add_info("Unable to log in")
+			Events.notify("Log in", "Unable to log in.", 4)
 			Game.Web.client.disconnect(
 				"data_received", self, "received_login_data"
 			)
