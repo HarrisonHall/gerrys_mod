@@ -1,7 +1,6 @@
 extends Control
 
 
-onready var Game = get_tree().get_current_scene()
 onready var health_label = $HBoxContainer/RightContainer/HealthContainer/HealthLabel
 onready var ammo_label = $HBoxContainer/RightContainer/AmmoContainer/AmmoLabel
 

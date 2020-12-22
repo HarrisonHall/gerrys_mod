@@ -22,7 +22,6 @@ var data = {}
 var kill = false
 var queue_send_update = false
 
-onready var Game = get_tree().get_current_scene()
 
 signal reparented
 

@@ -3,8 +3,6 @@ extends Control
 
 var logged_in = false
 
-onready var Game = get_tree().get_current_scene()
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +39,7 @@ func _on_password_text_entered(new_text):
 
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
-		Game.load_arena("fp_hub")
+		Resources.load_arena("fp_hub")
 		logged_in = true
 		Game.toggle_pause_menu(true)
 		Game.toggle_mode_menu(true)

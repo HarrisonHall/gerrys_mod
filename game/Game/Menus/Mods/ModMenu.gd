@@ -1,16 +1,8 @@
 extends Control
 
 
-onready var Game = get_tree().get_current_scene()
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func clear_text():
 	$ModContainer/ModInput.text = ""
@@ -70,7 +62,7 @@ func _on_ModConfirm_pressed():
 		if not (type in Game.object_types):
 			print("ERROR: No object of type ", words[1])
 			return
-		var b = Game.make_obj(type, "")
+		var b = Resources.make_obj(type, "")
 		if b == null:
 			print("Error creating object ")
 			return

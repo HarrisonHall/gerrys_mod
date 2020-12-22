@@ -17,14 +17,16 @@ _global_script_class_icons={
 
 config/name="Gerry's Mod"
 config/description="A mod that a guy named Gerry had."
-run/main_scene="res://Game/Game.tscn"
+run/main_scene="res://Game/Root.tscn"
 boot_splash/image="res://Game/Menus/Artwork/Gmod.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://Game/Menus/Artwork/GmodIcon.png"
 
 [autoload]
 
-Events="*res://Events.gd"
+Events="*res://Game/Globals/Events.gd"
+Game="*res://Game/Globals/Game.gd"
+Resources="*res://Game/Globals/Resources.gd"
 
 [display]
 

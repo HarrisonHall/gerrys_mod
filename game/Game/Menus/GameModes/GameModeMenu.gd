@@ -1,8 +1,6 @@
 extends Control
 
 
-onready var Game = get_tree().get_current_scene()
-
 var loaded_player = false
 var max_server_delta = 0.17
 var server_delta = max_server_delta
