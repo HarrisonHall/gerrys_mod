@@ -20,6 +20,7 @@ func _process(delta):
 func use(t_inac=Vector3(), m_inac=Vector3()):
 	if cooldown <= 0 and has_ammo():
 		cooldown = new_cooldown
+		$AnimationPlayer.play("shoot")
 		var b = Game.make_obj(bullet_type, "")
 		b.scale *= bscale
 		if b:

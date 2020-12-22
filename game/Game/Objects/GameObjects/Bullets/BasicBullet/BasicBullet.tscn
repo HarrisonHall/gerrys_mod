@@ -35,7 +35,7 @@ shape = SubResource( 1 )
 visible = false
 
 [node name="Cylinder" type="MeshInstance" parent="." index="2"]
-transform = Transform( -0.1, -8.74228e-09, 3.82137e-16, 0, -4.37114e-09, -0.1, 8.74228e-09, -0.1, 4.37114e-09, 0, 0, 0 )
+transform = Transform( -0.08, -1.20797e-08, 5.28019e-16, 0, -3.49691e-09, -0.08, 1.20797e-08, -0.08, 3.49691e-09, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

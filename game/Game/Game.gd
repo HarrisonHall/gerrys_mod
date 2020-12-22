@@ -61,6 +61,8 @@ var object_types = {
 	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
 	"HeldObject_BrainGun": preload("res://Game/Objects/GameObjects/Guns/BrainGun/HeldObject_BrainGun.tscn"),
 	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
+	"Casing": preload("res://Casing.tscn"),
+	"Flash": preload("res://Game/Objects/Weapons/muzzleflashtest.tscn"),
 }
 var person = preload("res://Game/Characters/Players/Person.tscn")
 
