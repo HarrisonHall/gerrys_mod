@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Characters/Players/Cameras/GameCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Areas/Arena/maze_maze/maze1.gd" type="Script" id=4]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="GameCamera" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171976, 1.68255, 7.57142 )
+
+[node name="Spawn" type="Spatial" parent="."]
+
+[node name="1" type="Spatial" parent="Spawn"]

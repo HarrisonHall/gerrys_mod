@@ -40,6 +40,12 @@ var arenas = {
 		"description": "hub world",
 		"gamemode": "fp"
 	},
+	"fp_maze1": {
+		"scene": preload("res://Game/Areas/Arena/maze_maze/maze1.tscn"),
+		"name": "fp_maze1",
+		"description": "maze1",
+		"gamemode": "fp"
+	},
 }
 var menu_types = {
 	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn"),
