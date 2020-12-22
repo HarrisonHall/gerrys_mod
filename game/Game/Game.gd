@@ -46,6 +46,12 @@ var arenas = {
 		"description": "maze1",
 		"gamemode": "fp"
 	},
+	"fp_maze2": {
+		"scene": preload("res://Game/Areas/Arena/maze_maze/maze1.tscn"),
+		"name": "fp_maze2",
+		"description": "maze2, fool",
+		"gamemode": "fp"
+	},
 }
 var menu_types = {
 	"fp": preload("res://Game/Menus/GameModes/fp/FreePlayMenu.tscn"),
@@ -94,7 +100,8 @@ var team = 1
 var settings = {
 	"gamemode": "fp",
 	"time": 0,
-	"serv_version": 0
+	"serv_version": 0,
+	"random_seed": 0
 }
 var serv_version_just_changed = false
 var just_logged_in = false

@@ -11,6 +11,7 @@ func _ready():
 	collision_layer = 0b01
 	collision_mask = 0b10
 	can_collide = false
+	gravity = Vector3(0, -10, 0)
 	data["follow_name"] = ""
 	data["ai_rate"] = 0
 	data["state"] = State.IDLE
