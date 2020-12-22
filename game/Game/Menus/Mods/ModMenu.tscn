@@ -4,7 +4,6 @@
 [ext_resource path="res://Game/Menus/MenuFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Game/Menus/Theme/BaseTheme.tres" type="Theme" id=3]
 
-
 [node name="ModMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,8 +39,8 @@ __meta__ = {
 }
 
 [node name="ModInfo" type="RichTextLabel" parent="ModContainer"]
-margin_right = 940.0
-margin_bottom = 160.0
+margin_right = 1900.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
@@ -52,18 +51,18 @@ __meta__ = {
 }
 
 [node name="ModInput" type="LineEdit" parent="ModContainer"]
-margin_top = 180.0
-margin_right = 940.0
-margin_bottom = 340.0
+margin_top = 360.0
+margin_right = 1900.0
+margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 placeholder_text = "Mod Command"
 
 [node name="ModConfirm" type="Button" parent="ModContainer"]
-margin_top = 360.0
-margin_right = 940.0
-margin_bottom = 520.0
+margin_top = 720.0
+margin_right = 1900.0
+margin_bottom = 1060.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )

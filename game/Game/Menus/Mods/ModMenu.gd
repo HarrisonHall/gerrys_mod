@@ -17,6 +17,7 @@ func clear_text():
 
 func add_info(info):
 	$ModContainer/ModInfo.text = info
+	Events.notify("Mod Menu", info, 4)
 
 func _on_ModInput_text_entered(new_text):
 	_on_ModConfirm_pressed()

@@ -124,6 +124,7 @@ transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -0.833
 
 [node name="GameCamera" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 0.986257, 0.16522, 0, -0.16522, 0.986257, 0, 29.1658, 65.8711 )
+far = 600.0
 
 [node name="floorwall" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 88 )

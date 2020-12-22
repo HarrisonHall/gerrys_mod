@@ -72,6 +72,7 @@ onready var UI = $"MenuViewport/MenuViewport/UI"
 onready var HUD = $"MenuViewport/MenuViewport/HUD/Hud"
 onready var ModeMenu = $"MenuViewport/MenuViewport/UI/ModeMenu"
 onready var PauseMenu = $"MenuViewport/MenuViewport/UI/PauseMenu"
+onready var NotificationSystem = $"MenuViewport/NotificationViewport/NotificationSystem"
 
 onready var Arena = $"GameViewport/GameViewport/Map/Arena"
 onready var Objects = $"GameViewport/GameViewport/Map/Objects"
@@ -161,6 +162,7 @@ func load_arena(arena_name):
 	new_arena.name = "ARENA"
 	Arena.add_child(new_arena)
 	settings["gamemode"] = arenas[arena_name]["gamemode"]
+	Events.alert("Welcome to " + arenas[arena_name]["name"], 4)
 
 func load_player():
 	var new_player = person.instance()

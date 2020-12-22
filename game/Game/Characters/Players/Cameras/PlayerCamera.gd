@@ -3,7 +3,7 @@ extends Camera
 
 onready var Game = get_tree().get_root()
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	reset_cross()
 	Events.connect("viewport_changed", self, "reset_cross")
