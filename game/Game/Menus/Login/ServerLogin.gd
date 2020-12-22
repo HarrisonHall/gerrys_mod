@@ -41,7 +41,7 @@ func _on_password_text_entered(new_text):
 
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
-		Game.load_arena("fp_maze1")
+		Game.load_arena("fp_hub")
 		logged_in = true
 		Game.toggle_pause_menu(true)
 		Game.toggle_mode_menu(true)

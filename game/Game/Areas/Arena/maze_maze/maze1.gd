@@ -19,7 +19,7 @@ onready var Game = get_tree().get_current_scene()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var rng = RandomNumberGenerator.new()
-	rng.randomize(Game.settings["serv_version"] )
+	rng.set_seed(Game.settings["serv_version"] )
 	
 	# generate dungeon here
 	# 0 or NULL for walls
