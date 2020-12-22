@@ -11,13 +11,13 @@ var arenas = {
 	},
 	"fp_officemap": {
 		"scene": preload("res://Game/Arena/Arenas/Office/dg_officemap.tscn"),
-		"name": "dg_officemap",
+		"name": "The Office",
 		"description": "cs_office, am I right?",
 		"gamemode": "fp"
 	},
 	"fp_monkeylabs": {
 		"scene": preload("res://Game/Arena/Arenas/MonkeyLabs/dg_monkeylabs.tscn"),
-		"name": "dg_monkeylabs",
+		"name": "Monkey Labs",
 		"description": "The real Monkey Labs...",
 		"gamemode": "fp"
 	},
@@ -29,19 +29,19 @@ var arenas = {
 	},
 	"fp_hub": {
 		"scene": preload("res://Game/Arena/Arenas/Hub/Hubmap.tscn"),
-		"name": "fp_hub",
+		"name": "The Hub",
 		"description": "hub world",
 		"gamemode": "fp"
 	},
 	"fp_maze1": {
 		"scene": preload("res://Game/Arena/Arenas/Maze1/maze1.tscn"),
-		"name": "fp_maze1",
+		"name": "Maze1",
 		"description": "maze1",
 		"gamemode": "fp"
 	},
 	"fp_maze2": {
 		"scene": preload("res://Game/Arena/Arenas/Maze1/maze1.tscn"),
-		"name": "fp_maze2",
+		"name": "Maze2",
 		"description": "maze2, fool",
 		"gamemode": "fp"
 	},

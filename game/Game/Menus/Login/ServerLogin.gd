@@ -66,7 +66,7 @@ func _on_LogoutButton_pressed():
 		old_arena.name = "OLD_ARENA"
 		old_arena.queue_free()
 	Game.clear_gameplay()
-	var menu_background = Game.menu_background_pck.instance()
+	var menu_background = Resources.menu_background_pck.instance()
 	menu_background.name = "ARENA"
 	Game.Arena.add_child(menu_background)
 	menu_background.name = "ARENA"
@@ -111,3 +111,6 @@ func received_login_data():
 			)
 			logged_in = false
 			Game.Web.server_disconnect()
+
+func _on_ReturnButton_pressed():
+	Game.change_lobby(Game.base_lobby, "")

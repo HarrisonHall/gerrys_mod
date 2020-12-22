@@ -87,7 +87,7 @@ func _on_ModConfirm_pressed():
 		if len(words) == 1:
 			print("ERROR: No map name")
 			return
-		if not (words[1] in Game.arenas):
+		if not (words[1] in Resources.arenas):
 			print("ERROR: Invalid arena")
 			return
 		if Game.singleplayer:

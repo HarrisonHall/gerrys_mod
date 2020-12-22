@@ -48,13 +48,6 @@ func _input(event):
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause_menu()
-	if Input.is_action_just_pressed("ui_clear"):
-		return
-		show_hud = not show_hud
-		if show_hud and menu_up and not UI.visible:
-			UI.visible = true
-		if not show_hud and menu_up and UI.visible:
-			UI.visible = false
 
 # Change lobby 
 func change_lobby(bl, mod):

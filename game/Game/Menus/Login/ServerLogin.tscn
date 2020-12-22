@@ -88,10 +88,22 @@ margin_right = -20.0
 margin_bottom = -20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnButton" type="Button" parent="Logout"]
+margin_right = 1880.0
+margin_bottom = 510.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Return to Hub"
 
 [node name="LogoutButton" type="Button" parent="Logout"]
-margin_right = 920.0
-margin_bottom = 500.0
+margin_top = 530.0
+margin_right = 1880.0
+margin_bottom = 1040.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
@@ -100,4 +112,5 @@ text = "Logout"
 [connection signal="text_entered" from="Login/username" to="." method="_on_username_text_entered"]
 [connection signal="text_entered" from="Login/password" to="." method="_on_password_text_entered"]
 [connection signal="pressed" from="Login/LoginButton" to="." method="_on_LoginButton_pressed"]
+[connection signal="pressed" from="Logout/ReturnButton" to="." method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="Logout/LogoutButton" to="." method="_on_LogoutButton_pressed"]
