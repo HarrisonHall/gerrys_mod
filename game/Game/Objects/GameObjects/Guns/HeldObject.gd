@@ -1,4 +1,5 @@
 extends Spatial
+class_name HeldObject
 
 
 export var cooldown = 0
@@ -19,7 +20,10 @@ func _process(delta):
 func use(t_inac=Vector3(), m_inac=Vector3()):
 	if cooldown <= 0 and has_ammo():
 		cooldown = new_cooldown
-		$AnimationPlayer.play("shoot")
+		if has_node("AnimationPlayer"):
+			var AP = get_node("AnimationPlayer")
+			if AP.has_animation("shoot"):
+				AP.play("shoot")
 		var b = Resources.make_obj(bullet_type, "")
 		b.scale *= bscale
 		if b:

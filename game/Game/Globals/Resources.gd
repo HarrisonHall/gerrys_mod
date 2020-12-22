@@ -52,12 +52,12 @@ var menu_types = {
 }
 var object_types = {
 	"BasicBullet": preload("res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.tscn"),
-	"barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
-	"bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
+	"Barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
+	"Bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
 	"BulletBrain": preload("res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.tscn"),
-	"Casing": preload("res://Casing.tscn"),
+	"Casing": preload("res://Game/Objects/GameObjects/Guns/BK47/Casing/Casing.tscn"),
 	"Flash": preload("res://Game/Objects/Weapons/muzzleflashtest.tscn"),
-	"gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
+	"Gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
 	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn"),
 	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),
 	"Gun_BrainGun": preload("res://Game/Objects/GameObjects/Guns/BrainGun/Gun_BrainGun.tscn"),
@@ -108,6 +108,7 @@ func make_obj(type, n="", co=false):
 	Game.Objects.add_child(obj_obj)
 	obj_obj.set_global_transform(otrans)
 	obj_obj.set_name(str(obj_name))
+	print("Made obj: ", type)
 	obj_obj.created_online = co
 	if obj_obj.get_name() != obj_name:
 		print(

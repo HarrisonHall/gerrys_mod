@@ -1,4 +1,5 @@
 extends "res://Game/Objects/GameObjects/GameObject.gd"
+class_name Casing
 
 func _init():
 	._init()

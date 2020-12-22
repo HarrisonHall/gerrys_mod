@@ -3,7 +3,8 @@
 [ext_resource path="res://Game/Objects/GameObjects/Guns/HeldObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/BK47.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.gd" type="Script" id=3]
-[ext_resource path="res://Casing.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/Objects/GameObjects/Guns/BK47/Casing/Casing.tscn" type="PackedScene" id=4]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "shoot"

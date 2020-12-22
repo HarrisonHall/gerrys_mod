@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/Guns/HeldObject.gd"
+extends HeldObject
+class_name HeldObject_HandGun
 
 
 # Declare member variables here. Examples:

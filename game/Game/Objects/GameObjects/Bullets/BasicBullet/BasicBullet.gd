@@ -1,4 +1,5 @@
 extends "res://Game/Objects/GameObjects/Bullets/Bullet.gd"
+class_name BasicBullet
 
 
 func _init():

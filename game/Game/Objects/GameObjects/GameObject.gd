@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name GameObject
 
 var time_alive = 0
 var pos = Vector3()
