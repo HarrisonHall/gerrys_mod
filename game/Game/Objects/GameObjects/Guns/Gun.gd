@@ -9,7 +9,7 @@ var gun_obj = "HeldObject"
 func _init():
 	._init()
 	gravity = Vector3(0, -10, 0)
-	obj_type = "gun"
+	obj_type = "Gun"
 	can_collide = false
 	data = {
 		"can_be_picked_up": true,

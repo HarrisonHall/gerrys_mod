@@ -6,7 +6,10 @@ enum State {IDLE, FOLLOW}
 
 var AI_RESET_RATE = 1
 
-# Called when the node enters the scene tree for the first time.
+func _init():
+	._init()
+	obj_type = "Enemy"
+
 func _ready():
 	._ready()
 	collision_layer = 0b01

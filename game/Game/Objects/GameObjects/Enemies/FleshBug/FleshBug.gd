@@ -1,6 +1,9 @@
 extends Enemy
 class_name FleshBug
 
+func _init():
+	._init()
+	obj_type = "FleshBug"
 
 func _ready():
 	._ready()
