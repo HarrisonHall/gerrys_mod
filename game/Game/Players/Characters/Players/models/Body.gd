@@ -162,7 +162,7 @@ func soft_hold_object(gname):
 	if held_object:
 		held_object.queue_free()
 	print(gun_name)
-	held_object = Game.object_types[gun_name].instance()
+	held_object = Resources.object_types[gun_name].instance()
 	var hand = get_children()[0].get_node("Armature/Skeleton/AttachHand/Hand")
 	if old_held != null:
 		if old_held in hand.get_children():

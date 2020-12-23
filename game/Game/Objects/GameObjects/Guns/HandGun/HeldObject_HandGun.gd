@@ -3,9 +3,7 @@ class_name HeldObject_HandGun
 
 export (PackedScene) var casing = null
 export var initial_velocity = 10.0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 
 
 # Called when the node enters the scene tree for the first time.
