@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name GameObject
 
 var time_alive = 0
 var pos = Vector3()
@@ -22,7 +23,6 @@ var data = {}
 var kill = false
 var queue_send_update = false
 
-onready var Game = get_tree().get_current_scene()
 
 signal reparented
 

@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/GameObject.gd"
+extends GameObject
+class_name MuzzleFlash
 
 func _init():
 	._init()

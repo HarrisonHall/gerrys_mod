@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/Guns/HeldObject.gd"
+extends HeldObject
+class_name HeldObject_HandGun
 
 export (PackedScene) var casing = null
 export var initial_velocity = 10.0

@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/Guns/HeldObject.gd"
+extends HeldObject
+class_name HeldObject_BK47
 
 export (PackedScene) var casing = null
 export var initial_velocity = 10.0
@@ -19,12 +20,12 @@ func _init():
 #func _process(delta):
 #	pass
 func _emit_casing():
-	var new_casing = Game.make_obj("Casing")
+	var new_casing = Resources.make_obj("Casing")
 	new_casing.transform = $Pivot/CasingSpawn.global_transform
 	new_casing.mom = new_casing.transform.basis.z * initial_velocity
 	new_casing.send_update()
 	
 func _emit_flash():
-	var new_flash = Game.make_obj("Flash")
+	var new_flash = Resources.make_obj("Flash")
 	new_flash.transform = $Pivot/MuzzleSpawn.global_transform
 	new_flash.send_update()

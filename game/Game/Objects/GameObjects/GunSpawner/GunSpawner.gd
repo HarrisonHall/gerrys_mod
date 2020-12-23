@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/GameObject.gd"
+extends GameObject
+class_name GunSpawner
 
 
 onready var turner = $Base/Turner
@@ -34,7 +35,7 @@ func _on_Hitbox_body_entered(player):
 	if player == Game.get_current_player():
 		print("Give gun!")
 		var gun_name = possible_guns[randi()%len(possible_guns)]
-		var gun = Game.make_obj(gun_name)
+		var gun = Resources.make_obj(gun_name)
 		if gun and not player.is_holding:
 			player.pick_up_gun(gun)
 			gun.picked_up()

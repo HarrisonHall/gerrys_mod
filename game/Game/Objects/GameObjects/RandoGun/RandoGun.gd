@@ -32,7 +32,7 @@ func reseed():
 	rng.set_seed(r_seed)
 	#seeded = true
 	var new_gun_type = possible_guns[rng.randi()%len(possible_guns)]
-	var new_gun = Game.make_obj(new_gun_type, get_name() + "_" + str(rng.randi() % 1000))
+	var new_gun = Resources.make_obj(new_gun_type, get_name() + "_" + str(rng.randi() % 1000))
 	if new_gun:
 		new_gun.set_global_transform($Spawn.get_global_transform())
 

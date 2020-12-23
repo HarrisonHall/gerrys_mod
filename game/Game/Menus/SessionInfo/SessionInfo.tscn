@@ -40,11 +40,7 @@ size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
 text = "Gerry's Mod
 ==========
-Harrison Hall &
-George Antash
-==========
-Biraj Dahal
-Kaleb Chestnut"
+A Trackl Production"
 __meta__ = {
 "_edit_use_anchors_": false
 }

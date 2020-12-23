@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/Bullets/Bullet.gd"
+extends Bullet
+class_name BulletBrain
 
 
 func _init():

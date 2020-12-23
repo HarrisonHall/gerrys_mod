@@ -1,4 +1,5 @@
-extends "res://Game/Objects/GameObjects/GameObject.gd"
+extends GameObject
+class_name Bullet
 
 var watching = false
 var damage = 1

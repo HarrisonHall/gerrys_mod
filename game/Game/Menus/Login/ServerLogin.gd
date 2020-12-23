@@ -3,8 +3,6 @@ extends Control
 
 var logged_in = false
 
-onready var Game = get_tree().get_current_scene()
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +39,7 @@ func _on_password_text_entered(new_text):
 
 func _on_LoginButton_pressed():
 	if Game.singleplayer:
-		Game.load_arena("fp_hub")
+		Resources.load_arena("fp_hub")
 		logged_in = true
 		Game.toggle_pause_menu(true)
 		Game.toggle_mode_menu(true)
@@ -68,7 +66,7 @@ func _on_LogoutButton_pressed():
 		old_arena.name = "OLD_ARENA"
 		old_arena.queue_free()
 	Game.clear_gameplay()
-	var menu_background = Game.menu_background_pck.instance()
+	var menu_background = Resources.menu_background_pck.instance()
 	menu_background.name = "ARENA"
 	Game.Arena.add_child(menu_background)
 	menu_background.name = "ARENA"
@@ -113,3 +111,6 @@ func received_login_data():
 			)
 			logged_in = false
 			Game.Web.server_disconnect()
+
+func _on_ReturnButton_pressed():
+	Game.change_lobby(Game.base_lobby, "")

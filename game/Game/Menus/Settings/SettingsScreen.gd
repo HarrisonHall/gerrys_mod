@@ -1,8 +1,6 @@
 extends Control
 
 
-onready var Game = get_tree().get_current_scene()
-
 var set_graphics = false
 var shader_a = 1
 

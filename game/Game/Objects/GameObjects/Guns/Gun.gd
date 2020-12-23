@@ -1,5 +1,5 @@
-extends "res://Game/Objects/GameObjects/GameObject.gd"
-
+extends GameObject
+class_name Gun
 
 var pick_up_timer = 0
 var can_be_picked_up = true

@@ -8,23 +8,150 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "GameObject",
+"class": "Barrell",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Barrell/Barrell.gd"
+}, {
+"base": "GameObject",
+"class": "BasicBullet",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.gd"
+}, {
+"base": "GameObject",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Bullets/Bullet.gd"
+}, {
+"base": "Bullet",
+"class": "BulletBrain",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.gd"
+}, {
+"base": "KinematicBody",
+"class": "Casing",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/BK47/Casing/Casing.gd"
+}, {
+"base": "GameObject",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Enemies/Enemy.gd"
+}, {
+"base": "Enemy",
+"class": "FleshBug",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Enemies/FleshBug/FleshBug.gd"
+}, {
+"base": "KinematicBody",
+"class": "GameObject",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/GameObject.gd"
+}, {
+"base": "GameObject",
+"class": "Gun",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/Gun.gd"
+}, {
+"base": "GameObject",
+"class": "GunSpawner",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/GunSpawner/GunSpawner.gd"
+}, {
+"base": "Gun",
+"class": "Gun_AK47",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.gd"
+}, {
+"base": "Gun",
+"class": "Gun_BK47",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/BK47/Gun_BK47.gd"
+}, {
+"base": "Gun",
+"class": "Gun_BrainGun",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/BrainGun/Gun_BrainGun.gd"
+}, {
+"base": "Gun",
+"class": "Gun_HandGun",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.gd"
+}, {
+"base": "Spatial",
+"class": "HeldObject",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/HeldObject.gd"
+}, {
+"base": "HeldObject",
+"class": "HeldObject_AK47",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.gd"
+}, {
+"base": "HeldObject",
+"class": "HeldObject_BK47",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.gd"
+}, {
+"base": "HeldObject",
+"class": "HeldObject_BrainGun",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/BrainGun/HeldObject_BrainGun.gd"
+}, {
+"base": "HeldObject",
+"class": "HeldObject_HandGun",
+"language": "GDScript",
+"path": "res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.gd"
+}, {
+"base": "GameObject",
+"class": "MuzzleFlash",
+"language": "GDScript",
+"path": "res://Game/Objects/Weapons/muzzleflashtest.gd"
+}, {
+"base": "KinematicBody",
+"class": "Person",
+"language": "GDScript",
+"path": "res://Game/Players/Characters/Players/Person.gd"
+} ]
 _global_script_class_icons={
-
+"Barrell": "",
+"BasicBullet": "",
+"Bullet": "",
+"BulletBrain": "",
+"Casing": "",
+"Enemy": "",
+"FleshBug": "",
+"GameObject": "",
+"Gun": "",
+"GunSpawner": "",
+"Gun_AK47": "",
+"Gun_BK47": "",
+"Gun_BrainGun": "",
+"Gun_HandGun": "",
+"HeldObject": "",
+"HeldObject_AK47": "",
+"HeldObject_BK47": "",
+"HeldObject_BrainGun": "",
+"HeldObject_HandGun": "",
+"MuzzleFlash": "",
+"Person": ""
 }
 
 [application]
 
 config/name="Gerry's Mod"
 config/description="A mod that a guy named Gerry had."
-run/main_scene="res://Game/Game.tscn"
+run/main_scene="res://Game/Root.tscn"
 boot_splash/image="res://Game/Menus/Artwork/Gmod.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://Game/Menus/Artwork/GmodIcon.png"
 
 [autoload]
 
-Events="*res://Events.gd"
+Events="*res://Game/Globals/Events.gd"
+Game="*res://Game/Globals/Game.gd"
+Resources="*res://Game/Globals/Resources.gd"
 
 [display]
 
