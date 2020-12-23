@@ -54,7 +54,7 @@ visible = false
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.05303e-07, 0.391401, -7.9327 )
 
 [node name="Pivot" type="Spatial" parent="." index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.20404 )
+transform = Transform( 1, 0, 0, 0, 0.999886, -0.0150266, 0, 0.0150266, 0.999886, 0, 0, 2.20404 )
 
 [node name="MuzzleFlash" type="Spatial" parent="Pivot" index="0"]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.34794, -9.49332 )
