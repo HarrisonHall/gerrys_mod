@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/EnemySpawner/EnemySpawner.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+resource_local_to_scene = true
+extents = Vector3( 1, 0.1, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.796078, 0.572549, 0.219608, 0.533333 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 2, 0.1, 2 )
+
+[node name="EnemySpawner" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="Position" type="Position3D" parent="."]
+
+[node name="SpawnArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="SpawnArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+shape = SubResource( 1 )
+
+[node name="DebugMesh" type="MeshInstance" parent="SpawnArea/CollisionShape"]
+transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null

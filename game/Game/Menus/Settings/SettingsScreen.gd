@@ -26,6 +26,12 @@ func _process(delta):
 			
 		if Game.GameViewport.get_parent().material.shader == randomrandom_shader:
 			Game.GameViewport.get_parent().material.set_shader_param("seed", randf())
+	
+	if Input.is_action_just_pressed("ui_debugmode"):
+		_on_ScreenSize_item_selected(0)
+		_on_VisualOptions_item_selected(4)
+		Events.notify("Debug", "Debug Mode Entered", 4)
+		
 
 func _on_MSSlider_value_changed(value):
 	var player = Game.get_current_player()
@@ -51,7 +57,7 @@ func _on_serverbutton_item_selected(index):
 
 func _on_VisualOptions_item_selected(index):
 	var view = Game.GameViewport
-	var new_size = Vector2()
+	var new_size = Vector2.ZERO
 	if index == 0:
 		new_size = Vector2(640, 480)
 		view.set_msaa(0)
@@ -67,11 +73,7 @@ func _on_VisualOptions_item_selected(index):
 	if index == 4:
 		new_size = Vector2(1920, 1080)
 		view.set_msaa(4)
-	print("is same?: ",get_tree().get_root() == get_viewport())
-	if new_size != Vector2():
-		print("Emitting change!")
-		#view.set_size_override_stretch(true)
-		#view.set_size_override(true, new_size)
+	if new_size != Vector2.ZERO:
 		view.set_size(new_size)
 		Events.emit_signal("viewport_changed")
 

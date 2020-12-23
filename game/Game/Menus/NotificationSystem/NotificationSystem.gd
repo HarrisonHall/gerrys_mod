@@ -20,7 +20,6 @@ func _process(delta):
 		alert_label.text = ""
 
 func notify(title, message, time):
-	print("Got notification")
 	var nn = NewNotification.instance()
 	nn.set_title(title)
 	nn.set_message(message)

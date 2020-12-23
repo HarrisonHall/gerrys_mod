@@ -1,7 +1,7 @@
-extends "res://Game/Objects/GameObjects/GameObject.gd"
+extends GameObject
+class_name RandoGun
 
 
-var turn_speed = PI
 var max_ttl = 8
 var r_seed = 0
 var rng = RandomNumberGenerator.new()
@@ -28,7 +28,6 @@ func reseed():
 	var r = rng.randi() % 10000
 	spb.data_array = (str(r) + get_name()).sha1_buffer()
 	r_seed = spb.get_64()
-	print("Seeded: ", r_seed)
 	rng.set_seed(r_seed)
 	#seeded = true
 	var new_gun_type = possible_guns[rng.randi()%len(possible_guns)]

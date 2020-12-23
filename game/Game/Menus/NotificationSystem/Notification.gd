@@ -15,7 +15,6 @@ var time_alive = 0
 func _init():
 	visible = true
 	rect_scale = Vector2(1, 0)
-	print(rect_scale, rect_size)
 	modulate = Color(1, 1, 1, 0)
 	rect_min_size = Vector2(0, 0)
 
@@ -37,12 +36,6 @@ func _ready():
 
 func _process(delta):
 	time_alive += delta
-	#visible = true
-#	if $SizeTween.is_active() and not visible and time_alive > .05:
-#		visible = true
-#	else:
-#		print($SizeTween.get_runtime())
-	print(rect_scale)
 	if state == State.GROWING and not $SizeTween.is_active():
 		state = State.RESTING
 	if state == State.RESTING:

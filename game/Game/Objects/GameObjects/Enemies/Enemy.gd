@@ -16,6 +16,7 @@ func _ready():
 	data["follow_name"] = ""
 	data["ai_rate"] = 0
 	data["state"] = State.IDLE
+	data["health"] = 3
 
 
 func _process(delta):
@@ -26,6 +27,10 @@ func _process(delta):
 		queue_walk()
 		walk_towards(delta)
 	data["ai_rate"] -= delta
+	if data["health"] <= 0:
+		kill = true
+		send_update()
+		queue_free()
 
 
 var follow_speed = 1

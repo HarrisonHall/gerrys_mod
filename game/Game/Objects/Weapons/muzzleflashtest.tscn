@@ -16,7 +16,7 @@ surfaces/0 = {
 "vertex_count": 434
 }
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 albedo_color = Color( 0.945098, 1, 0, 0.117647 )
 emission_enabled = true
@@ -25,8 +25,7 @@ emission_energy = 3.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="Animation" id=2]
-resource_name = "flash"
+[sub_resource type="Animation" id=3]
 length = 0.333333
 loop = true
 step = 0.05
@@ -53,9 +52,9 @@ autostart = true
 [node name="Sphere" type="MeshInstance" parent="muzzleflashtest"]
 transform = Transform( 0.157856, 0, 0, 0, 0.157856, 0, 0, 0, 0.157856, 0, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 3 )
+material/0 = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="muzzleflashtest"]
 autoplay = "flash"
-anims/flash = SubResource( 2 )
+anims/flash = SubResource( 3 )
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

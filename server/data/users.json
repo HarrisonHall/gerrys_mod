@@ -40,5 +40,11 @@
 	},
 	"john": {
 		"password": "jack"
+	},
+	"ben2": {
+		"password": "lina2"
+	},
+	"tyler": {
+		"password": "relyt"
 	}
 }

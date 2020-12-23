@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game/Arena/Arenas/Office/Office/officewall1.material" type="Material" id=1]
-
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -18,13 +17,19 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.192157, 0.345098, 0.0431373, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
 
 [node name="mazewall" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="Cube" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 3.5, 0, 0, 0, 2, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, 3.5, 0, 0, 0, 2, 0, 3.5, 0 )
+visible = false
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -33,4 +38,9 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Cube/StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 3.5, 0, 0, 0, 2, 0, 3.5, 0 )
+mesh = SubResource( 4 )
+material/0 = null

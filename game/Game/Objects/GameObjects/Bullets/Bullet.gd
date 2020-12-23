@@ -51,4 +51,5 @@ func _on_Hitbox_area_entered(area):
 		send_update()
 	if area.get_name() == "EnemyHurtBox":
 		var enemy = area.get_parent()
+		enemy.data["health"] -= damage
 		Events.notify("Damage", "Bullet hit " + enemy.get_name(), 0.5)

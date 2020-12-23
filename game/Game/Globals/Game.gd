@@ -83,6 +83,13 @@ func clear_gameplay(kill=false):
 		child.queue_free()
 		del_num += 1
 
+func get_arena():
+	if Arena.has_node("ARENA"):
+		return Arena.get_node("ARENA")
+	else:
+		print("Arena children: ", Arena.get_children())
+	return null
+
 # Get node of current player
 func get_current_player():
 	if Players.has_node(username):
@@ -99,6 +106,9 @@ func get_player(p):
 	if Players.has_node(p):
 		return Players.get_node(p)
 	return null
+
+func get_player_count():
+	return len(Players.get_children())
 
 var show_mode_menu = false
 func toggle_mode_menu(show=true):

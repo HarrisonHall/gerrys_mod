@@ -56,7 +56,9 @@ var object_types = {
 	"Bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
 	"BulletBrain": preload("res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.tscn"),
 	"Casing": preload("res://Game/Objects/GameObjects/Guns/BK47/Casing/Casing.tscn"),
+	"EnemySpawner": preload("res://Game/Objects/GameObjects/EnemySpawner/EnemySpawner.tscn"),
 	"Flash": preload("res://Game/Objects/Weapons/muzzleflashtest.tscn"),
+	"FleshBug": preload("res://Game/Objects/GameObjects/Enemies/FleshBug/FleshBug.tscn"),
 	"Gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
 	"Gun_HandGun": preload("res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn"),
 	"Gun_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn"),
@@ -68,13 +70,14 @@ var object_types = {
 	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
 	"HeldObject_BrainGun": preload("res://Game/Objects/GameObjects/Guns/BrainGun/HeldObject_BrainGun.tscn"),
 	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
+	"MazePlayerSpawner": preload("res://Game/Objects/GameObjects/MazeSpawners/MazePlayerSpawner/MazePlayerSpawner.tscn"),
 }
 var person = preload("res://Game/Players/Characters/Players/Person.tscn")
 
 
 func load_arena(arena_name):
 	assert(arena_name in arenas, "ERROR! Invalid arena: " + str(arena_name))
-	print("Setting arena to ", arena_name)
+	Events.notify("Arena Change", "Set arena to "+arena_name, 2)
 	Game.cur_arena = arena_name
 	if Game.Arena.has_node("ARENA"):
 		var old_arena = Game.Arena.get_node("ARENA")
@@ -97,9 +100,11 @@ func make_obj(type, n="", co=false):
 	if n == "":
 		n = Game.cur_arena + "_" + Game.username + "_thing_" + str(1+obj_offset)
 	if not (type in object_types):
+		print("Invalid object type")
 		return null
 	var obj_name = n.replace("@", "")
 	if Game.Objects.has_node(obj_name):
+		print("Object already created")
 		return Game.Objects.get_node(obj_name)
 	var obj_obj = object_types[type].instance()
 	var otrans = Transform()
@@ -108,7 +113,6 @@ func make_obj(type, n="", co=false):
 	Game.Objects.add_child(obj_obj)
 	obj_obj.set_global_transform(otrans)
 	obj_obj.set_name(str(obj_name))
-	print("Made obj: ", type)
 	obj_obj.created_online = co
 	if obj_obj.get_name() != obj_name:
 		print(
