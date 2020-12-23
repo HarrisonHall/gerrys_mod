@@ -1,12 +1,10 @@
-extends Spatial
+extends GameObject
 class_name MazePlayerSpawner
 
 
 export var width = 2
 export var height = 2
 export var debug = true
-
-var created_online = false  # Doesn't matter
 
 var rng = RandomNumberGenerator.new()
 var r_seed = 0
@@ -15,7 +13,10 @@ onready var DebugMesh = $SpawnArea/CollisionShape/DebugMesh
 onready var SpawnArea = $SpawnArea
 
 func _init():
-	pass
+	._init()
+	obj_type = "MazePlayerSpawner"
+	data = {}
+	gravity = Vector3(0, 0, 0)
 
 func _ready():
 	if debug:
@@ -24,6 +25,9 @@ func _ready():
 		DebugMesh.visible = true
 	SpawnArea.scale = Vector3(width, 1, height)
 	rng.randomize()
+
+func send_update():
+	return
 
 func get_random_position():
 	var center = get_center_position()

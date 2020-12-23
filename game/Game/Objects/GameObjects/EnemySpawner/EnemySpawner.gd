@@ -50,7 +50,8 @@ func reseed():
 	var max_enemies = (rng.randi() % 3)  # TODO? will offset 
 	for i in range(max_enemies):
 		var enemy = Resources.make_obj(
-			enemy_types[rng.randi() % len(enemy_types)]
+			enemy_types[rng.randi() % len(enemy_types)],
+			get_name() + "_" + str(rng.randi() % 1000)
 		)
 		if enemy:
 			var trans = enemy.get_global_transform()

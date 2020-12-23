@@ -80,7 +80,10 @@ func _ready():
 		# TODO: make 1 room a player spawner, 1 room end
 		# TODO: gauruntee that the maze is solvable
 		if dungeon_spawns[z] == SpawnType.ENEMY:
-			var new_spawner = Resources.make_obj("EnemySpawner")
+			var new_spawner = Resources.make_obj(
+				"EnemySpawner",
+				get_name() + "_" + str(z)
+			)
 			if new_spawner:
 				new_spawner.set_width_height(room["l"]*2 - 3, room["h"]*2 - 3)
 				var trans = new_spawner.get_global_transform()

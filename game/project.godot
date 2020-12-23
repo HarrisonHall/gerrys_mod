@@ -109,7 +109,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game/Objects/GameObjects/Guns/HandGun/HeldObject_HandGun.gd"
 }, {
-"base": "Spatial",
+"base": "GameObject",
 "class": "MazePlayerSpawner",
 "language": "GDScript",
 "path": "res://Game/Objects/GameObjects/MazeSpawners/MazePlayerSpawner/MazePlayerSpawner.gd"

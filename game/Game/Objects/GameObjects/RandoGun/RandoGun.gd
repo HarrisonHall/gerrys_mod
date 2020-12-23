@@ -37,10 +37,8 @@ func reseed():
 
 func _process(delta):
 	._process(delta)
-	
 	if data["ttl"] > 0 and not data["has_item"]:
 		data["ttl"] -= delta
-
 
 func _on_Hitbox_body_entered(player):
 	if not data["has_item"]:
