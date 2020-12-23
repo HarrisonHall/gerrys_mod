@@ -21,7 +21,7 @@ func _init():
 #	pass
 
 func _emit_casing():
-	var new_casing = Game.make_obj("Casing")
+	var new_casing = Resources.make_obj("Casing")
 	new_casing.transform = $Pivot/CasingSpawn.global_transform
 	new_casing.mom = new_casing.transform.basis.z * initial_velocity
 	new_casing.send_update()
