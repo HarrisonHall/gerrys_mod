@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Game/Objects/GameObjects/Room/Room.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+
+[sub_resource type="CubeMesh" id=3]
+resource_local_to_scene = true
+material = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+params_cull_mode = 1
+
+[sub_resource type="CubeMesh" id=5]
+resource_local_to_scene = true
+material = SubResource( 4 )
+
+[node name="Room" type="KinematicBody"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="RoomCenter" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="DebugMeshes" type="Spatial" parent="."]
+
+[node name="DebugMeshOutside" type="MeshInstance" parent="DebugMeshes"]
+transform = Transform( 0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="DebugMeshInside" type="MeshInstance" parent="DebugMeshes"]
+transform = Transform( 0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null

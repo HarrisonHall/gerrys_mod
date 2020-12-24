@@ -32,6 +32,7 @@ var settings = {
 var serv_version_just_changed = false
 var just_logged_in = false
 var cur_arena = ""
+var debug = false
 
 
 func _ready():
@@ -75,7 +76,7 @@ func clear_gameplay(kill=false):
 		if kill:
 			child.kill = true
 			child.send_update()
-		if singleplayer:
+		else:
 			child.queue_free()
 		del_num += 1
 	for child in Players.get_children():
@@ -207,7 +208,7 @@ func update_players_s(data):
 	# Change map
 	var new_map = data.get("settings", {}).get("map", cur_arena)
 	if new_map != cur_arena:
-		clear_gameplay(true)
+		clear_gameplay()
 		Resources.load_arena(new_map)
 		toggle_mode_menu(true)
 		toggle_pause_menu(true)

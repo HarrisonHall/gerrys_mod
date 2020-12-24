@@ -113,6 +113,10 @@ func _on_ModConfirm_pressed():
 			p.noclip()
 			add_info("Set noclip to "+ str(p._noclip))
 		clear_text()
+	if words[0] == "debug":
+		Game.debug = not Game.debug
+		Events.emit_debug()
+		clear_text()
 
 
 

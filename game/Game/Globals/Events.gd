@@ -2,6 +2,8 @@ extends Node
 
 
 signal viewport_changed
+signal debug_on
+signal debug_off
 
 onready var NotificationSystem = null
 
@@ -33,3 +35,14 @@ func alert(message, time):
 		NotificationSystem = Game.NotificationSystem
 		return
 	NotificationSystem.alert(message, time)
+
+func emit_debug():
+	if Game.debug:
+		emit_signal("debug_on")
+	else:
+		emit_signal("debug_off")
+
+
+
+
+

@@ -55,9 +55,9 @@ margin_right = 1912.0
 margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "PS2"
+text = "PS4"
 items = [ "PS1", null, false, 0, null, "PS2", null, false, 1, null, "PS3", null, false, 2, null, "PS4", null, false, 3, null, "PS5", null, false, 4, null ]
-selected = 1
+selected = 3
 
 [node name="Shaders" type="OptionButton" parent="Settings/Visual Settings/VBoxContainer"]
 margin_top = 700.0

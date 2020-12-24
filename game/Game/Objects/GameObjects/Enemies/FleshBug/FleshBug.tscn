@@ -7,14 +7,6 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 2.73014, 2.12637, 2.79578 )
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 1.0073, 1.26643, 1.40267 )
-
-[sub_resource type="BoxShape" id=3]
-
-[sub_resource type="BoxShape" id=10]
-extents = Vector3( 1.0073, 1.26643, 1.40267 )
-
 [sub_resource type="Animation" id=5]
 length = 1.33333
 loop = true
@@ -233,6 +225,14 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 1.33333, 1, 0, 0, 0, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1 )
 
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.0073, 1.26643, 1.40267 )
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1.0073, 1.26643, 1.40267 )
+
 [sub_resource type="ArrayMesh" id=7]
 surfaces/0 = {
 "aabb": AABB( -2.82513, -0.0103394, -4.05766, 5.65027, 5.47966, 5.13793 ),
@@ -305,6 +305,11 @@ script = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09362, -0.222695 )
 shape = SubResource( 1 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"
+anims/idle = SubResource( 5 )
+anims/walk = SubResource( 6 )
+
 [node name="FleshBugSize2" type="CollisionShape" parent="Hitbox" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09362, 0 )
 shape = SubResource( 2 )
@@ -315,12 +320,7 @@ shape = SubResource( 3 )
 
 [node name="FleshBugSize3" type="CollisionShape" parent="EnemyHurtBox" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09362, 0 )
-shape = SubResource( 10 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-autoplay = "idle"
-anims/idle = SubResource( 5 )
-anims/walk = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Armature" type="Spatial" parent="." index="5"]
 transform = Transform( 1, 0, 0, 0, 0.0129547, -0.999916, 0, 0.999916, 0.0129547, 0, 2.61973, -0.759836 )
@@ -410,4 +410,6 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="VisionBox" index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 8 )
 shape = SubResource( 9 )
+[connection signal="body_entered" from="DamageBox" to="." method="_on_DamageBox_body_entered"]
+[connection signal="body_exited" from="DamageBox" to="." method="_on_DamageBox_body_exited"]
 [connection signal="body_entered" from="VisionBox" to="." method="_on_VisionBox_body_entered"]

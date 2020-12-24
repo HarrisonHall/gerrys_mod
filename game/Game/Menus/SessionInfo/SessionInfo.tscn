@@ -18,6 +18,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="InfoContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -38,9 +41,10 @@ margin_bottom = 1070.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
-text = "Gerry's Mod
+text = "Maze Game
 ==========
-A Trackl Production"
+A GIGAFLOP Studio Production
+Uatzee Engine"
 __meta__ = {
 "_edit_use_anchors_": false
 }

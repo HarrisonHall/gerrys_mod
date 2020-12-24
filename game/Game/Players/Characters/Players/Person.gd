@@ -62,6 +62,12 @@ func _process(delta):
 	
 	# Animations
 	process_animations(delta)
+	
+	# Update health
+	if self == Game.get_current_player():
+		if data["health"] <= 0:
+			data["health"] = 100
+			respawn(Game.team)
 
 func _input(event):
 	if Game.menu_up:
@@ -477,16 +483,16 @@ func drop_gun():
 func take_damage(d):
 	print("Took damage: ", d)
 	data["health"] -= d
-	Game.Web.request("take_damage", {
-		"username": Game.username,
-		"players": {
-			get_name() : {
-				"damage": d
-			}
-		}, 
-		"timestamp": OS.get_ticks_msec(),
-		"settings": Game.settings
-	})
+#	Game.Web.request("take_damage", {
+#		"username": Game.username,
+#		"players": {
+#			get_name() : {
+#				"damage": d
+#			}
+#		}, 
+#		"timestamp": OS.get_ticks_msec(),
+#		"settings": Game.settings
+#	})
 
 func get_forward():
 	var cam = $Model/Body.get_children()[0].get_node("Armature/Skeleton/AttachCam/PlayerCamera")

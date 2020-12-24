@@ -24,7 +24,6 @@ var server_choices = {
 }
 
 func _on_serverchoice_item_selected(index):
-	print("Changed server url to ", Game.Web.url)
 	if server_choices[index] != "singleplayer":
 		Game.Web.change_server_url(server_choices[index])
 	Game.singleplayer = false
@@ -113,4 +112,10 @@ func received_login_data():
 			Game.Web.server_disconnect()
 
 func _on_ReturnButton_pressed():
+	if Game.singleplayer:
+		Game.clear_gameplay()
+		Resources.load_arena("fp_hub")
+		Game.toggle_pause_menu(false)
+		Game.toggle_mode_menu(true)
+		return
 	Game.change_lobby(Game.base_lobby, "")

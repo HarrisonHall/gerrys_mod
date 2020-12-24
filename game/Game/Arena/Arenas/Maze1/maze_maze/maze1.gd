@@ -22,7 +22,11 @@ var mazewall = preload("res://Game/Arena/Arenas/Maze1/maze_maze/mazewall.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var rng = RandomNumberGenerator.new()
-	rng.set_seed(Game.settings["random_seed"] )
+	rng.set_seed(Game.settings["random_seed"])
+	var r = rng.randi() % 10000
+	var spb = StreamPeerBuffer.new()
+	spb.data_array = (str(r) + get_name() + str(r)).sha1_buffer()
+	rng.set_seed(spb.get_64())
 	
 	# generate dungeon here
 	# 0 or NULL for walls
@@ -77,25 +81,25 @@ func _ready():
 	for z in len(rooms):
 		var room = rooms[z]
 		# Create Spawns
-		# TODO: make 1 room a player spawner, 1 room end
+		# TODO: make end room
 		# TODO: gauruntee that the maze is solvable
 		if dungeon_spawns[z] == SpawnType.ENEMY:
 			var new_spawner = Resources.make_obj(
-				"EnemySpawner",
+				"BasicEnemySpawner",
 				get_name() + "_" + str(z)
 			)
 			if new_spawner:
-				new_spawner.set_width_height(room["l"]*2 - 3, room["h"]*2 - 3)
+				new_spawner.set_length_width_height(room["h"]*2 - 3, room["l"]*2 - 3, 4)
 				var trans = new_spawner.get_global_transform()
 				var centerx = room["x"] + float(room["l"])/2.0 - .5
 				var centery = room["y"] + float(room["h"])/2.0 - .5
 				trans.origin = Vector3(
-					ROOM_SCALE * centerx, 0, ROOM_SCALE * centery
+					ROOM_SCALE * centerx, 2+1, ROOM_SCALE * centery
 				)
 				new_spawner.set_global_transform(trans)
 	#			new_spawner.translate(Vector3(4.0*room["x"], 0, 4.0*room["y"]))
 			else:
-				push_warning("Could not make EnemySpawner")
+				push_warning("Could not make BasicEnemySpawner")
 		if dungeon_spawns[z] == SpawnType.PLAYER:
 			var new_spawner = Resources.make_obj("MazePlayerSpawner")
 			if new_spawner:
@@ -103,10 +107,10 @@ func _ready():
 				var centerx = room["x"] + float(room["l"])/2.0 - .5
 				var centery = room["y"] + float(room["h"])/2.0 - .5
 				trans.origin = Vector3(
-					ROOM_SCALE * centerx, 0, ROOM_SCALE * centery
+					ROOM_SCALE * centerx, 2+1, ROOM_SCALE * centery
 				)
 				new_spawner.set_global_transform(trans)
-				new_spawner.set_width_height(room["l"]*2 - 3, room["h"]*2 - 3)
+				new_spawner.set_length_width_height(room["h"]*2 - 3, room["l"]*2 - 3, 4)
 	#			new_spawner.translate(Vector3(4.0*room["x"], 0, 4.0*room["y"]))
 			else:
 				push_warning("Could not make MazePlayerSpawner")
@@ -207,5 +211,5 @@ func _ready():
 		ii = rng.randi() % HEIGHT
 		jj = rng.randi() % LENGTH
 	
-	# FYI this below only works because Spawn is set to Vector3.ZERO
+	# FYI this below only worked because Spawn is set to Vector3.ZERO
 	#$"Spawn/1".translate(Vector3(ROOM_SCALE*jj, 0, ROOM_SCALE*ii))

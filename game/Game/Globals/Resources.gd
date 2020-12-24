@@ -52,11 +52,11 @@ var menu_types = {
 }
 var object_types = {
 	"BasicBullet": preload("res://Game/Objects/GameObjects/Bullets/BasicBullet/BasicBullet.tscn"),
+	"BasicEnemySpawner": preload("res://Game/Objects/GameObjects/Room/BasicEnemySpawner/BasicEnemySpawner.tscn"),
 	"Barrell": preload("res://Game/Objects/GameObjects/Barrell/Barrell.tscn"),
 	"Bullet": preload("res://Game/Objects/GameObjects/Bullets/Bullet.tscn"),
 	"BulletBrain": preload("res://Game/Objects/GameObjects/Bullets/BulletBrain/BulletBrain.tscn"),
 	"Casing": preload("res://Game/Objects/GameObjects/Guns/BK47/Casing/Casing.tscn"),
-	"EnemySpawner": preload("res://Game/Objects/GameObjects/EnemySpawner/EnemySpawner.tscn"),
 	"Flash": preload("res://Game/Objects/Weapons/muzzleflashtest.tscn"),
 	"FleshBug": preload("res://Game/Objects/GameObjects/Enemies/FleshBug/FleshBug.tscn"),
 	"Gun": preload("res://Game/Objects/GameObjects/Guns/Gun.tscn"),
@@ -70,7 +70,7 @@ var object_types = {
 	"HeldObject_AK47": preload("res://Game/Objects/GameObjects/Guns/AK47/HeldObject_AK47.tscn"),
 	"HeldObject_BrainGun": preload("res://Game/Objects/GameObjects/Guns/BrainGun/HeldObject_BrainGun.tscn"),
 	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
-	"MazePlayerSpawner": preload("res://Game/Objects/GameObjects/MazeSpawners/MazePlayerSpawner/MazePlayerSpawner.tscn"),
+	"MazePlayerSpawner": preload("res://Game/Objects/GameObjects/Room/MazePlayerSpawner/MazePlayerSpawner.tscn"),
 }
 var person = preload("res://Game/Players/Characters/Players/Person.tscn")
 
@@ -100,7 +100,7 @@ func make_obj(type, n="", co=false):
 	if n == "":
 		n = Game.cur_arena + "_" + Game.username + "_thing_" + str(1+obj_offset)
 	if not (type in object_types):
-		print("Invalid object type")
+		print("Invalid object type: '", type, "'")
 		return null
 	var obj_name = n.replace("@", "")
 	if Game.Objects.has_node(obj_name):
