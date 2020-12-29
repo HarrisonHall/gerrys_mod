@@ -3,23 +3,21 @@ extends Control
 
 onready var health_label = $HBoxContainer/RightContainer/HealthContainer/HealthLabel
 onready var ammo_label = $HBoxContainer/RightContainer/AmmoContainer/AmmoLabel
-onready var fps_label = $HBoxContainer/LeftContainer/FPSCounter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset_cross()
 	Events.connect("viewport_changed", self, "reset_cross")
+	$CrossHair.visible = true
 
 func _process(delta):
 	var p = Game.get_current_player()
-	if p:
+	if p and false:
 		health_label.text = "Health: " + str(p.health_count())
 		if p.ammo_count() > 0:
 			ammo_label.text = "Ammo: " + str(p.ammo_count())
 		else:
 			ammo_label.text = ""
-	fps_label.text = str(Engine.get_frames_per_second())
-	
 
 func reset_cross():
 	var view = get_viewport()

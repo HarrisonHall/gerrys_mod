@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Game/Players/Characters/Players/Cameras/GameCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Players/Cameras/GameCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Arena/Arenas/Hub/Hub/lobbyfloor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Arena/Arenas/Hub/Hub/HubGates.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game/Arena/Arenas/Hub/Hub/hublargewalls.tscn" type="PackedScene" id=4]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Game/Arena/Arenas/Hub/Hub/hubwindowsnoglass.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Game/Arena/Arenas/Hub/Hub/hubfrontgate.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Game/Arena/Arenas/Hub/Hub/hubfrontgatewall.tscn" type="PackedScene" id=10]
+
+
 
 
 [sub_resource type="PanoramaSky" id=1]

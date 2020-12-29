@@ -122,7 +122,12 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Person",
 "language": "GDScript",
-"path": "res://Game/Players/Characters/Players/Person.gd"
+"path": "res://Game/Players/Person.gd"
+}, {
+"base": "Camera",
+"class": "PlayerCamera",
+"language": "GDScript",
+"path": "res://Game/Players/Cameras/PlayerCamera.gd"
 }, {
 "base": "GameObject",
 "class": "RandoGun",
@@ -158,6 +163,7 @@ _global_script_class_icons={
 "MazePlayerSpawner": "",
 "MuzzleFlash": "",
 "Person": "",
+"PlayerCamera": "",
 "RandoGun": "",
 "Room": ""
 }

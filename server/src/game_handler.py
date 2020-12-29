@@ -15,12 +15,13 @@ CONNECT_USER = "connect_user"
 CUSTOM_UPDATE = "custom_update"
 LOGIN_STATUS = "login_status"
 SERVER_SETTINGS = "server_settings"
-TAKE_DAMAGE = "take_damage"
+#TAKE_DAMAGE = "take_damage"
+PUSH_UPDATE = "push_update"
 UPDATE_GAME = "update_game"
 UPDATE_INFO = "update_info"
 ENDPOINTS = [
     CONNECT_USER, LOGIN_STATUS, SERVER_SETTINGS,
-    TAKE_DAMAGE, UPDATE_GAME, UPDATE_INFO,
+    UPDATE_GAME, UPDATE_INFO, PUSH_UPDATE,
     CUSTOM_UPDATE, CHANGE_LOBBY
 ]
 
@@ -173,14 +174,14 @@ def update(obj):
 
     if endpoint == SERVER_SETTINGS:
         d = lobby.update_settings(obj)
-    elif endpoint == TAKE_DAMAGE:
-        print("TAKE DAMAGE")
-        d = lobby.take_damage(obj)
     elif endpoint == UPDATE_INFO:
         d = lobby.update_info(obj)
     elif endpoint == UPDATE_GAME:
         #print("UPDATE GAME")
         d = lobby.update_game(obj)
+    elif endpoint == PUSH_UPDATE:
+        print("Pushing update")
+        d = lobby.push_update(obj)
     elif endpoint == CHANGE_LOBBY:
         print("Changing lobby")
         d = change_lobby(obj)

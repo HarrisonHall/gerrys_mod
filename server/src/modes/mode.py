@@ -72,16 +72,36 @@ class Mode:
     def current_player_count(self):
         return len(self.users)
 
+    def flush_updates(self, username : str) -> bool:
+        if username not in self.users:
+            return False
+        self.users[username]["updates"] = {
+            "players": {}
+        }
+        return True
+
     def get_leader(self):
         if len(self.users) == 0:
             return ""
         return self.users[0]
-    
+
     def get_settings(self):
         return self.settings
 
     def object_update_valid(self, username, obj, new_timestamp):
         return self.objects.get(obj, {}).get("timestamps", {}).get(username, -1) < new_timestamp
+
+    def push_update(self, obj):
+        """
+        Put info in `updates` section of the object, which gets flushed after
+        being sent to each player.
+        """
+        players = obj.get("players", {})
+        for user, info in players.items():
+            self.users[user]["updates"]["players"][user] = {
+                "damage": info.get("damage", 0)
+            }
+        return {}
 
     def settings_valid(self, new_settings):
         return new_settings.get("serv_version", -1) == self.settings["serv_version"]
@@ -164,10 +184,13 @@ class Mode:
                 user: self.users[user]["player"] for user in self.users if user != username
             }
         }
+        if username in self.users:
+            update["players"][username] = self.users[username]["updates"].get(username, {})
 
         # Do game logic
         self.user_pinged(username)
         self.remove_old_users()
+        self.flush_updates(username)
 
         d = {
             "updates": update,

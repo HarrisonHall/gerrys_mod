@@ -36,6 +36,7 @@ func use(t_inac=Vector3(), m_inac=Vector3()):
 			)
 			b.queue_send_update = true
 		if gun_ref:
+			#if gun_ref["ammo"] != INF:
 			gun_ref.data["ammo"] -= 1
 
 func get_update(obj, timestamp):
@@ -47,6 +48,7 @@ func shoot_pos():
 
 func has_ammo():
 	if gun_ref:
+		#if gun_ref.data["ammo"] == INF:
 		return gun_ref.data["ammo"] > 0
 	return true
 

@@ -1,8 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game/Arena/Components/DebugBox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Game/Players/Characters/Players/Cameras/GameCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Players/Cameras/GameCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/AK47/Gun_AK47.tscn" type="PackedScene" id=3]
+
+
 
 
 

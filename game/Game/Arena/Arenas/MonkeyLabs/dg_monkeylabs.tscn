@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=2]
 
-[ext_resource path="res://Game/Players/Characters/Players/Cameras/GameCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Players/Cameras/GameCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Arena/Arenas/MonkeyLabs/Monkeylabs/itemholder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Arena/Arenas/MonkeyLabs/Monkeylabs/monkeycratetest1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game/Arena/Arenas/MonkeyLabs/Monkeylabs/monkeybillboard.tscn" type="PackedScene" id=4]
@@ -21,15 +21,17 @@
 [ext_resource path="res://Game/Arena/Arenas/MonkeyLabs/Monkeylabs/monkeylabfence.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Game/Arena/Arenas/MonkeyLabs/Monkeylabs/labdoor.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Game/Arena/Arenas/MonkeyLabs/Monkeylabs/monkeylabrafters.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Game/Players/Characters/Players/models/Bobo/bobofloating.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Game/Players/Characters/Players/models/BoboF/bobofchair.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Game/Players/Characters/Players/models/Gibby/gibbyfloat.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Game/Players/Characters/Players/models/Garry/Garryfloat.tscn" type="PackedScene" id=25]
-[ext_resource path="res://Game/Players/Characters/Players/models/Orango/Orangofloaty.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Game/Players/Characters/Players/models/Bobo/bobofloat5.tscn" type="PackedScene" id=27]
-[ext_resource path="res://Game/Players/Characters/Players/models/Bobby/bobbyfloat.tscn" type="PackedScene" id=28]
-[ext_resource path="res://Game/Players/Characters/Players/models/Bobo/bobotest2.5.gltf" type="PackedScene" id=29]
-[ext_resource path="res://Game/Players/Characters/Players/models/MonkeyBoss/Monbossfloat.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Game/Players/models/Bobo/bobofloating.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Game/Players/models/BoboF/bobofchair.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Game/Players/models/Gibby/gibbyfloat.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Game/Players/models/Garry/Garryfloat.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Game/Players/models/Orango/Orangofloaty.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Game/Players/models/Bobo/bobofloat5.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Game/Players/models/Bobby/bobbyfloat.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Game/Players/models/Bobo/bobotest2.5.gltf" type="PackedScene" id=29]
+[ext_resource path="res://Game/Players/models/MonkeyBoss/Monbossfloat.tscn" type="PackedScene" id=30]
+
+
 
 
 [sub_resource type="ProceduralSky" id=1]

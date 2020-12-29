@@ -72,7 +72,7 @@ var object_types = {
 	"HeldObject_BK47": preload("res://Game/Objects/GameObjects/Guns/BK47/HeldObject_BK47.tscn"),
 	"MazePlayerSpawner": preload("res://Game/Objects/GameObjects/Room/MazePlayerSpawner/MazePlayerSpawner.tscn"),
 }
-var person = preload("res://Game/Players/Characters/Players/Person.tscn")
+var person = preload("res://Game/Players/Person.tscn")
 
 
 func load_arena(arena_name):

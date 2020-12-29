@@ -7,7 +7,7 @@
 [ext_resource path="res://Game/Arena/Components/DebugBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/Objects/Ammo/Ammos.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Objects/Surfing/Debug/Surfer2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Game/Players/Characters/Players/Cameras/GameCamera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game/Players/Cameras/GameCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Game/Objects/GameObjects/Barrell/Barrell.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Game/Objects/GameObjects/Guns/HandGun/Gun_HandGun.tscn" type="PackedScene" id=11]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Game/Objects/Stairs/Stairs.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Game/Objects/GameObjects/RandoGun/RandoGun.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Game/Objects/GameObjects/Enemies/FleshBug/FleshBug.tscn" type="PackedScene" id=17]
+
+
 
 
 

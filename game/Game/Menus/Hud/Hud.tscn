@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game/Menus/MenuFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Game/Menus/Hud/Hud.gd" type="Script" id=2]
-[ext_resource path="res://Game/Players/Characters/Players/Cameras/cross.png" type="Texture" id=3]
+[ext_resource path="res://Game/Players/Cameras/cross.png" type="Texture" id=3]
+[ext_resource path="res://Game/Menus/Hud/DebugInfo/DebugInfo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/Menus/Hud/Health/Health.tscn" type="PackedScene" id=5]
 
 [node name="Hud" type="Control"]
 anchor_right = 1.0
@@ -25,70 +27,97 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 637.0
+[node name="LeftContainer" type="Control" parent="HBoxContainer"]
+margin_right = 478.0
 margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="FPSCounter" type="Label" parent="HBoxContainer/LeftContainer"]
-margin_right = 637.0
-margin_bottom = 38.0
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.756863, 0, 1, 1 )
-text = "60"
-
-[node name="MidContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 641.0
-margin_right = 1278.0
+[node name="LeftContainer" type="VBoxContainer" parent="HBoxContainer/LeftContainer"]
+margin_left = 4.0
+margin_right = 481.0
 margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RightContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 1282.0
+[node name="DebugInfo" parent="HBoxContainer/LeftContainer/LeftContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 477.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MidContainer" type="Control" parent="HBoxContainer"]
+margin_left = 482.0
+margin_right = 1438.0
+margin_bottom = 1080.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="RightContainer" type="Control" parent="HBoxContainer"]
+margin_left = 1442.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HealthContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer"]
-margin_right = 638.0
-margin_bottom = 538.0
+[node name="RightContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer"]
+margin_right = 477.0
+margin_bottom = 1080.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer/RightContainer"]
+margin_right = 477.0
+margin_bottom = 107.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HealthLabel" type="Label" parent="HBoxContainer/RightContainer/HealthContainer"]
-margin_right = 638.0
-margin_bottom = 38.0
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.756863, 0, 1, 1 )
-text = "Health: 100"
-align = 2
+[node name="Health" parent="HBoxContainer/RightContainer/RightContainer/HealthContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 477.0
+margin_bottom = 107.0
 
-[node name="AmmoContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer"]
-margin_top = 542.0
-margin_right = 638.0
+[node name="Spacing" type="Control" parent="HBoxContainer/RightContainer/RightContainer"]
+margin_top = 111.0
+margin_right = 477.0
+margin_bottom = 968.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="AmmoContainer" type="VBoxContainer" parent="HBoxContainer/RightContainer/RightContainer"]
+margin_top = 972.0
+margin_right = 477.0
 margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
-[node name="AmmoLabel" type="Label" parent="HBoxContainer/RightContainer/AmmoContainer"]
-margin_top = 500.0
-margin_right = 638.0
-margin_bottom = 538.0
+[node name="AmmoLabel" type="Label" parent="HBoxContainer/RightContainer/RightContainer/AmmoContainer"]
+margin_top = 70.0
+margin_right = 477.0
+margin_bottom = 108.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 0, 0.866667, 1 )
 text = "Ammo: 100"
 align = 2
 
 [node name="CrossHair" type="TextureRect" parent="."]
+visible = false
 margin_right = 450.0
 margin_bottom = 450.0
 rect_scale = Vector2( 0.25, 0.25 )

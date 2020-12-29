@@ -116,6 +116,7 @@ func _on_ModConfirm_pressed():
 	if words[0] == "debug":
 		Game.debug = not Game.debug
 		Events.emit_debug()
+		add_info("Set debug to "+ str(Game.debug))
 		clear_text()
 
 

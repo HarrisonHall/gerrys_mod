@@ -8,6 +8,7 @@ var attack_cooldown = 0
 func _init():
 	._init()
 	obj_type = "FleshBug"
+	data["health"] = 30
 
 func _ready():
 	._ready()
@@ -19,7 +20,7 @@ func _process(delta):
 	if attack_cooldown < 0 and len(attacking_players) > 0:
 		attack_cooldown = MAX_ATTACK_COOLDOWN
 		for player in attacking_players:
-			player.take_damage(bite_damage)
+			player.take_neutral_damage(bite_damage)
 
 
 func _on_VisionBox_body_entered(body):

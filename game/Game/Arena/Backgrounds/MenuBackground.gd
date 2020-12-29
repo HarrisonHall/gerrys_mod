@@ -1,7 +1,7 @@
 extends Spatial
 
 
-onready var mv = $MoveCube
+onready var mv = $Cubes/MoveCube
 var mv_start = null
 var dis = 5
 var cycle_time = 5
@@ -10,7 +10,12 @@ var ellapsed = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	var background_color = Color(randf() / 2.0, randf() / 2.0, .5 + 0.5*randf())
+	$WorldEnvironment.environment.background_color = background_color
+	var cube_color = Color(randf() / 2.0, randf() / 2.0, .5 + 0.5*randf())
+	for cube in $Cubes.get_children():
+		cube.mesh.material.albedo_color = cube_color
 
 
 func _process(delta):

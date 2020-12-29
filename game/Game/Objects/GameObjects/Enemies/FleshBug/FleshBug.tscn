@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 2.73014, 2.12637, 2.79578 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 length = 1.33333
 loop = true
 tracks/0/type = "transform"
@@ -116,7 +116,7 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 0.0666667, 1, 0, 0.000123346, 0.0027974, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 0.133333, 1, -2.06795e-25, 0.000962862, 0.0218371, 1.86265e-09, 1.65436e-24, 1.86116e-24, 1, 1, 1, 1, 0.2, 1, -4.1359e-25, 0.00259982, 0.0589624, 3.72529e-09, 1.65436e-24, 1.86116e-24, 1, 1, 1, 1, 0.533333, 1, 0, 0.0142268, 0.322656, 3.72529e-09, 1.65436e-24, 2.06795e-25, 1, 1, 1, 1, 0.6, 1, -1.65436e-24, 0.0155827, 0.353405, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 0.666667, 1, 6.50926e-17, 0.0161353, 0.36594, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 0.733333, 1, 6.50926e-17, 0.0156469, 0.354861, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 0.8, 1, 6.50926e-17, 0.0144399, 0.327487, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 0.933333, 1, 6.50926e-17, 0.010447, 0.236932, 0, -1.65436e-24, -1.24077e-24, 1, 1, 1, 1, 1.2, 1, 6.50926e-17, 0.00169547, 0.0384521, 3.72529e-09, 1.65436e-24, 3.51552e-24, 1, 1, 1, 1, 1.26667, 1, 6.50926e-17, 0.000488469, 0.0110782, 0, -1.65436e-24, 4.1359e-25, 1, 1, 1, 1, 1.33333, 1, 0, 0, 0, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 length = 1.33333
 loop = true
 tracks/0/type = "transform"
@@ -225,12 +225,12 @@ tracks/14/imported = true
 tracks/14/enabled = true
 tracks/14/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1, 1.33333, 1, 0, 0, 0, 1.86265e-09, 5.77779e-34, 3.10193e-25, 1, 1, 1, 1 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 1.0073, 1.26643, 1.40267 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=5]
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 1.0073, 1.26643, 1.40267 )
 
 [sub_resource type="ArrayMesh" id=7]
@@ -307,20 +307,20 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 autoplay = "idle"
-anims/idle = SubResource( 5 )
-anims/walk = SubResource( 6 )
+anims/idle = SubResource( 2 )
+anims/walk = SubResource( 3 )
 
 [node name="FleshBugSize2" type="CollisionShape" parent="Hitbox" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09362, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DamageBox" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28461, 2.4602 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="FleshBugSize3" type="CollisionShape" parent="EnemyHurtBox" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09362, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="Armature" type="Spatial" parent="." index="5"]
 transform = Transform( 1, 0, 0, 0, 0.0129547, -0.999916, 0, 0.999916, 0.0129547, 0, 2.61973, -0.759836 )
