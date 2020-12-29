@@ -13,6 +13,7 @@ func _init():
 	obj_type = "Gun_BK47"
 	gun_obj = "HeldObject_BK47"
 	data["ammo"] = 20
+	data["max_ammo"] = 20
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Game/Menus/MenuFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Game/Menus/Hud/Ammo/Ammo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Menus/Hud/Hud.gd" type="Script" id=2]
 [ext_resource path="res://Game/Players/Cameras/cross.png" type="Texture" id=3]
 [ext_resource path="res://Game/Menus/Hud/DebugInfo/DebugInfo.tscn" type="PackedScene" id=4]
@@ -107,14 +107,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
-[node name="AmmoLabel" type="Label" parent="HBoxContainer/RightContainer/RightContainer/AmmoContainer"]
-margin_top = 70.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RightContainer/RightContainer/AmmoContainer"]
 margin_right = 477.0
 margin_bottom = 108.0
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0.866667, 1 )
-text = "Ammo: 100"
-align = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HBoxContainer/RightContainer/RightContainer/AmmoContainer/HBoxContainer"]
+margin_right = 236.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Ammo" parent="HBoxContainer/RightContainer/RightContainer/AmmoContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 240.0
+margin_top = 0.0
+margin_right = 477.0
+margin_bottom = 108.0
 
 [node name="CrossHair" type="TextureRect" parent="."]
 visible = false

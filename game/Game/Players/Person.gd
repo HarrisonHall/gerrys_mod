@@ -524,6 +524,12 @@ func ammo_count():
 			return og_gun.data["ammo"]
 	return 0
 
+func ammo_count_max():
+	if self == Game.get_current_player():
+		if og_gun and is_holding:
+			return og_gun.data["max_ammo"]
+	return 0
+
 func health_count():
 	return data.get("health", 1)
 

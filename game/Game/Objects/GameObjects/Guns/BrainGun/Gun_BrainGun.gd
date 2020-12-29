@@ -13,6 +13,7 @@ func _ready():
 	obj_type = "Gun_BrainGun"
 	gun_obj = "HeldObject_BrainGun"
 	data["ammo"] = 5
+	data["max_ammo"] = 5
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

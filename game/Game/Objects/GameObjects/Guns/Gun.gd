@@ -13,7 +13,8 @@ func _init():
 	can_collide = false
 	data = {
 		"can_be_picked_up": true,
-		"ammo": 10
+		"ammo": 10,
+		"max_ammo": 10
 	}
 
 func _ready():
