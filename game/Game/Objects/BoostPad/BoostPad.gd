@@ -1,5 +1,6 @@
 extends Spatial
 
+export var boost_strength = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,9 +12,8 @@ func _ready():
 #	pass
 
 
-const BOOST = 30
 func _on_BoostUp_area_entered(area):
 	if area.name == "SurfFeet":
 		var player = area.get_parent()
-		if player.name == Game.username:
-			player.momentum.y = BOOST
+		if player == Game.get_current_player():
+			player.momentum.y = boost_strength

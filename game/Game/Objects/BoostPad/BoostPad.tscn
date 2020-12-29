@@ -25,15 +25,13 @@ height = 1.02978
 [node name="BoostPad" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="Spatial" type="Spatial" parent="."]
-
-[node name="Cube" type="MeshInstance" parent="Spatial"]
+[node name="Cube" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="BoostUp" type="Area" parent="Spatial"]
+[node name="BoostUp" type="Area" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="Spatial/BoostUp"]
+[node name="CollisionShape" type="CollisionShape" parent="BoostUp"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.464835, 0 )
 shape = SubResource( 2 )
-[connection signal="area_entered" from="Spatial/BoostUp" to="." method="_on_BoostUp_area_entered"]
+[connection signal="area_entered" from="BoostUp" to="." method="_on_BoostUp_area_entered"]

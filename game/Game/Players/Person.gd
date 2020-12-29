@@ -91,14 +91,16 @@ func process_movement(delta):
 		var mom_mod = movement_momentum
 		if is_crouching:
 			mom_mod = crouch_momentum
+		var added_momentum = Vector3.ZERO
 		if Input.is_action_pressed("gm_left"):
-			momentum += mom_mod * delta * get_transform().basis.xform(Vector3(0, 0, -1))
+			added_momentum += get_transform().basis.xform(Vector3(0, 0, -1))
 		if Input.is_action_pressed("gm_right"):
-			momentum += mom_mod * delta * get_transform().basis.xform(Vector3(0, 0, 1))
+			added_momentum += get_transform().basis.xform(Vector3(0, 0, 1))
 		if Input.is_action_pressed("gm_up"):
-			momentum += mom_mod * delta * get_transform().basis.xform(Vector3(1, 0, 0))
+			added_momentum += get_transform().basis.xform(Vector3(1, 0, 0))
 		if Input.is_action_pressed("gm_down"):
-			momentum += mom_mod * delta * get_transform().basis.xform(Vector3(-1, 0, 0))
+			added_momentum += get_transform().basis.xform(Vector3(-1, 0, 0))
+		momentum += added_momentum.normalized() * delta * mom_mod
 	if Input.is_action_pressed("gm_slide") and surf_depth <= 0 and surf_depth2 <= 0:
 		slide_time += delta
 	else:

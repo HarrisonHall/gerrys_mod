@@ -1,5 +1,6 @@
 import datetime
 from time import time as make_timestamp
+from copy import deepcopy
 import random
 
 random.seed()
@@ -91,16 +92,22 @@ class Mode:
     def object_update_valid(self, username, obj, new_timestamp):
         return self.objects.get(obj, {}).get("timestamps", {}).get(username, -1) < new_timestamp
 
+    def other_users(self, username):
+        return list(set(self.users.keys()) - set([username]))
+
     def push_update(self, obj):
         """
         Put info in `updates` section of the object, which gets flushed after
         being sent to each player.
         """
         players = obj.get("players", {})
-        for user, info in players.items():
-            self.users[user]["updates"]["players"][user] = {
-                "damage": info.get("damage", 0)
-            }
+        username = obj.get("username", "")
+        for user in self.other_users(username):
+            for new_user, info in players.items():
+                print(f"telling {user} that {new_user} took damage")
+                self.users[user]["updates"]["players"][new_user] = {
+                    "damage": info.get("damage", 0)
+                }
         return {}
 
     def settings_valid(self, new_settings):
@@ -163,29 +170,39 @@ class Mode:
         return {}
 
     def update_game(self, obj):
+        """
+        Endpoint for updating players and sending the new updated information
+        back out.
+        Typically reached after a Person object sends an update.
+        """
         # Get variables
         username = obj.get("username")
         players = obj.get("players", [])
-        
+
         if not self.settings_valid(obj.get("settings", {})):
             d = {
                 "settings": self.get_settings(),
                 "timestamp": make_timestamp(),
             }
             return d
-    
+
         # update the rest of the players
         for player in players:
             self.update_player(username, player, obj["players"][player])
-        
+
         # Send game update to player
         update = {
             "players": {
-                user: self.users[user]["player"] for user in self.users if user != username
+                user: self.users[user]["player"] for user in self.other_users(username)
             }
         }
         if username in self.users:
-            update["players"][username] = self.users[username]["updates"].get(username, {})
+            update["players"][username] = deepcopy(
+                self.users[username]["updates"]["players"].get(username, {})
+            )
+        f = update.get('players').get(username, {})
+        if f != {}:
+            print(f"Update for {username} is", f)
 
         # Do game logic
         self.user_pinged(username)
@@ -204,7 +221,7 @@ class Mode:
         # Get variables
         username = obj.get("username", "")
         new_timestamp = obj.get("timestamp", -1)
-        
+
         updates = obj.get("update", {})
 
         if not self.settings_valid(obj.get("settings", {})):

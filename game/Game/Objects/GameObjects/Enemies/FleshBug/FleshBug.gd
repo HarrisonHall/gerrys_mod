@@ -8,11 +8,11 @@ var attack_cooldown = 0
 func _init():
 	._init()
 	obj_type = "FleshBug"
-	data["health"] = 30
 
 func _ready():
 	._ready()
 	follow_speed = 4
+	data["health"] = 30
 
 func _process(delta):
 	._process(delta)

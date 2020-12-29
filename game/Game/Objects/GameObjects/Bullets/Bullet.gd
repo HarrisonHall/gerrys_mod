@@ -1,4 +1,4 @@
-extends GameObject
+ extends GameObject
 class_name Bullet
 
 var watching = false

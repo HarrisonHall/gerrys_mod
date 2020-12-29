@@ -25,6 +25,9 @@ func use(t_inac=Vector3(), m_inac=Vector3()):
 			if AP.has_animation("shoot"):
 				AP.play("shoot")
 		var b = Resources.make_obj(bullet_type, "")
+		if not b:
+			print("Could not make bullet of type: ", bullet_type)
+			return
 		b.scale *= bscale
 		if b:
 			b.watching = true

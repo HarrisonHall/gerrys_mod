@@ -87,8 +87,7 @@ func clear_gameplay(kill=false):
 func get_arena():
 	if Arena.has_node("ARENA"):
 		return Arena.get_node("ARENA")
-	else:
-		print("Arena children: ", Arena.get_children())
+	push_warning("Arena did not have correct child, children: " + str(Arena.get_children()))
 	return null
 
 # Get node of current player
@@ -169,6 +168,8 @@ func update_players_s(data):
 			if "damage" in p_data:
 				print("server damage!")
 				p_obj.data["health"] -= p_data["damage"]
+			else:
+				pass
 			continue
 		var p_obj = null
 		if not Players.has_node(player):
@@ -197,7 +198,7 @@ func update_players_s(data):
 		if not Objects.has_node(obj_name) and not obj_data.get("kill", false):
 			var obj_obj = Resources.make_obj(obj_data["type"], obj_name, true)
 			if obj_obj == null:
-				print("Unable to create online obj")
+				push_error("Unable to create online obj: " + obj_name)
 				continue
 		var obj_obj = Objects.get_node(obj_name)
 		obj_obj.get_update(obj_data, obj_data.get("timestamp", -1))
@@ -214,7 +215,7 @@ func update_players_s(data):
 		toggle_pause_menu(true)
 	if settings["serv_version"] != data.get("settings", {}).get("serv_version", settings["serv_version"]):
 		serv_version_just_changed = true
-		print("Update serv version!")
+		Events.notify("Game", "Updated the server version `serv_version`", 2)
 		settings["serv_version"] = data.get("settings", {}).get("serv_version", settings["serv_version"])
 	else:
 		serv_version_just_changed = false
