@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game/Players/Cameras/GameCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Arena/Arenas/Maze2/maze2_maze2/maze2.gd" type="Script" id=2]
+
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.168627, 0.403922, 0.0941176, 1 )
+sky_horizon_color = Color( 0.203922, 0.219608, 0.2, 1 )
+ground_bottom_color = Color( 0.243137, 0.243137, 0.247059, 1 )
+ground_horizon_color = Color( 0.0196078, 0.419608, 0.611765, 1 )
+ground_curve = 0.3091
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.376471, 0.0745098, 0.0745098, 1 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="GameCamera" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171976, 1.68255, 7.57142 )
+
+[node name="Spawn" type="Spatial" parent="."]
+
+[node name="1" type="Spatial" parent="Spawn"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
