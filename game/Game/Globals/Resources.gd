@@ -40,7 +40,7 @@ var arenas = {
 		"gamemode": "fp"
 	},
 	"fp_maze2": {
-		"scene": preload("res://Game/Arena/Arenas/Maze1/maze1.tscn"),
+		"scene": preload("res://Game/Arena/Arenas/Maze2/maze2.tscn"),
 		"name": "Maze2",
 		"description": "maze2, fool",
 		"gamemode": "fp"
