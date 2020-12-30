@@ -3,7 +3,6 @@
 [ext_resource path="res://Game/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Players/models/BannaBoy/skin.material" type="Material" id=2]
 
-
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
 surfaces/0 = {
@@ -646,7 +645,7 @@ tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 0, 0, 0, 4.65661e-10, 2.22045e-16, 2.243e-15, 1, 1, 1, 1, 1.33333, 1, 0, 0, 0, 4.65661e-10, 2.22045e-16, 2.243e-15, 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=11]
-resource_name = "jumpidle"
+resource_name = "jumpingidle"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -720,7 +719,7 @@ tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, -4.44695e-09, -0.10256, 0.000717511, 0.00868756, -3.67224e-10, 1.35279e-09, 0.999962, 1, 1, 1, 1.33333, 1, -4.44695e-09, -0.10256, 0.000717511, 0.00868756, -3.67224e-10, 1.35279e-09, 0.999962, 1, 1, 1 )
 
 [sub_resource type="Animation" id=12]
-resource_name = "jumpidleholding"
+resource_name = "jumpingidleholding"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -1152,14 +1151,14 @@ skin = SubResource( 2 )
 material/0 = null
 
 [node name="AttachCam" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 1, -2.90814e-09, -6.00084e-10, 2.90287e-09, 0.999964, -0.00863213, 6.25174e-10, 0.00863213, 0.999964, -1.03273e-07, 2.40261, -0.0151478 )
+transform = Transform( 1, -5.53129e-09, -5.54648e-10, 5.51502e-09, 0.999663, -0.0260047, 6.98309e-10, 0.0260047, 0.999663, -1.09526e-07, 2.2994, 0.0262619 )
 bone_name = "head"
 
 [node name="PlayerCamera" parent="Armature/Skeleton/AttachCam" instance=ExtResource( 1 )]
 transform = Transform( -2.07188, 1.04649e-08, -1.81227e-07, 1.3592e-08, 2.07157, -0.0357682, 1.81019e-07, -0.0357682, -2.07157, 2.58279e-09, 0.716334, 0.832519 )
 
 [node name="AttachHand" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.98108, 0.169156, -0.0941815, 0.0464452, 0.677879, 0.733706, 0.187954, 0.715449, -0.67291, -0.69272, 1.58836, 0.882906 )
+transform = Transform( -0.98108, 0.169156, -0.094182, 0.043172, 0.665346, 0.745286, 0.188733, 0.727119, -0.660061, -0.69272, 1.46967, 0.910034 )
 bone_name = "lowerarmr"
 
 [node name="Hand" type="Spatial" parent="Armature/Skeleton/AttachHand"]
@@ -1174,8 +1173,8 @@ anims/grindidle = SubResource( 7 )
 anims/grindidleholding = SubResource( 8 )
 anims/idle = SubResource( 9 )
 anims/idleholding = SubResource( 10 )
-anims/jumpidle = SubResource( 11 )
-anims/jumpidleholding = SubResource( 12 )
+anims/jumpingidle = SubResource( 11 )
+anims/jumpingidleholding = SubResource( 12 )
 anims/slideidle = SubResource( 13 )
 anims/slideidleholding = SubResource( 14 )
 anims/walk = SubResource( 15 )

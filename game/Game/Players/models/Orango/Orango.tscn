@@ -3,7 +3,6 @@
 [ext_resource path="res://Game/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Players/models/Orango/skin.material" type="Material" id=2]
 
-
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
 surfaces/0 = {
@@ -720,7 +719,7 @@ tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 5.40711e-08, 1.30672, -0.226791, 0, 0, 3.33067e-16, 1, 1, 1, 1, 1.33333, 1, 5.40711e-08, 1.30672, -0.226791, 0, 0, 3.33067e-16, 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=12]
-resource_name = "jumpidle"
+resource_name = "jumpingidle"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -794,7 +793,7 @@ tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 5.40711e-08, 1.30672, -0.226791, 0, 0, 3.33067e-16, 1, 1, 1, 1, 1.33333, 1, 5.40711e-08, 1.30672, -0.226791, 0, 0, 3.33067e-16, 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=13]
-resource_name = "jumpidleholding"
+resource_name = "jumpingidleholding"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -1178,7 +1177,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, 3.11831e-08, 2.04803e-09, -3.11831e-08, 0.99141, 0.130791, 2.04804e-09, -0.130791, 0.99141, -3.55271e-15, 2.45541, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("AttachCam") ]
 bones/2/name = "upperarml"
 bones/2/parent = 1
 bones/2/rest = Transform( -0.793784, -0.442183, -0.417586, -0.113148, -0.567243, 0.815739, -0.597578, 0.694771, 0.400238, 1.257, -0.304124, -0.0853981 )
@@ -1198,7 +1197,7 @@ bones/5/name = "lowerarmr"
 bones/5/parent = 4
 bones/5/rest = Transform( 0.976374, 0.174425, 0.127555, 0.168092, -0.242126, -0.955573, -0.135791, 0.954438, -0.265725, 2.51463e-08, 2.25373, 3.23963e-13 )
 bones/5/enabled = true
-bones/5/bound_children = [  ]
+bones/5/bound_children = [ NodePath("AttachHand") ]
 bones/6/name = "upperlegl"
 bones/6/parent = 0
 bones/6/rest = Transform( 0.997601, 0.0236739, -0.0647228, -0.0578925, -0.221604, -0.973417, -0.0373866, 0.974849, -0.219706, 0.463084, -0.189014, -5.17134e-07 )
@@ -1249,8 +1248,8 @@ anims/grindidle = SubResource( 8 )
 anims/grindidleholding = SubResource( 9 )
 anims/idle = SubResource( 10 )
 anims/idleholding = SubResource( 11 )
-anims/jumpidle = SubResource( 12 )
-anims/jumpidleholding = SubResource( 13 )
+anims/jumpingidle = SubResource( 12 )
+anims/jumpingidleholding = SubResource( 13 )
 anims/slideidle = SubResource( 14 )
 anims/slideidleholding = SubResource( 15 )
 anims/walk = SubResource( 16 )
