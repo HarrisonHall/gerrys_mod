@@ -2828,7 +2828,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12 )
 
 [node name="HubGates" parent="floorwall2" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32, 0, 0 )
-message_text = "Biraj messed up again!"
+message_text = "Maze Generation version 2 - Maze Mode - With other cool stuff too! - "
 lobby_mod = "fp_maze2"
 
 [node name="hublargewalls" parent="floorwall2/HubGates" instance=ExtResource( 4 )]

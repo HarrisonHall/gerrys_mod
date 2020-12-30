@@ -21,7 +21,7 @@ var mazeceiling = preload("res://Game/Arena/Arenas/Maze2/maze2_maze2/mazeceling2
 var mazefloor = preload("res://Game/Arena/Arenas/Maze2/maze2_maze2/mazefloor2.tscn")
 var mazewall = preload("res://Game/Arena/Arenas/Maze2/maze2_maze2/mazewall2.tscn")
 var stairs = preload("res://Game/Arena/Arenas/Maze2/maze2_maze2/mazestairs2.tscn")
-var jumppad = preload("res://Game/Arena/Arenas/Maze2/maze2_maze2/mazejump2.tscn")
+var jumppad = preload("res://Game/Objects/BoostPad/BoostPad.tscn")
 
 var dungeon = []
 var dungeon_rooms = []
@@ -30,7 +30,11 @@ var astar = AStar2D.new()
 func _ready():
 	# 0 = wall
 	var rng = RandomNumberGenerator.new()
-	rng.randomize()
+	rng.set_seed(Game.settings["random_seed"])
+	var ra = rng.randi() % 10000
+	var spb = StreamPeerBuffer.new()
+	spb.data_array = (str(ra) + get_name() + str(ra)).sha1_buffer()
+	rng.set_seed(spb.get_64())
 		
 	for i in range(WIDTH):
 		dungeon.append([])

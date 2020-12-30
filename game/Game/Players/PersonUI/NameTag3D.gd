@@ -8,12 +8,13 @@ onready var name_label = $Viewport/Control/Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if visible:
+		if get_parent() == Game.get_current_player():
+			visible = false
 
 func set_name(n):
 	_name = n

@@ -4,11 +4,13 @@
 [ext_resource path="res://Game/Arena/Arenas/Maze2/maze2_maze2/maze2.gd" type="Script" id=2]
 
 [sub_resource type="ProceduralSky" id=1]
-sky_top_color = Color( 0.168627, 0.403922, 0.0941176, 1 )
-sky_horizon_color = Color( 0.203922, 0.219608, 0.2, 1 )
-ground_bottom_color = Color( 0.243137, 0.243137, 0.247059, 1 )
-ground_horizon_color = Color( 0.0196078, 0.419608, 0.611765, 1 )
+sky_top_color = Color( 0.572549, 0.803922, 0.988235, 1 )
+sky_horizon_color = Color( 0.929412, 0.776471, 0.482353, 1 )
+ground_bottom_color = Color( 0.0980392, 0.164706, 0.121569, 1 )
+ground_horizon_color = Color( 0.223529, 0.392157, 0.47451, 1 )
 ground_curve = 0.3091
+sun_latitude = 45.0
+sun_longitude = 45.0
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
@@ -27,3 +29,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171976, 1.68255, 7.57142 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.612372, -0.707107, 0.353553, -0.5, -6.76575e-08, 0.866025, -0.612372, -0.707107, -0.353553, 86, 81, -86 )
+shadow_enabled = true

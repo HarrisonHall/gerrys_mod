@@ -7,20 +7,25 @@ var shader_a = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_on_ScreenSize_item_selected(2)
+	shader_a = 4.5
+	_on_OptionButton_item_selected(3)
+	Game.GameViewport.get_parent().material.set_shader_param("a", shader_a)
 
 func _process(delta):
 	if not set_graphics:
 		_on_VisualOptions_item_selected(1)
-		_on_VisualOptions_item_selected(3)
+		#_on_VisualOptions_item_selected(3)
 		set_graphics = true
 		
 	if Game.GameViewport.get_parent().material.shader:
 		if Input.is_action_pressed("ui_bracketleft"):
 			shader_a -= 0.15
+			print(shader_a)
 			Game.GameViewport.get_parent().material.set_shader_param("a", shader_a)
 		elif Input.is_action_pressed("ui_bracketright"):
 			shader_a += 0.15
 			Game.GameViewport.get_parent().material.set_shader_param("a", shader_a)
+			print(shader_a)
 		elif Input.is_action_just_pressed("ui_backslash"):
 			shader_a = 0
 			Game.GameViewport.get_parent().material.set_shader_param("a", shader_a)

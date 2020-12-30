@@ -4,7 +4,6 @@
 [ext_resource path="res://Game/Players/models/Body.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Players/PersonUI/NameTag3D.tscn" type="PackedScene" id=3]
 
-
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.421843
 height = 0.193459
