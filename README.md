@@ -1,7 +1,9 @@
 # Gerry's Mod
 Gerry's Mod is an online multiplayer fps created in the Godot engine.
 It its current (and final) form it supports a hub, multiple maps and game modes,
-shooting, surfing, player models, enemies, and health tracking.
+shooting, surfing, player models, enemies, and health tracking. The web server
+was built in Flask with sockets for communication and is easily hostable on 
+heroku. 
 
 ![hub](other/media/hub.png)
 
