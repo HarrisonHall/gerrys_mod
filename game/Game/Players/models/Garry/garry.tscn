@@ -3,7 +3,6 @@
 [ext_resource path="res://Game/Players/Cameras/PlayerCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Players/models/Garry/skin.material" type="Material" id=2]
 
-
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
 surfaces/0 = {
@@ -720,7 +719,7 @@ tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1, 1.33333, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1 )
 
 [sub_resource type="Animation" id=12]
-resource_name = "jumpidle"
+resource_name = "jumpingidle"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -794,7 +793,7 @@ tracks/9/enabled = true
 tracks/9/keys = PoolRealArray( 0, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1, 1.33333, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1 )
 
 [sub_resource type="Animation" id=13]
-resource_name = "jumpidleholding"
+resource_name = "jumpingidleholding"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -1178,7 +1177,7 @@ bones/1/name = "head"
 bones/1/parent = 0
 bones/1/rest = Transform( 1, -5.07887e-09, 1.11616e-08, 7.43225e-09, 0.974996, -0.222223, -9.75391e-09, 0.222223, 0.974996, 0, 2.02383, 0 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("AttachCam") ]
 bones/2/name = "upperarml"
 bones/2/parent = 1
 bones/2/rest = Transform( -0.95527, 0.291322, -0.0509547, -0.294962, -0.951021, 0.0925003, -0.0215117, 0.103392, 0.994408, 0.937701, -0.231632, -0.0853983 )
@@ -1198,7 +1197,7 @@ bones/5/name = "lowerarmr"
 bones/5/parent = 4
 bones/5/rest = Transform( 0.9609, -0.143429, 0.236852, 0.275312, 0.403571, -0.872544, 0.029561, 0.903636, 0.427279, -5.36728e-08, 1.32761, 5.96045e-08 )
 bones/5/enabled = true
-bones/5/bound_children = [  ]
+bones/5/bound_children = [ NodePath("AttachHand") ]
 bones/6/name = "upperlegl"
 bones/6/parent = 0
 bones/6/rest = Transform( -0.998791, -0.0129766, 0.0475654, 0.0356423, -0.856619, 0.514718, 0.0340663, 0.515787, 0.856039, 0.42544, -0.287697, 0.0280934 )
@@ -1249,8 +1248,8 @@ anims/grindidle = SubResource( 8 )
 anims/grindidleholding = SubResource( 9 )
 anims/idle = SubResource( 10 )
 anims/idleholding = SubResource( 11 )
-anims/jumpidle = SubResource( 12 )
-anims/jumpidleholding = SubResource( 13 )
+anims/jumpingidle = SubResource( 12 )
+anims/jumpingidleholding = SubResource( 13 )
 anims/slideidle = SubResource( 14 )
 anims/slideidleholding = SubResource( 15 )
 anims/walk = SubResource( 16 )

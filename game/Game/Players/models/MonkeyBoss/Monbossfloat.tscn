@@ -1057,7 +1057,7 @@ tracks/13/enabled = true
 tracks/13/keys = PoolRealArray( 0, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1, 1.33333, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1 )
 
 [sub_resource type="Animation" id=15]
-resource_name = "jumpidle"
+resource_name = "jumpingidle"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -1159,7 +1159,7 @@ tracks/13/enabled = true
 tracks/13/keys = PoolRealArray( 0, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1, 1.33333, 1, 1.40629e-08, -0.178688, 0.101188, 0.085817, 1.11433e-16, 2.04604e-08, 0.996311, 1, 1, 1 )
 
 [sub_resource type="Animation" id=16]
-resource_name = "jumpidleholding"
+resource_name = "jumpingidleholding"
 length = 1.33333
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:lowerarml")
@@ -1778,8 +1778,8 @@ anims/grindidle = SubResource( 11 )
 anims/grindidleholding = SubResource( 12 )
 anims/idle = SubResource( 13 )
 anims/idleholding = SubResource( 14 )
-anims/jumpidle = SubResource( 15 )
-anims/jumpidleholding = SubResource( 16 )
+anims/jumpingidle = SubResource( 15 )
+anims/jumpingidleholding = SubResource( 16 )
 anims/slideidle = SubResource( 17 )
 anims/slideidleholding = SubResource( 18 )
 anims/walk = SubResource( 19 )
