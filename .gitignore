@@ -5,3 +5,4 @@ server/src/__pycache__
 *.pyc
 *~
 *#
+game/.import/*
